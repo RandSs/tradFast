@@ -15,15 +15,24 @@ class Rooter
         {
             case 'accueil':
                 
-                $dernierInscription = new AccueilController();
-                $dernierInscription->afficheDixDernierInscription();
+                $dernierInscription = new RestaurentController();
+                $dernierInscription->afficheRestaurents();
                 break;
+
             case 'signIn':
-               include("view/viewSignIn.php");
+                include("view/viewSignIn.php");
                 break;
-            case 'inscription':
-                include("view/viewInscription.php");
+
+            case 'inscriptionRestaurent':
+                $newRestaurent =  new RestaurentController();
+                $newRestaurent->setInscription();
+                
                 break;
+
+                case 'inscriptionClient':
+                   
+                    include("view/inscriptionClient.php");
+                    break;
 
         }
     }

@@ -4,9 +4,9 @@ class Bdd
 {
 
 
-  public static function getConnected(){
+  public static function getConnection(){
                 try {
-                    $bdd = new PDO("mysql:host=localhost;dbname=tradFast", "root", "",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                    $bdd = new PDO("mysql:host=localhost;dbname=tradFast1", "root", "",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                     return $bdd;
 
                 }catch(Exception $e){

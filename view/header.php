@@ -38,7 +38,7 @@
                             <a class="dropdown-item" href="#">Chinese</a>
                             <a class="dropdown-item" href="#">Italian</a>
                             <a class="dropdown-item" href="#">Maghrébine</a>
-                            <a class="dropdown-item" href="#">Gastronomie francaise</a>
+                            <a class="dropdown-item" href="#">Gastronomie française</a>
                       </div>
                 </div>
 
@@ -50,7 +50,10 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscription">Inscription</a>
+                  <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionRestaurent">Restaurent</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionClient">Client</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=signIn">Sign in</a>
