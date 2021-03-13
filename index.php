@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("bdd.php");
 include("view/header.php");
 include("controller/controllerRestauent.php");

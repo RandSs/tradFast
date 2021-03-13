@@ -4,15 +4,18 @@
 
 class Restaurent
 {
-    private $idRestaurent;
+
+    private $id_restaurent;
     public $nom;
     public $pseudo;
     public $adresse;
-    public $codePostal;
+    public $code_postal;
     public $tel;
     public $email;
     public $mdp;
     public $image;
+    public $id_cuisine;
+    public $id_role;
     public $typeCuisine;
   
 
@@ -22,9 +25,9 @@ class Restaurent
      * getters 
      */
 
-     public function getIdRestaurnet(): int 
+     public function getIdRestaurent(): int 
      {
-         return $this->idRestaurent;
+         return $this->id_restaurent;
      }
      public function getNom(): string
      {

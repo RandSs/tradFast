@@ -10,7 +10,9 @@ echo $message;
  
     
         <form action="" method="POST"> 
+            
         <div class="form-row">
+
                 <div class="form-group col-md-6">
                     <label for="nom">Nom</label>
                     <input type="text" class="form-control" id="nom" name="nom" aria-describedby="emailHelp" placeholder="Enter nom">
@@ -46,17 +48,15 @@ echo $message;
                     <label for="mdp">Mot de passe</label>
                     <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Enter mot de passe">
                 </div>
-              
-                
-
-            
-                
+ 
                 <div class="col">
                     <input type="hidden" class="form-control" id="id_role" name="id_role" value="3">
                 </div>
+
                 <div class="form-group"> 
                 <button type="submit" class="btn btn-success" style="float: right;">S'inscrir</button>
                 </div>
+
           </div>
         </form>
 

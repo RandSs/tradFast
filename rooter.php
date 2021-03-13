@@ -19,8 +19,26 @@ class Rooter
                 $dernierInscription->afficheRestaurents();
                 break;
 
+
+            case 'restaurentCompte':
+
+                $restauCompte = new RestaurentController;
+                $restauCompte->restaurentCompte($_SESSION["id_restaurent"]);
+                
+                break;
+
             case 'signIn':
-                include("view/viewSignIn.php");
+                $signIn = new RestaurentController;
+                $signIn->connecteMoi();
+                
+                break;
+
+
+            case 'signOut':
+
+              $_SESSION = array();
+              header('Location: index.php?page=accueil');
+                
                 break;
 
             case 'inscriptionRestaurent':

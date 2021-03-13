@@ -72,6 +72,7 @@ echo $message;
                 <div class="col">
                     <input type="hidden" class="form-control" id="id_role" name="id_role" value="2">
                 </div>
+               
                 <div class="form-group"> 
                 <button type="submit" class="btn btn-success" style="float: right;">S'inscrir</button>
                 </div>

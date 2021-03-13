@@ -4,13 +4,10 @@ include("controller/restaurent.php");
 class RestaurentModel extends Restaurent
 {
 
-
- 
-
   //Déclarer une fonction pour récupérer les champs de la table restauraurent. 
   //Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
     
-   public function getRestaurent()
+   public function getRestaurents()
    {
 
         $bdd = Bdd::getConnection();
@@ -36,7 +33,7 @@ class RestaurentModel extends Restaurent
     public function inscription()
     {
          $bdd = Bdd::getConnection();
-
+// requete pour remplir la table [restaurent]. 
          $requete = "INSERT INTO restaurent(nom, pseudo, adresse, tel, 
                                             email, code_postal, mdp, image,id_role)
                                             VALUES (:nom, :pseudo, :adresse, 
@@ -52,10 +49,11 @@ class RestaurentModel extends Restaurent
                       "id_role"=>$this->id_role      
                       
                       ]);
-          
+          //je récupère le dernier ID_restaurent grace à la fontion PHP lastInsertId()
+          //et je le stock dans la variable $last_id 
                       $last_id = $bdd->lastInsertId();
                       echo  "New record created successfully. Last inserted ID is: " . $last_id;
-
+        // requete pour remplir la table [specialite] grace au $last_id && id_cuisine
          $requeteTypeCuisine = "INSERT INTO specialite(id_cuisine, id_restaurent)
                                 VALUES (:id_cuisine, :id_restaurent) ";
 
@@ -72,8 +70,49 @@ class RestaurentModel extends Restaurent
         return $resultat;
       
     }
-   
+   // déclarer une fonction pour se connecter a son compte.
+     public function seConnecter()
+     {
 
+          $bdd = Bdd::getConnection();
+
+    //requete pour récupérer les information d'une seule ligne de la table [restaurent]
+          $requete = ("SELECT * FROM restaurent
+                       INNER JOIN role 
+                       ON restaurent.id_role = role.id_role
+                       WHERE  restaurent.email =:email");
+                      
+         $restau = $bdd->prepare($requete);
+                    $restau->execute([
+                           ":email"=> $this->email
+                          ]);
+        
+         $resultatRestau = $restau->fetch();
+
+         $bdd = null;
+
+        return $resultatRestau;
+
+     }
+      
+
+     /**
+      * @param  $id_restaurent du restaurent que je veut récupérer.
+      */
+     public function getRestauCompte($id_restaurent)  
+     {
+         $bdd = Bdd::getConnection();
+          $requete = ("SELECT * From restaurent 
+                       WHERE id_restaurent = :id_restaurent");
+
+          $restauCompte = $bdd->prepare($requete);
+          $restauCompte->execute([":id_restaurent" => $id_restaurent]);
+          $restauCompteResultat = $restauCompte->fetch();
+          $bdd = null;
+
+          return    $restauCompteResultat;
+
+     }
 
 }
 

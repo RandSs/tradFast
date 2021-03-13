@@ -49,6 +49,27 @@
                     <span class="sr-only">(current)</span>
                   </a>
                 </li>
+  <?php if(isset($_SESSION['id_restaurent'])) { ?>    
+
+    <?php if($_SESSION['id_role']==1 )  { ?> 
+       
+                <li class="nav-item">
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=admin">Admin</a>
+                </li>
+    <?php } ?>            
+                 <li class="nav-item">
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=restaurentCompte">
+                      <?php echo ucfirst($_SESSION['pseudo']); ?>
+                </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=signOut">Modifier</a>
+                </li>
+                 
+                <li class="nav-item">
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=signOut">Signe off</a>
+                </li>
+                <?php } else { ?>
                 <li class="nav-item">
                   <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionRestaurent">Restaurent</a>
                 </li>
@@ -56,11 +77,12 @@
                   <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionClient">Client</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=signIn">Sign in</a>
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=signIn">Signe in</a>
                 </li>
-               
+
+              
         </ul>
-                
+                <?php } ?>
        
 
       </div>
