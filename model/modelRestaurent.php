@@ -4,7 +4,7 @@ include("controller/restaurent.php");
 class RestaurentModel extends Restaurent
 {
 
-     
+   
   //Déclarer une fonction pour récupérer les champs de la table restauraurent. 
   //Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
     
@@ -121,24 +121,27 @@ class RestaurentModel extends Restaurent
       $bdd = Bdd::getConnection();
 
         
-            $requete = ("SELECT * FROM restaurent 
-            INNER JOIN role ON restaurent.id_role = role.id_role 
-            INNER JOIN specialite ON restaurent.id_restaurent = specialite.id_restaurent 
-            INNER JOIN type_cuisine ON specialite.id_cuisine = type_cuisine.id_cuisine 
-            INNER JOIN menue ON restaurent.id_restaurent = menue.id_restaurent 
-            INNER JOIN plat ON menue.id_menue = plat.id_menue 
-            INNER JOIN commander ON plat.id_plat = commander.id_plat 
-            INNER JOIN commande ON commander.id_commande = commande.id_commande 
-            INNER JOIN client ON client.id_client = commande.id_client
-            WHERE id_restaurent = :id_restaurent");
-             
-                      
+            $requete = ("SELECT *  FROM restaurent 
+                         LEFT JOIN menue ON restaurent.id_restaurent = menue.id_restaurent
+                         LEFT JOIN plat ON plat.id_menue = menue.id_menue
+                         INNER JOIN specialite ON restaurent.id_restaurent = specialite.id_restaurent 
+                         LEFT JOIN type_cuisine ON specialite.id_cuisine = type_cuisine.id_cuisine 
+                         INNER JOIN commander ON plat.id_plat = commander.id_plat 
+                         INNER JOIN commande ON commander.id_commande = commande.id_commande 
+                         INNER JOIN client ON client.id_client = commande.id_client
+                         INNER JOIN role ON restaurent.id_role = role.id_role 
+                         
+                         WHERE restaurent.id_restaurent = :id_restaurent");
+                         
+            
+           
+        
       
                          $compteInfo = $bdd->prepare($requete);
                          $compteInfo->execute([":id_restaurent" => $id_restaurent]);
-                         $compteInfoResultat =  $compteInfo->fetch();
+                         //$compteInfoResultat =  $compteInfo->fetchAll();
+                         $compteInfoResultat= $compteInfo->fetch();
          
-            print_r(  $compteInfoResultat);
 
   
       $bdd = null;

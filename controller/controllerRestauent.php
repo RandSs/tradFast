@@ -86,7 +86,7 @@ class RestaurentController extends RestaurentModel
             $compte = $this->getRestauCompte($id_restaurent);
             $monRestaurentCompte = $this->fetchRestaurentData($id_restaurent);
 
-        
+      
 
             include("view/restaurentCompte.php");
       } else{

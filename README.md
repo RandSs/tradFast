@@ -4,3 +4,5 @@ l'idée du projet est de facilité la tache pour les client qui veule  manger da
 donc on regroupe les restaurent qui veules adhérer à l'application pour but de montrer leur savoir fair au client, une sorte de publicité. 
 le client il auras une idée générale avant de mettre les pieds dans un restaurant comme il peut passer des commandes au prés du restaurateur. 
 le site contiens en ce moment dix pages. 
+
+
