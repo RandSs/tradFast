@@ -23,7 +23,7 @@ class Rooter
             case 'restaurentCompte':
 
                 $restauCompte = new RestaurentController;
-                $restauCompte->restaurentCompte($_SESSION["id_restaurent"]);
+                $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
                 
                 break;
 

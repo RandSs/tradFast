@@ -1,5 +1,7 @@
-
-<div class="card border-success mb-3" style="max-width: 40rem; margin-left: 20rem; margin-top: 7rem;">
+<section id="signIn">
+    <hr>
+  
+<div class="card border-success mx-auto  mb-5" style="max-width: 40rem; margin-left: 20rem; margin-top: 2rem; margin-bottom:10rem;">
   <div class="card-header"><h4 class="card-title">Sign In</h4></div>
   <div class="card-body">
     
@@ -18,5 +20,9 @@
                 <button type="submit" class="btn btn-success" style="float: right;">Valider</button>
         </form>
 
-
+  </div>
 </div>
+<div>
+    <hr>
+</div>
+</section>

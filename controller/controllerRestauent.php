@@ -71,8 +71,8 @@ class RestaurentController extends RestaurentModel
 
              header('Location: index.php?page=restaurentCompte');
        }else{
-         echo $message = "centre class='alert alert-danger'>Email ou mot de passe incorrect </center>";
-         include("view/viewSignIn.php");
+         echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";
+        
        }
 
     }
@@ -84,12 +84,17 @@ class RestaurentController extends RestaurentModel
       if($id_restaurent !== null)
       {
             $compte = $this->getRestauCompte($id_restaurent);
-             echo"$id_restaurent";
+            $monRestaurentCompte = $this->fetchRestaurentData($id_restaurent);
+
+        
+
             include("view/restaurentCompte.php");
       } else{
                 echo "on est pas connecter";
             }
       
   }
+
+  
       
 }

@@ -1,11 +1,11 @@
 <?php
 
+include("controller/user.php");
 
-
-class Restaurent
+class Restaurent extends User
 {
-
-    private $id_restaurent;
+ //restaurent
+    public $id_restaurent;
     public $nom;
     public $pseudo;
     public $adresse;
@@ -13,13 +13,36 @@ class Restaurent
     public $tel;
     public $email;
     public $mdp;
-    public $image;
-    public $id_cuisine;
+    public $image; 
     public $id_role;
-    public $typeCuisine;
-  
+//commande
+    public $id_commande;
+    public $date_de_commande;
+    public $quantite;
+    public $date_de_livraison;
+     
+    //commander
 
+   public $id_plat;
 
+   //plat
+   public $plat;
+   public $ingredient;
+   public $prix;
+
+   //menue
+   public $id_menue;
+   public $typeDePlat;
+
+   //role
+   public $role;
+   
+   //specialite
+
+   public $id_cuisine;
+
+   //type_cuisine
+   public $cuisine;
 
     /**
      * getters 

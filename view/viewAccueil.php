@@ -1,3 +1,4 @@
+<article id="article" >
 <section>
         <div>
               <h1 style="text-align: center;  color: green; opacity:0.7">Nouveauté</h1>
@@ -132,3 +133,4 @@
           </div>
 
   </section>
+  </article>

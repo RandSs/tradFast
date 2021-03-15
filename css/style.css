@@ -1,6 +1,6 @@
-body  {
+#article {
    
-    background-image: url("/tradFast/images/pasta-green-pesto-spinach-pine-600w-1897568725.webp");
+   background-image: url("/tradFast/images/pasta-green-pesto-spinach-pine-600w-1897568725.webp");
     background-repeat: no-repeat;
      background-size: cover;
 
@@ -10,4 +10,15 @@ body  {
 ul  {
     color: rgb(16, 216, 9);
     float: left;
+}
+#restau{
+    background-color: goldenrod ;
+}
+
+#signIn{
+    background-color: rgb(238, 236, 230) ;
+  
+}
+header#header {
+    background-image: url("/tradFast/images/stock-photo-italian-food-ingredients-for-spaghetti-bolognese-642298984.jpg");
 }

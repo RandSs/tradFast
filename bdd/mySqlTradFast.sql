@@ -88,9 +88,7 @@ CREATE TABLE commande(
 
 CREATE TABLE menue(
         id_menue      Int  Auto_increment  NOT NULL ,
-        entree        Varchar (200) NOT NULL ,
-        main          Varchar (200) NOT NULL ,
-        dessert       Varchar (200) NOT NULL ,
+        typeDePlat     Varchar (50) NOT NULL ,
         id_restaurent Int NOT NULL
 	,CONSTRAINT menue_PK PRIMARY KEY (id_menue)
 
