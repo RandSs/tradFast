@@ -4,10 +4,13 @@
 class Rooter 
 {
     private $page;
+   
 
     public function __construct($page= null)
     {
         $this->page = $page;
+    
+      
     }
 
     function pageDemander(){
@@ -16,22 +19,35 @@ class Rooter
             case 'accueil':
                 
                 $dernierInscription = new RestaurentController();
-                $dernierInscription->afficheRestaurents();
+                $dernierInscription->afficheRestaurents($_GET["pL"]);
+          
+                
                 break;
+                case 'restaurant':
+
+                    $voirMenuRestau = new RestaurentController();
+                    $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
+                    
+                    break;
 
 
             case 'restaurentCompte':
 
-                $restauCompte = new RestaurentController;
+                $restauCompte = new RestaurentController();
                 $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
                 
                 break;
 
             case 'signIn':
-                $signIn = new RestaurentController;
+                $signIn = new RestaurentController();
                 $signIn->connecteMoi();
                 
                 break;
+                case 'modifier':
+                    $ajouter = new RestaurentController;
+                   
+                    include("view/rajouterPlat.php");
+                    break;
 
 
             case 'signOut':

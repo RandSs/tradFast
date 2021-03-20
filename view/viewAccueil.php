@@ -1,7 +1,9 @@
+
+
 <article id="article" >
 <section>
         <div>
-              <h1 style="text-align: center;  color: green; opacity:0.7">Nouveauté</h1>
+              <h1 style="text-align: center;  color: green; opacity:0.7">La liste des restaurants</h1>
         </div>
 
 </section>
@@ -29,10 +31,11 @@
                         </thead>
                         <tbody>
                           <?php
-                             
-                              for($i=0; $i < 10 ; $i++){ 
+                           
+                              foreach($voirMenuRestau as $menu){ 
+                                var_dump ($voirMenuRestau);
                                 echo'<tr>
-                                <td>César salad 4€<p style="font-size: 10px;">
+                                <td>' .$menu["plat"] . $menu["prix"].'<a href="#" ><i class="fas fa-shopping-basket"></i></a><p style="font-size: 10px;">
                                           éscalope poulet, salade, tomate
                                 </p></td>
                               </tr>';
@@ -57,7 +60,7 @@
                              
                              for($i=0; $i < 5 ; $i++){ 
                                echo'<tr>
-                               <td>César salad 4€<p style="font-size: 10px;">
+                               <td>César salad 4€  <a href="#" ><i class="fas fa-shopping-basket"></i></a><p style="font-size: 10px;">
                                          éscalope poulet, salade, tomate
                                </p></td>
                              </tr>';
@@ -82,7 +85,7 @@
                              
                              for($i=0; $i < 5 ; $i++){ 
                                echo'<tr>
-                               <td>César salad 4€<p style="font-size: 10px;">
+                               <td>César salad 4€  <a href="#" ><i class="fas fa-shopping-basket"></i></a><p style="font-size: 10px;">
                                          éscalope poulet, salade, tomate
                                </p></td>
                              </tr>';
@@ -97,7 +100,7 @@
                 </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-              <button type="button" class="btn btn-success">Contacter restaurent</button>
+              <button type="button" class="btn btn-success"><a class="text-white" href="index.php?page=inscriptionClient" >Contacter restaurant</a></button>
             </div>
           </div>
         </div>
@@ -114,16 +117,17 @@
               //la variable $dernierInscription vien de la class controllerAccueil qui contien le resultat du fetch de la fonction 
               // getDernierDixInscription() de la class AccueilModel. 
 
-              foreach ($dernierInscription as $dI) {
+              foreach ($restaurants as $rest) {
 
                 echo
-                  '<div class="card " style="min-width: 14rem; max-height: 21rem;  margin-top: 1rem;">' .
-                  '<img class="card-img-top" src="' . $dI["image"] . '"  alt="Card image cap">' .
+                  '<div class="card " style="min-width: 14rem;   margin-top: 1rem; margin-bottom:5rem;">' .
+                  '<img class="card-img-top" src="' . $rest["image"] . '"  alt="Card image cap">' .
                   '<div class="card-body" >' .
-                  '<h5 class="card-title">' . strtoupper($dI["nom"]) . " " .  strtoupper($dI["pseudo"]) . '</h5>'.
-                  '<p class="card-text" style="color:green;"><b>Type de cuisine:' . $dI["cuisine"] . '</b></p>'.
-                  '<p class="card-text"><small class="text-muted"></small></p>' .
-                  '<a class="btn btn-outline-success" href="#" role="button" data-toggle="modal" data-target="#voirMenue">Voir menue</a>' .
+                  '<h5 class="card-title">' . strtoupper($rest["nom"]) . " " .  strtoupper($rest["pseudo"]) . '</h5>'.
+                  '<p class="card-text" style="color:green;"><b>Type de cuisine:' . $rest["cuisine"] . '</b></p>'.
+                  '<p class=""><small class="text-muted"></small></p>' .
+                  '<a class="btn btn-outline-success" href="index.php?page=restaurant&id_restaurent=' .$rest["id_restaurent"] . '"
+                  role="button"  style="margin-bottom: 2rem;" >Voir restaurant</a>' .
                   '</div></div>';
               }
 
@@ -133,4 +137,43 @@
           </div>
 
   </section>
+
+  <section>
+         <div   class ="  navbar navbar-expand-lg navbar-dark bg-dark " >
+                <ul class="pagination justify-content-center ml-auto">
+
+                   <?php if($currentPage > 1 ) ?>
+                   {
+
+                      <li class="page-item ">
+                      <a class="page-link" href="<?php "index.php?accueil&"?>pL=<?= $page - 1   ?>">Previous</a>
+                      </li>
+                     
+                   }
+                     
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <?php if($currentPage < $pages ) ?>
+                        { <li class="page-item ">
+                      <a class="page-link " href="<?php "index.php?page=accueil&pL"?><?= $page + 1  ?>" >Next</a>
+                    </li>}
+
+                       
+                </ul>
+                        </div>
+  </section>
   </article>
+
+<?php
+ 
+?>
+
+
+    
+ 
+          
+
+          
+
+  

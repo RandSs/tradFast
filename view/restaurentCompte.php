@@ -1,8 +1,218 @@
 <article id="restau">
-<h1 class="text-danger" >Bien venue <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
+<h1 class="text-danger" style="text-align: center;">Bien venue: <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
 
+<section >
+<div class="card-deck container-fluid " style="margin-top: 2rem; margin-bottom:5rem;">
+  
+  <div id="mesClients" class="card col-2" >
+   
+    <div class="card-body">
+      <h5 class="card-title text-success">Mes Client</h5>
+      <div class="card-text">
+                        <table class="table">
+                        <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">N° Client</th>
+                                <th scope="col">Nom Client</th>
+                                <th scope="col">Prenom Client</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">N° Tel</th>
+                                <th scope="col">Email</th>
+                               
+                              </tr>
+                    </thead>
+                    <tbody>
+                          <?php
+                             
+                              foreach($commadeInformation as $client){ 
+                                echo'<tr>
+                                <td><h6>'.
+                                $client["id_client"] 
+                                
+                                .'</h6></td>
+                                <td><h6>'.
+                                $client["nom_client"] 
+                                .'</h6></td>
+                                <td><h6>'.
+                                $client["prenom_client"] 
+                                .'</h6></td>
+                                <td><h4 style="font-size: 10px;">'.
+                                $client["adresse_client"]
+                                .'</h4></td>
+                                <td><h4 style="font-size: 10px;">'.
+                                $client["tel_client"]
+                                .'</h4></td>
+                                <td><h4 style="font-size: 10px;">'.
+                                $client["client_email"]
+                                .'</h4></td>
+                              </tr>';
+                            }
+                         
+
+                          ?>
+                       
+                        </tbody>
+                      </table>
+             </div>
+    
+    </div>
+  </div>
+  <div class="card col-10"  id="mesCommandes">
+   
+    <div class="card-body">
+      <h5 class="card-title text-success">Gérer mes commandes</h5>
+
+      <table class="table">
+              <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">N° Commande</th>
+                    <th scope="col">Plat</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">date de commande</th>
+                    <th scope="col">date de livraison</th>
+                    <th scope="col">N° Client</th>
+                  </tr>
+           </thead>
+          <tbody>
+              <?php
+                foreach ($commadeInformation as $plat ) {
+            
+                  echo '<tr>
+                  
+                        <td>' . $plat["id_commande"] . '</td>
+                        <td>' . $plat["plat"] . '</td>
+                        <td>' . $plat["quantite"] . '</td>
+                        <td>' . $plat["date_de_commande"] . '</td>
+                        <td>' . $plat["date_de_livraison"] . '</td>
+                        <td>' . $plat["id_client"] . '</td>
+                
+                        </tr>';
+                
+                }
+
+            
+            ?>
+            </tbody>
+</table>
+
+
+    
+    </div>
+  </div>
+</div>
+</section>
 <section>
+<div  class="card-deck container-fluid" style="margin-bottom: 2rem;">
+  
+  <div class="card col-4">
+   
+    <div class="card-body">
+      <h5 class="card-title text-success">Mes Infos</h5>
+      <h6> <?php echo'Mon N° restaurant c\'est : ' . ucfirst($monRestaurentCompte['id_restaurent']) ?></h6>
+      <h6> <?php echo'Ma spécialité c\'est : ' . ucfirst($monRestaurentCompte['cuisine']) ?></h6>
+      <h6> <?php echo'Mon email c\'est : ' . $monRestaurentCompte['email'] ?></h6>
+      <h6> <?php echo'Mon N° tel c\'est : ' . ucfirst($monRestaurentCompte['tel']) ?></h6>
       
+ 
+    </div>
+  </div>
+  <div id="monMenu" class="card col-8">
+ 
+    <div class="card-body">
+      <h5 class="card-title text-success">Mon menu</h5>
+
+      <div class="modal-body d-flex flex-row justify-content-between" >
+                  
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th >Entrée</th>
+                  
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                         
+                         foreach($commadeInformation as $plat)
+                         { 
+                                if($plat["typeDePlat"] == "entree"){
+                                  echo'<tr>
+                                  <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                           .$plat["ingredient"].
+                                '</p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
+                              </tr>';
+                                  }
+                 
+                         }
+
+                      ?>
+                   
+                    </tbody>
+                  </table>
+                
+          
+                        
+              
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Main</th>
+                  
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                         
+                         foreach($commadeInformation as $plat)
+                         { 
+                                if($plat["type_plat"] == "main"){
+                                      echo'<tr>
+                                              <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                                       .$plat["ingredient"].
+                                            '</p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
+                                          </tr>';
+                                  }
+                 
+                         }
+
+                     ?>
+                     
+                    </tbody>
+                  </table>
+                
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Dessert</th>
+
+                  
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                         
+                         foreach($commadeInformation as $plat)
+                         { 
+                                if($plat["type_plat"] == "dessert"){
+                                      echo'<tr>
+                                      <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                               .$plat["ingredient"].
+                                    '</p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
+                                  </tr>';
+                                  }
+                 
+                         }
+
+                     ?>
+                     
+                    </tbody>
+                  </table>
+                  
+            </div>
+
+    </div>
+  </div>
+</div>
 </section>
 
 <section>
@@ -17,160 +227,14 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-                <div class="modal-body d-flex flex-row justify-content-between" >
-                  
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Entrée</th>
-                      
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                             
-                              for($i=0; $i < 10 ; $i++){ 
-                                echo'<tr>
-                                <td>César salad 4€<p style="font-size: 10px;">
-                                          éscalope poulet, salade, tomate
-                                </p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
-                              </tr>';
-                            }
-                         
-
-                          ?>
-                       
-                        </tbody>
-                      </table>
-                    
-              
-                            
-                  
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Main</th>
-                      
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                             
-                             for($i=0; $i < 5 ; $i++){ 
-                               echo'<tr>
-                               <td>César salad 4€<p style="font-size: 10px;">
-                                         éscalope poulet, salade, tomate
-                               </p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
-                             </tr>';
-                           }
-                        
-
-                         ?>
-                         
-                        </tbody>
-                      </table>
-                    
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Dessert</th>
-
-                      
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                             
-                             for($i=0; $i < 5 ; $i++){ 
-                               echo'<tr>
-                               <td>César salad 4€<p style="font-size: 10px;">
-                                         éscalope poulet, salade, tomate
-                               </p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
-                             </tr>';
-                           }
-                        
-
-                         ?>
-                         
-                        </tbody>
-                      </table>
-                      
-                </div>
+                
             <div class="modal-footer" >
               <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-              <button type="button" class="btn btn-success">Valider</button>
+             
             </div>
           </div>
         </div>
       </div>
 </section>
-
-<section>
-
-          <div class="container" >
-            <div class="card-deck" style="margin-top: 1rem; ">
-            
-
-              <?php
-
-              //la variable $dernierInscription vien de la class controllerAccueil qui contien le resultat du fetch de la fonction 
-              // getDernierDixInscription() de la class AccueilModel. 
-
-       
-
-                echo
-                  '<div class="card " style="min-width: 14rem; max-height: 21rem;  margin-top: 1rem;">' .
-                  '<img class="card-img-top" src="' . $monRestaurentCompte["image"] . '"  alt="Card image cap" style="width: 150px; height:150; ">' .
-                  '<div class="card-body" >' .
-                  '<h5 class="card-title">' . strtoupper($monRestaurentCompte["nom"]) . " " .  strtoupper($monRestaurentCompte["pseudo"]) . '</h5>'.
-                  '<p class="card-text" style="color:green;"><b>ID ROLE : ' . $monRestaurentCompte["id_role"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>ROLE :' . $monRestaurentCompte["role"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b> Cuisine :' . $monRestaurentCompte["cuisine"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id Cuisine :' . $monRestaurentCompte["id_cuisine"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id Restaurent :' . $monRestaurentCompte["id_plat"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id Menue  :' . $monRestaurentCompte["id_menue"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id Restaurent :' . $monRestaurentCompte["id_restaurent"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>type de plate :' . $monRestaurentCompte["type_plat"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>ingredient :' . $monRestaurentCompte["ingredient"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>plat :' . $monRestaurentCompte["plat"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>prix :' . $monRestaurentCompte["prix"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id plat : ' . $monRestaurentCompte["id_plat"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id commande :' . $monRestaurentCompte["id_commande"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>date de commande :' . $monRestaurentCompte["date_de_commande"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>quantite :' . $monRestaurentCompte["quantite"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>date de livraison:' . $monRestaurentCompte["date_de_livraison"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>id client:' . $monRestaurentCompte["id_client"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>nom client:' . $monRestaurentCompte["nom_client"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>prenom client:' . $monRestaurentCompte["prenom_client"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>iadresse client:' . $monRestaurentCompte["adresse_client"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>cp client:' . $monRestaurentCompte["code_postal_client"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>pseudo:' . $monRestaurentCompte["pseudo"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>nom rest :' . $monRestaurentCompte["nom"] . '</b></p>'.
-                  '<p class="card-text" style="color:green;"><b>email:' . $monRestaurentCompte["email"] . '</b></p>'.
-
-
-
-
-
-                  
-
-
-
-
-              
-
-
-
-                  '<p class="card-text"><small class="text-muted"></small></p>' .
-                  '<a class="btn btn-outline-success" href="#" role="button" data-toggle="modal" data-target="#voirMenue">Voir menue</a>' .
-              
-                  '</div></div>';
-            
-
-              ?>
-
-             </div>
-          </div>
-
-  </section>
+<hr>
   </article>

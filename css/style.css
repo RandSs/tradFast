@@ -13,6 +13,12 @@ ul  {
 }
 #restau{
     background-color: goldenrod ;
+    
+}
+#voirestau{
+    background-image: url("/tradFast/images/halflighted-hall-loft-style-mexican-600w-430097278.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #signIn{
@@ -20,5 +26,18 @@ ul  {
   
 }
 header#header {
-    background-image: url("/tradFast/images/stock-photo-italian-food-ingredients-for-spaghetti-bolognese-642298984.jpg");
+   
+   background-color: rgb(71, 69, 69);
+}
+
+#mesClients, #monMenu{
+
+    overflow-y: auto;
+    height: 20rem ;
+}
+
+#mesCommandes{
+
+    overflow-y: auto;
+    height: 20rem ;
 }

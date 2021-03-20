@@ -17,7 +17,10 @@ class RestaurentModel extends Restaurent
                         INNER JOIN specialite
                         ON specialite.id_restaurent = restaurent.id_restaurent
                         INNER JOIN type_cuisine
-                        ON type_cuisine.id_cuisine = specialite.id_cuisine');
+                        ON type_cuisine.id_cuisine = specialite.id_cuisine
+                        LIMIT 4');
+
+                       
 
                 $restaurent = $bdd->prepare($requete);
                 $restaurent->execute();
@@ -28,6 +31,7 @@ class RestaurentModel extends Restaurent
                
     }
 
+   
  //Déclarer une fonction pour permetre à injecter les information à la base de donnés pour inscrir un restaurateur.
 //Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
 
@@ -133,21 +137,61 @@ class RestaurentModel extends Restaurent
                          
                          WHERE restaurent.id_restaurent = :id_restaurent");
                          
-            
-           
-        
-      
+                         $idR = [":id_restaurent" => $id_restaurent];
+
                          $compteInfo = $bdd->prepare($requete);
                          $compteInfo->execute([":id_restaurent" => $id_restaurent]);
                          //$compteInfoResultat =  $compteInfo->fetchAll();
                          $compteInfoResultat= $compteInfo->fetch();
-         
 
+
+                      
+                             
+                  
+                          $commande = ("SELECT * FROM menue
+                                INNER JOIN plat ON plat.id_menue = menue.id_menue 
+                                WHERE menue.id_restaurent = :id_restaurent
+                               ");
+                          $commandeInfos = $bdd->prepare($commande);
+                          $commandeInfos->execute([":id_restaurent" => $id_restaurent]); 
+                          $resultaCommandeInfos =  $commandeInfos->fetchAll();
+                     
+         
+  
   
       $bdd = null;
 
-      return $compteInfoResultat;
+      return $compteInfoResultat ;
  
+     }
+
+     public function commandeInfos($id_restaurent)
+     {
+          $bdd = Bdd::getConnection();
+          $commande = ("SELECT * FROM menue
+          INNER JOIN plat ON plat.id_menue = menue.id_menue      
+          INNER JOIN commander ON commander.id_plat = plat.id_plat
+          INNER JOIN commande ON commande.id_commande = commander.id_commande
+          INNER JOIN client ON commande.id_client = client.id_client
+          WHERE menue.id_restaurent = :id_restaurent
+
+         ");
+    $commandeInfos = $bdd->prepare($commande);
+    $commandeInfos->execute([":id_restaurent" => $id_restaurent]); 
+    $resultaCommandeInfos =  $commandeInfos->fetchAll();
+    
+    $bdd = null;
+
+  
+    return $resultaCommandeInfos ;
+
+     }
+
+     public function ajouterUnPlat()
+     {
+          $bdd = Bdd::getConnection();
+
+          $requete = ("");
      }
 
 }

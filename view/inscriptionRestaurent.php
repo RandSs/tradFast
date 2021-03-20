@@ -54,9 +54,9 @@ echo $message;
                         <select class="border-muted" id="typeCuisine" name="typeCuisine" style=" height: 2.5rem;">
                             <option class="text-muted" value="">Entrée le type de cuisine</option>
                             <option value="1">Chinese</option>
-                            <option value="2">Maghrébine</option>
+                            <option value="2">Maghrebine</option>
                             <option value="3">Italian</option>
-                            <option value="4">African</option>
+                            <option value="4">Indian</option>
                             <option value="5">Gastronomie française</option>
                             <option value="6">Autre</option>
 

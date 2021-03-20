@@ -70,7 +70,7 @@
                 </li>
                  
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=signOut">Modifier</a>
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=modifier">Modifier</a>
                 </li>
                  
                 <li class="nav-item">
