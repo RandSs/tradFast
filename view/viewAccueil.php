@@ -107,73 +107,85 @@
       </div>
 </section>
 
-<section>
-
-          <div class="container" >
-            <div class="card-deck" style="margin-top: 1rem; ">
-
-              <?php
-
-              //la variable $dernierInscription vien de la class controllerAccueil qui contien le resultat du fetch de la fonction 
-              // getDernierDixInscription() de la class AccueilModel. 
-
-              foreach ($restaurants as $rest) {
-
-                echo
-                  '<div class="card " style="min-width: 14rem;   margin-top: 1rem; margin-bottom:5rem;">' .
-                  '<img class="card-img-top" src="' . $rest["image"] . '"  alt="Card image cap">' .
-                  '<div class="card-body" >' .
-                  '<h5 class="card-title">' . strtoupper($rest["nom"]) . " " .  strtoupper($rest["pseudo"]) . '</h5>'.
-                  '<p class="card-text" style="color:green;"><b>Type de cuisine:' . $rest["cuisine"] . '</b></p>'.
-                  '<p class=""><small class="text-muted"></small></p>' .
-                  '<a class="btn btn-outline-success" href="index.php?page=restaurant&id_restaurent=' .$rest["id_restaurent"] . '"
-                  role="button"  style="margin-bottom: 2rem;" >Voir restaurant</a>' .
-                  '</div></div>';
-              }
-
-              ?>
-
-             </div>
-          </div>
-
-  </section>
-
-  <section>
-         <div   class ="  navbar navbar-expand-lg navbar-dark bg-dark " >
-                <ul class="pagination justify-content-center ml-auto">
-
-                   <?php if($currentPage > 1 ) ?>
-                   {
-
-                      <li class="page-item ">
-                      <a class="page-link" href="<?php "index.php?accueil&"?>pL=<?= $page - 1   ?>">Previous</a>
-                      </li>
-                     
-                   }
-                     
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <?php if($currentPage < $pages ) ?>
-                        { <li class="page-item ">
-                      <a class="page-link " href="<?php "index.php?page=accueil&pL"?><?= $page + 1  ?>" >Next</a>
-                    </li>}
-
-                       
-                </ul>
-                        </div>
-  </section>
-  </article>
-
+<section >
+<div class="container "  >
+<div class="card-deck ">
 <?php
+
+            $bdd = Bdd::getConnection();
+
+            $page = (!empty($_GET['pL']) ? $_GET['pL'] : 1);
+            $limite = 2;
+            $debut = ($page - 1) * $limite;
+
+            $nbRows = ('SELECT COUNT(id_restaurent) AS nb FROM restaurent');
+            $nbRows= $bdd->query($nbRows);
+            $result = $nbRows->execute();
+            $resultNbRows =  $nbRows->fetchColumn();
+            $nbDePage = ceil( $resultNbRows/ $limite);
+
+            $query = ("SELECT * FROM restaurent LIMIT :limite  OFFSET :debut " );
+
+            $query= $bdd->prepare($query);
+            $query->bindValue('limite', $limite, PDO::PARAM_INT);
+            $query->bindValue('debut', $debut, PDO::PARAM_INT);
+
+            $resultat =  $query->execute();
  
-?>
+            
+            while ( $element = $query->fetch()) {
+         
+             echo'
+              <div class="card">
+                <img class="card-img-top" src="'.$element["image"].'" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">'.$element["nom"]. '</h5>
+                 
+                 
+                </div>
+              </div>';
+            }
+            ?>
+             </section>
 
+      <section>
+      <div class="navbar navbar-expand-lg navbar-dark bg-dark  d-flex  justify-content-between ">
+           <ul class="" style="margin-left:35%;">
 
-    
- 
+        <?php
+          '<li>';
+         if($page > 1)
+         '</li>';
+          {
+         
+           echo "<a  class='text-success' href = 'index.php?page=accueil&pL= ".  $page -1 ."'> &laquo;</a>";
+          }
+
+          '<li>';
+         for($i= 1; $i <  $nbDePage; $i++)
+        
+          {
+         echo "<a  class='text-success' href = 'index.php?page=accueil&pL= ".  $i ."'> $i</a>";
+          }
+          '<li>';
+
+        '<li>';
+         if($page < $nbDePage )
+     
+           {
+
+          echo "<a  class='text-success' href = 'index.php?page=accueil&pL= ". $page + 1 . "'>  &raquo; </a>";
+            }
           
-
+            '<li>';
+          '</div></div> ';
+         
+      
+       
+          ?>
+          </ul>
+          </div>
           
-
-  
+          </section>
+         
+  </article>

@@ -9,81 +9,9 @@ class RestaurentController extends RestaurentModel
     public function afficheRestaurents()
     {
 
-          // $restaurants  = $this->getRestaurents();// model
+          //$restaurants  = $this->pagination();// model
 
-           $bdd = Bdd::getConnection();
-
-     
-           $page = (!empty($_GET['pL']) ? $_GET['pL'] : 1);
-           $limite = 1;
-           $debut = ($page - 1) * $limite;
-          
-
-           $nbRows = ('SELECT COUNT(id_restaurent) AS nb FROM restaurent');
-           $nbRows= $bdd->query($nbRows);
-           $result = $nbRows->execute();
-           $resultNbRows =  $nbRows->fetchColumn();
-           $nbDePage = ceil( $resultNbRows/ $limite);
-       
-           
-           
-        
          
-          
-            $query = ("SELECT * FROM restaurent LIMIT :limite  OFFSET :debut " );
-
-            $query= $bdd->prepare($query);
-            $query->bindValue('limite', $limite, PDO::PARAM_INT);
-            $query->bindValue('debut', $debut, PDO::PARAM_INT);
-         
-            $resultat =  $query->execute();
-
-            if($page > 1){
-              echo "<a href = 'index.php?page=accueil&pL= ".  $page -1 ."'> Page précédente </a>";
-
-            }
-          '  <div class="container" >
-            <div class="card-deck" style="margin-top: 1rem; ">';
-            while($element = $query->fetch()){
-       
-             
-  
-             
-                //la variable $dernierInscription vien de la class controllerAccueil qui contien le resultat du fetch de la fonction 
-                // getDernierDixInscription() de la class AccueilModel. 
-  
-               
-  
-                  echo
-                    '<div class="card " style="min-width: 14rem;   margin-top: 1rem; margin-bottom:5rem;">' .
-                    '<img class="card-img-top" src="' . $element["image"] . '"  alt="Card image cap">' .
-                    '<div class="card-body" >' .
-                    '<h5 class="card-title">' . strtoupper($element["nom"]) . " " .  strtoupper($element["pseudo"]) . '</h5>'.
-                    '<p class="card-text" style="color:green;"><b>Type de cuisine:' . $element["cuisine"] . '</b></p>'.
-                    '<p class=""><small class="text-muted"></small></p>' .
-                    '<a class="btn btn-outline-success" href="index.php?page=restaurant&id_restaurent=' .$element["id_restaurent"] . '"
-                    role="button"  style="margin-bottom: 2rem;" >Voir restaurant</a>' .
-                    '</div></div>';
-                
-  
-             
-              ' </div>
-            </div>';
-         }
-
-      for($i= 1; $i <  $nbDePage; $i++){
-
-        echo "<a href = 'index.php?page=accueil&pL= ".  $i ."'> $i</a>";
-
-        
-      }
-    
-      if($page < $nbDePage ){
-
-        echo "<a href = 'index.php?page=accueil&pL= ". $page + 1 ."'> Page suivante </a>";
-
-      }
-
             
    
   include("view/viewAccueil.php");
