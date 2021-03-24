@@ -14,6 +14,7 @@ class Rooter
     }
 
     function pageDemander(){
+
         switch($this->page)
         {
             case 'accueil':
@@ -35,6 +36,7 @@ class Rooter
 
                 $restauCompte = new RestaurentController();
                 $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
+             
                 
                 break;
 
@@ -43,10 +45,11 @@ class Rooter
                 $signIn->connecteMoi();
                 
                 break;
+
                 case 'modifier':
                     $ajouter = new RestaurentController;
+                    $ajouter->ajouterPlat();
                    
-                    include("view/rajouterPlat.php");
                     break;
 
 
@@ -57,7 +60,8 @@ class Rooter
                 
                 break;
 
-            case 'inscriptionRestaurent':
+                case 'inscriptionRestaurent':
+
                 $newRestaurent =  new RestaurentController();
                 $newRestaurent->setInscription();
                 
@@ -66,7 +70,25 @@ class Rooter
                 case 'inscriptionClient':
                    
                     include("view/inscriptionClient.php");
-                    break;
+                break;
+
+                 case 'recherche':
+
+                        $chercherRestaurant = new RechecheController();
+                        $chercherRestaurant ->rechercheRestaurant($_GET["search"]);
+                       
+                        
+                 break;
+
+                 case 'typeDecuisine':
+
+                    $voirUnTypeDeCuisine = new RechecheController();
+                    $voirUnTypeDeCuisine ->AfficherUnTypeDeCuisine($_GET["tCuisine"]);
+                    
+                   
+                    
+             break;
+
 
         }
     }

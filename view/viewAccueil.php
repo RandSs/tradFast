@@ -98,7 +98,7 @@
                       </table>
                       </div>
                 </div>
-            <div class="modal-footer">
+            <div class="modal-footer" >
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
               <button type="button" class="btn btn-success"><a class="text-white" href="index.php?page=inscriptionClient" >Contacter restaurant</a></button>
             </div>
@@ -108,14 +108,14 @@
 </section>
 
 <section >
-<div class="container "  >
-<div class="card-deck ">
+<div class="container " >
+<div class="card-deck " style=" margin-bottom: 2rem;" >
 <?php
 
             $bdd = Bdd::getConnection();
 
             $page = (!empty($_GET['pL']) ? $_GET['pL'] : 1);
-            $limite = 2;
+            $limite = 4;
             $debut = ($page - 1) * $limite;
 
             $nbRows = ('SELECT COUNT(id_restaurent) AS nb FROM restaurent');
@@ -124,7 +124,12 @@
             $resultNbRows =  $nbRows->fetchColumn();
             $nbDePage = ceil( $resultNbRows/ $limite);
 
-            $query = ("SELECT * FROM restaurent LIMIT :limite  OFFSET :debut " );
+            $query = ("SELECT * FROM restaurent 
+                        INNER JOIN specialite
+                        ON specialite.id_restaurent = restaurent.id_restaurent
+                        INNER JOIN type_cuisine
+                        ON type_cuisine.id_cuisine = specialite.id_cuisine
+                        LIMIT :limite  OFFSET :debut " );
 
             $query= $bdd->prepare($query);
             $query->bindValue('limite', $limite, PDO::PARAM_INT);
@@ -136,34 +141,41 @@
             while ( $element = $query->fetch()) {
          
              echo'
-              <div class="card">
-                <img class="card-img-top" src="'.$element["image"].'" alt="Card image cap">
+              <div class="card"  style="min-width: 14rem;  margin-top: 1rem; margin-bottom:3rem;">
+                <img class="card-img-top" src="'. ucfirst($element["image"]).'" alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">'.$element["nom"]. '</h5>
-                 
-                 
+                  <h5 class="card-title">'.ucfirst($element["nom"]) . '</h5>
+                  <p class="card-text" style="color:green;"><b>Cuisine :  ' . ucfirst($element["cuisine"]) . '</b></p>
+
+                  <a href="index.php?page=restaurant&id_restaurent='. $element["id_restaurent"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
+
                 </div>
+             
               </div>';
             }
             ?>
-             </section>
+    </div>
+    </div>   
+
+</section>
 
       <section>
       <div class="navbar navbar-expand-lg navbar-dark bg-dark  d-flex  justify-content-between ">
            <ul class="" style="margin-left:35%;">
 
         <?php
+
           '<li>';
          if($page > 1)
-         '</li>';
-          {
-         
-           echo "<a  class='text-success' href = 'index.php?page=accueil&pL= ".  $page -1 ."'> &laquo;</a>";
+         {
+
+           echo "<a  class='text-success' href = 'index.php?page=accueil&pL= ".  $page -1 ."'> &laquo;</a>";        
           }
+        
+          '</li>';
 
           '<li>';
          for($i= 1; $i <  $nbDePage; $i++)
-        
           {
          echo "<a  class='text-success' href = 'index.php?page=accueil&pL= ".  $i ."'> $i</a>";
           }

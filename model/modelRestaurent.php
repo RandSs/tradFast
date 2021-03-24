@@ -1,10 +1,11 @@
 <?php
 
 include("controller/restaurent.php");
+
 class RestaurentModel extends Restaurent
 {
 
-   /* public function pagination()
+     /* public function pagination()
     {
      $bdd = Bdd::getConnection();
 
@@ -47,115 +48,107 @@ class RestaurentModel extends Restaurent
      }
        */
 
-    
-      
-
-    
 
 
 
-  //Déclarer une fonction pour récupérer les champs de la table restauraurent. 
-  //Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
-    
-   public function getRestaurents()
-   {
 
-        $bdd = Bdd::getConnection();
+     //Déclarer une fonction pour récupérer les champs de la table restauraurent. 
+     //Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
 
-        $requete    = ('SELECT * FROM restaurent
-                        INNER JOIN specialite
-                        ON specialite.id_restaurent = restaurent.id_restaurent
-                        INNER JOIN type_cuisine
-                        ON type_cuisine.id_cuisine = specialite.id_cuisine
-                        LIMIT 4');
+    /* public function getRestaurents()
+     {
 
-                       
+          $bdd = Bdd::getConnection();
 
-                $restaurent = $bdd->prepare($requete);
-                $restaurent->execute();
-                $resultat = $restaurent->fetchAll();
-                $bdd = null;
-         
-                return $resultat;
-               
-    }
+          $requete    = ('SELECT * FROM restaurent
+                         INNER JOIN specialite
+                         ON specialite.id_restaurent = restaurent.id_restaurent
+                         INNER JOIN type_cuisine
+                         ON type_cuisine.id_cuisine = specialite.id_cuisine
+                         LIMIT 4');
 
-   
- //Déclarer une fonction pour permetre à injecter les information à la base de donnés pour inscrir un restaurateur.
-//Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
+          $restaurent = $bdd->prepare($requete);
+          $restaurent->execute();
+          $resultat = $restaurent->fetchAll();
+          $bdd = null;
 
-    public function inscription()
-    {
-         $bdd = Bdd::getConnection();
-// requete pour remplir la table [restaurent]. 
-         $requete = "INSERT INTO restaurent(nom, pseudo, adresse, tel, 
+          return $resultat;
+     }
+*/
+
+     //Déclarer une fonction pour permetre à injecter les information à la base de donnés pour inscrir un restaurateur.
+     //Et pour se connecter à la base de donnée c'est grace à la fonction static getConnection() dans la class Bdd.
+
+     public function inscription()
+     {
+          $bdd = Bdd::getConnection();
+          // requete pour remplir la table [restaurent]. 
+          $requete = "INSERT INTO restaurent(nom, pseudo, adresse, tel, 
                                             email, code_postal, mdp, image,id_role)
                                             VALUES (:nom, :pseudo, :adresse, 
                                             :tel, :email, :code_postal, :mdp, :image, :id_role)";
 
-         $newRestaurent = $bdd->prepare($requete);
-         $resultat = $newRestaurent->execute([
+          $newRestaurent = $bdd->prepare($requete);
+          $resultat = $newRestaurent->execute([
 
-                      ":nom"=>$this->nom,":pseudo"=>$this->pseudo,
-                      ":adresse"=>$this->adresse,":tel"=>$this->tel,
-                      ":email"=>$this->email,":code_postal"=>$this->code_postal,
-                      ":mdp"=>$this->mdp,":image"=>$this->image,
-                      "id_role"=>$this->id_role      
-                      
-                      ]);
+               ":nom" => $this->nom, ":pseudo" => $this->pseudo,
+               ":adresse" => $this->adresse, ":tel" => $this->tel,
+               ":email" => $this->email, ":code_postal" => $this->code_postal,
+               ":mdp" => $this->mdp, ":image" => $this->image,
+               "id_role" => $this->id_role
+
+          ]);
           //je récupère le dernier ID_restaurent grace à la fontion PHP lastInsertId()
           //et je le stock dans la variable $last_id 
-                      $last_id = $bdd->lastInsertId();
-                      echo  "New record created successfully. Last inserted ID is: " . $last_id;
-        // requete pour remplir la table [specialite] grace au $last_id && id_cuisine
-         $requeteTypeCuisine = "INSERT INTO specialite(id_cuisine, id_restaurent)
+          $last_id = $bdd->lastInsertId();
+          echo  "New record created successfully. Last inserted ID is: " . $last_id;
+          // requete pour remplir la table [specialite] grace au $last_id && id_cuisine
+          $requeteTypeCuisine = "INSERT INTO specialite(id_cuisine, id_restaurent)
                                 VALUES (:id_cuisine, :id_restaurent) ";
 
-         $typeCuisine = $bdd->prepare($requeteTypeCuisine);
-         $typeResultat =   $typeCuisine->execute([
+          $typeCuisine = $bdd->prepare($requeteTypeCuisine);
+          $typeResultat =   $typeCuisine->execute([
 
-                            ":id_cuisine" => $this->id_cuisine,
-                            ":id_restaurent"=>$last_id
+               ":id_cuisine" => $this->id_cuisine,
+               ":id_restaurent" => $last_id
 
-         ]);
+          ]);
 
-         $bdd = null;
-      
-        return $resultat;
-      
-    }
-   // déclarer une fonction pour se connecter a son compte.
+          $bdd = null;
+
+          return $resultat;
+     }
+     // déclarer une fonction pour se connecter a son compte.
      public function seConnecter()
      {
 
           $bdd = Bdd::getConnection();
 
-    //requete pour récupérer les information d'une seule ligne de la table [restaurent]
+          //requete pour récupérer les information d'une seule ligne de la table [restaurent]
           $requete = ("SELECT * FROM restaurent
                        INNER JOIN role 
                        ON restaurent.id_role = role.id_role
                        WHERE  restaurent.email =:email");
-                      
-         $restau = $bdd->prepare($requete);
-                    $restau->execute([
-                           ":email"=> $this->email
-                          ]);
-        
-         $resultatRestau = $restau->fetch();
 
-         $bdd = null;
+          $restau = $bdd->prepare($requete);
+          $restau->execute([
+               ":email" => $this->email
+          ]);
 
-        return $resultatRestau;
+          $resultatRestau = $restau->fetch();
 
+          $bdd = null;
+
+          return $resultatRestau;
      }
-      
+
 
      /**
       * @param  $id_restaurent du restaurent que je veut récupérer.
       */
-     public function getRestauCompte($id_restaurent)  
+     public function getRestauCompte($id_restaurent)
      {
-         $bdd = Bdd::getConnection();
+          $bdd = Bdd::getConnection();
           $requete = ("SELECT * From restaurent 
                        WHERE id_restaurent = :id_restaurent");
 
@@ -165,16 +158,19 @@ class RestaurentModel extends Restaurent
           $bdd = null;
 
           return    $restauCompteResultat;
-
      }
 
+
+      /**
+      * @param  $id_restaurent du restaurent que je veut récupérer.
+      */
      public function fetchRestaurentData($id_restaurent)
      {
-   
-      $bdd = Bdd::getConnection();
 
-        
-            $requete = ("SELECT *  FROM restaurent 
+          $bdd = Bdd::getConnection();
+
+
+          $requete = ("SELECT *  FROM restaurent 
                          LEFT JOIN menue ON restaurent.id_restaurent = menue.id_restaurent
                          LEFT JOIN plat ON plat.id_menue = menue.id_menue
                          INNER JOIN specialite ON restaurent.id_restaurent = specialite.id_restaurent 
@@ -185,35 +181,31 @@ class RestaurentModel extends Restaurent
                          INNER JOIN role ON restaurent.id_role = role.id_role 
                          
                          WHERE restaurent.id_restaurent = :id_restaurent");
-                         
-                         $idR = [":id_restaurent" => $id_restaurent];
 
-                         $compteInfo = $bdd->prepare($requete);
-                         $compteInfo->execute([":id_restaurent" => $id_restaurent]);
-                         //$compteInfoResultat =  $compteInfo->fetchAll();
-                         $compteInfoResultat= $compteInfo->fetch();
+          $idR = [":id_restaurent" => $id_restaurent];
+
+          $compteInfo = $bdd->prepare($requete);
+          $compteInfo->execute([":id_restaurent" => $id_restaurent]);
+          //$compteInfoResultat =  $compteInfo->fetchAll();
+          $compteInfoResultat = $compteInfo->fetch();
 
 
-                      
-                             
-                  
-                          $commande = ("SELECT * FROM menue
+          $commande = ("SELECT * FROM menue
                                 INNER JOIN plat ON plat.id_menue = menue.id_menue 
                                 WHERE menue.id_restaurent = :id_restaurent
                                ");
-                          $commandeInfos = $bdd->prepare($commande);
-                          $commandeInfos->execute([":id_restaurent" => $id_restaurent]); 
-                          $resultaCommandeInfos =  $commandeInfos->fetchAll();
-                     
-         
-  
-  
-      $bdd = null;
+          $commandeInfos = $bdd->prepare($commande);
+          $commandeInfos->execute([":id_restaurent" => $id_restaurent]);
+          $resultaCommandeInfos =  $commandeInfos->fetchAll();
 
-      return $compteInfoResultat ;
- 
+          $bdd = null;
+
+          return $compteInfoResultat;
      }
 
+     /**
+      * @param  $id_restaurent du restaurent que je veut récupérer.
+      */
      public function commandeInfos($id_restaurent)
      {
           $bdd = Bdd::getConnection();
@@ -223,25 +215,58 @@ class RestaurentModel extends Restaurent
           INNER JOIN commande ON commande.id_commande = commander.id_commande
           INNER JOIN client ON commande.id_client = client.id_client
           WHERE menue.id_restaurent = :id_restaurent
+          ");
 
-         ");
-    $commandeInfos = $bdd->prepare($commande);
-    $commandeInfos->execute([":id_restaurent" => $id_restaurent]); 
-    $resultaCommandeInfos =  $commandeInfos->fetchAll();
-    
-    $bdd = null;
+          $commandeInfos = $bdd->prepare($commande);
+          $commandeInfos->execute([":id_restaurent" => $id_restaurent]);
+          $resultaCommandeInfos =  $commandeInfos->fetchAll();
 
-  
-    return $resultaCommandeInfos ;
+          $bdd = null;
 
+        return $resultaCommandeInfos;
      }
 
-     public function ajouterUnPlat()
+     /**
+      * @param $id = $_SESSION["id_restaurent"] pour pouvoir le rajouter dans 
+      *le champ id_restaurent dans les deux table [menue] && [plat].
+      */
+     public function ajouterIdMenueEtUnPlat($id)
      {
+
           $bdd = Bdd::getConnection();
 
-          $requete = ("");
+          //requete pour ajouter un type de plat dans la table de menue..  
+
+          $menuRequet = "INSERT INTO menue (typeDePlat, id_restaurent)
+                         VALUES (:typeDePlat, :id_restaurent)";
+
+          $newIdMenu = $bdd->prepare($menuRequet);
+
+          $resultIdMenue = $newIdMenu->execute([
+               ":typeDePlat" => $this->typeDePlat,
+               ":id_restaurent" => $id
+          ]);
+
+
+          //récupérer le dernier id_menue insérer dans la table [menue]
+          //grâce à la method PHP : lastInsertId() 
+          //pour pouvoir l'utiliser just après comme clé étranger dans la table[plat]
+          //pour ajouter un plat car chaque plat doit avoir un id_menue précis.
+          $lastId_menue = $bdd->lastInsertId();
+          echo  "New record created successfully. Last inserted ID is: " . $lastId_menue;
+
+          //requete pour ajouter un plat dans la table [plat] après avoir 
+          //récupérer le de dernier id_menue stocker dans la @var $lastId_menue 
+
+          $requetePlat = "INSERT INTO plat (plat, ingredient, prix, id_menue, id_restaurent)
+                          VALUES (:plat , :ingredient, :prix, :id_menue, :id_restaurent)";
+
+
+          $newPlat = $bdd->prepare($requetePlat);
+          $resultat =   $newPlat->execute([
+               ":plat" => $this->plat, ":ingredient" => $this->ingredient,
+               ":prix" => $this->prix, ":id_menue" => $lastId_menue,
+               ":id_restaurent" => $id
+          ]);
      }
-
 }
-

@@ -10,11 +10,7 @@ class RestaurentController extends RestaurentModel
     {
 
           //$restaurants  = $this->pagination();// model
-
-         
-            
-   
-  include("view/viewAccueil.php");
+        include("view/viewAccueil.php");
       
      }
 
@@ -43,6 +39,7 @@ class RestaurentController extends RestaurentModel
              $message = "alert email wrong";
            }
          } 
+
          if ($this->email && $this->nom && $this->pseudo) {
           $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
           
@@ -118,19 +115,37 @@ class RestaurentController extends RestaurentModel
 
   public function ajouterPlat()
   {
+   
+    $id = $_SESSION["id_restaurent"];
+  
     $this->plat = $_POST["plat"];
     $this->prix = $_POST["prix"];
-    $this->plat = $_POST["ingredient"];
-    $this->typeDePlat = $_POST["typePlat"];
-    $this->image = $_POST["image"];
-
-    if(isset($_POST["plat"]) && isset($_POST["ingredient"]))
+    $this->ingredient = $_POST["ingredient"];
+    $this->typeDePlat = $_POST["typeDePlat"];
+   
+    if( isset($_POST["typeDePlat"])  && isset($_POST["plat"]))
     {
-         $message = "votre plat est ajouter !";
-         if(!$this->plat){
-           $message = "votre plat n'est pas rajouter au menu! ";
+    if( $this->plat && $this->typeDePlat )
+    {
+    if($this->ajouterIdMenueEtUnPlat($id) )
+    {
+      echo $message = "votre plat est ajouter dans le menu !" ;
+    }
+    else
+    {
+      echo  $message = "votre plat n'est pas ajouter au menu! ";
+    }
+      }
+         $message = "votre mise a jour est prise en compte!";
+
+         if(!$this->plat)
+         {
+           $message = "votre mise a jour na pas ete prise en compte! ";
          }
     }
+     
+
+     include("view/rajouterPlat.php");
   }
 
   

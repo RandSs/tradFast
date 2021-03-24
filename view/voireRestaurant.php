@@ -1,5 +1,5 @@
 <article id="voirestau">
-<h1 class="text-danger" style="text-align: center;">Soyez les bienvenus chez : <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
+<h1 class="text-success" style="text-align: center;">Soyez les bienvenus chez : <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
 
 <section >
 

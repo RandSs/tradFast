@@ -1,5 +1,5 @@
 <article id="restau">
-<h1 class="text-danger" style="text-align: center;">Bien venue: <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
+<h1 class="text-dark" style="text-align: center;">Bienvenue: <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
 
 <section >
 <div class="card-deck container-fluid " style="margin-top: 2rem; margin-bottom:5rem;">
@@ -165,7 +165,7 @@
                          
                          foreach($commadeInformation as $plat)
                          { 
-                                if($plat["type_plat"] == "main"){
+                                if($plat["typeDePlat"] == "main"){
                                       echo'<tr>
                                               <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
                                                        .$plat["ingredient"].
@@ -193,7 +193,7 @@
                          
                          foreach($commadeInformation as $plat)
                          { 
-                                if($plat["type_plat"] == "dessert"){
+                                if($plat["typeDePlat"] == "dessert"){
                                       echo'<tr>
                                       <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
                                                .$plat["ingredient"].

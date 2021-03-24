@@ -7,12 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="css/style.css">
+  
   <title>trad Fast</title>
 </head>
 
@@ -25,27 +30,90 @@
       </button>
 
       
-      <div class="collapse navbar-collapse" id="navbarColor01">
-      <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+
+
+      <div>
+      
+        <form class="form-inline my-2 my-lg-0" method="GET">
+          <input type="hidden" name="page" value="recherche" >
+          <input class="form-control mr-sm-2" type="search" name ="search"  id="search" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+      </div>
 
-        <div class="dropdown show"  style="margin-left: auto; ">
-                      <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Type de cuisine
-                      </a>
+    
+              
+                      
+                              
+                              
+                   
+      
+               <div class="dropdown show   " style="margin-left: 1rem;">
 
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"  style=" color:green;">
-                            <a class="dropdown-item" href="#">Chinese</a>
-                            <a class="dropdown-item" href="#">Italian</a>
-                            <a class="dropdown-item" href="#">Maghrébine</a>
-                            <a class="dropdown-item" href="#">Gastronomie française</a>
-                      </div>
-                </div>
 
-     
-        <ul class="navbar-nav mr-auto my-lg-0 " style="  margin-left:auto;">
+                <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Type de cuisine
+                </a>
+
+              <div class="dropdown-menu " aria-labelledby="dropdownMenuLink" >
+
+                <form style="margin-left: auto;"   id="chineseForm" action="" method="get">
+                  
+                  <input type="hidden" name="page" value="typeDecuisine">
+                  <input type="hidden" name="tCuisine" id="tCuisine" value="chinese">
+                  <a  role="button"   type="submit" class="dropdown-item btn btn-outline-success " id="chinese"   href="#">Chinese</a>
+      
+              </form>  
+
+              <form style="margin-left: auto;"   id="italianForm" action="" method="get">
+                  
+                  <input type="hidden" name="page" value="typeDecuisine">
+                  <input type="hidden" name="tCuisine" id="tCuisine" value="italian">
+                  <a  role="button"   type="submit" class="dropdown-item btn btn-outline-success " id="italian"   href="#">Italian</a>
+      
+              </form>  
+
+
+             <form style="margin-left: auto;"   id="africanForm" action="" method="get">
+                  
+                  <input type="hidden" name="page" value="typeDecuisine">
+                  <input type="hidden" name="tCuisine" id="tCuisine" value="african">
+                  <a  role="button"   type="submit" class="dropdown-item btn btn-outline-success " id="african"   href="#">African</a>
+      
+              </form>  
+
+              <form style="margin-left: auto;"   id="maghrebForm" action="" method="get">
+                  
+                  <input type="hidden" name="page" value="typeDecuisine">
+                  <input type="hidden" name="tCuisine" id="tCuisine" value="maghrebine">
+                  <a  role="button"   type="submit" class="dropdown-item btn btn-outline-success " id="maghrebine"   href="#">Maghrebine</a>
+      
+              </form>  
+
+              <form style="margin-left: auto;"   id="gastroForm" action="" method="get">
+                  
+                  <input type="hidden" name="page" value="typeDecuisine">
+                  <input type="hidden" name="tCuisine" id="tCuisine" value="gastronomie francaise">
+                  <a  role="button"   type="submit" class="dropdown-item btn btn-outline-success " id="gastro"   href="#">Gastronomie francaise</a>
+      
+              </form>  
+
+              <form style="margin-left: auto;"   id="indianForm" action="" method="get">
+                  
+                  <input type="hidden" name="page" value="typeDecuisine">
+                  <input type="hidden" name="tCuisine" id="tCuisine" value="indian">
+                  <a  role="button"   type="submit" class="dropdown-item btn btn-outline-success " id="indian"   href="#">Indian</a>
+      
+              </form>  
+
+              </div>
+            </div>
+         
+
+
+  
+            <div class="collapse navbar-collapse" id="navbarColor01" style="margin-left: 10rem;">
+        <ul class="navbar-nav mr-auto my-lg-0 " >
                 <li class="nav-item  ">
                   <a class="nav-link" style="color:  rgb(127, 255, 8);" href="index.php?page=accueil" >Accueil
                     <span class="sr-only">(current)</span>
