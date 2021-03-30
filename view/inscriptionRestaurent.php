@@ -2,14 +2,16 @@
 echo $message;
    
 ?>
+<article class="row signInscriptiption">
+<section id="inscriptionR" class="col-sm-8 ">
 
 <div class="card border-success mb-3 mx-auto" style="max-width: 40rem;">
-      <div class="card-header"><h4 class="card-title text-success">Inscrivez vous</h4></div>
+      <div class="card-header"><h4 class="card-title text-success">Je m'inscris</h4></div>
 
   <div class="card-body">
  
     
-        <form action="" method="POST"> 
+        <form   action="" method="POST" > 
         <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nom">Nom</label>
@@ -81,3 +83,22 @@ echo $message;
 
      </div>
 </div>
+</section>
+
+<section id="signInrestau" class="col-sm-4">
+ 
+<div class="card border-success mb-3" style="margin-right: 5rem;">
+  <div class="card-header"><a href="index.php?page=signInRest"><h4 class="card-title text-success">Je suis déja inscrit  <i class="fas fa-sign-in-alt"></i></h4></a></div>
+  <div class="card-body">
+    
+       
+
+  </div>
+</div>
+<div>
+    
+</div>
+</section>
+
+</article>
+

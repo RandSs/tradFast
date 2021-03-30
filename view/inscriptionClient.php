@@ -2,9 +2,11 @@
 echo $message;
    
 ?>
-
+<article  class="row signInscriptiption"  >
+ 
+<section id="inscriptionC" class="col-sm-8 ">
 <div class="card border-success mb-3 mx-auto" style="max-width: 40rem;">
-      <div class="card-header"><h4 class="card-title text-success">Inscrivez vous</h4></div>
+      <div class="card-header"><h4 class="card-title text-success">Je m'inscris</h4></div>
 
   <div class="card-body">
  
@@ -15,12 +17,12 @@ echo $message;
 
                 <div class="form-group col-md-6">
                     <label for="nom">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" aria-describedby="emailHelp" placeholder="Enter nom">
+                    <input type="text" class="form-control" id="nom_client" name="nom_client" aria-describedby="emailHelp" placeholder="Enter nom">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="pseudo">Pseudo</label>
-                    <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Enter pseudo">
+                    <label for="pseudo">Prenom</label>
+                    <input type="text" class="form-control" id="prenom_client" name="prenom_client" placeholder="Enter prenom">
                 </div>
 
                 <div class="form-group col-md-12">
@@ -41,13 +43,14 @@ echo $message;
                
                 <div class="form-group col-md-6">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" id="client_email" name="client_email" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="mdp">Mot de passe</label>
-                    <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Enter mot de passe">
+                    <input type="password" class="form-control" id="mdp_client" name="mdp_client" placeholder="Enter mot de passe">
                 </div>
+
  
                 <div class="col">
                     <input type="hidden" class="form-control" id="id_role" name="id_role" value="3">
@@ -62,3 +65,22 @@ echo $message;
 
      </div>
 </div>
+</section>
+<section id="signInClient" class="col-sm-4"  >
+  
+  
+<div class="card border-success mb-3 " style="margin-right: 5rem;">
+  <div class="card-header"><a href="index.php?page=signInClient" ><h4 class="card-title text-success">Je suis déja un client  <i class="fas fa-sign-in-alt"></i></h4> </a></div>
+  <div class="card-body">
+    
+        
+
+  </div>
+</div>
+<div>
+  
+</div>
+</section>
+
+</article>
+

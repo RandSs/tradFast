@@ -6,7 +6,7 @@
 <div class="card-deck container-fluid " style="margin-top: 2rem; margin-bottom:5rem; opacity:0.6;">
   
   
-  <div class="card col-12"  id="mesCommandes">
+  <div  class= "card col-10"  id="mesCommandes">
    
     <div class="card-body">
       <h5 class="card-title text-success">Menu</h5>
@@ -22,13 +22,13 @@
                     <tbody>
                       <?php
                          
-                         foreach($commadeInformation as $plat)
+                         foreach( $menus as $plat)
                          { 
                                 if($plat["typeDePlat"] == "entree"){
                                   echo'<tr>
-                                  <td ><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                  <td ><h5  id="id_plat">'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5><p style="font-size: 10px;">'
                                            .$plat["ingredient"].
-                                '</p></td><td><a href="#" ><i class="fas fa-shopping-basket"></i></a></td>
+                                '</p></td><td><a href="#" ><i class="fas fa-shopping-basket placerAuP"></i></a></td>
                               </tr>';
                                   }
                  
@@ -49,13 +49,13 @@
                     <tbody>
                     <?php
                          
-                         foreach($commadeInformation as $plat)
+                         foreach( $menus as $plat)
                          { 
-                                if($plat["typeDePlat"] == "entree"){
+                                if($plat["typeDePlat"] == "main"){
                                       echo'<tr>
-                                              <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                              <td><h5 id="id_plateau">'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
                                                        .$plat["ingredient"].
-                                            '</p></td><td><a href="#" ><i class="fas fa-shopping-basket"></i></a></td>
+                                            '</p></td><td><a href="#" ><i class="fas fa-shopping-basket placerAuPannier"></i></a></td>
                                           </tr>';
                                   }
                  
@@ -77,9 +77,9 @@
                     <tbody>
                     <?php
                          
-                         foreach($commadeInformation as $plat)
+                         foreach( $menus as $plat)
                          { 
-                                if($plat["typeDePlat"] == "entree"){
+                                if($plat["typeDePlat"] == "dessert"){
                                       echo'<tr>
                                       <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
                                                .$plat["ingredient"].
@@ -103,9 +103,9 @@
                     <tbody>
                       <?php
                          
-                         foreach($commadeInformation as $plat)
+                         foreach( $menus as $plat)
                          { 
-                                if($plat["typeDePlat"] == "entree"){
+                                if($plat["typeDePlat"] == "extras"){
                                   echo'<tr>
                                   <td ><h5>'.$plat["plat"] .'</h5><p  style="font-size: 10px;">'
                                            .$plat["ingredient"].
@@ -124,6 +124,38 @@
 
     </div>
   </div>
+  <div class="card col-2" style="width: 18rem;">
+
+  <div class="card-body">
+    <h5 class="card-title text-success">Pannier</h5>
+
+    <table class="table">
+                    <thead class="">
+                      <tr >
+                        <th >Restaurant</th>
+                        <th >Plat</th>
+                        <th >Prix</th>
+                  
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                    
+                                  <tr>
+
+                                  <td><h5 id="plat"></h5><p  style="font-size: 10px;">
+                                    <div id='button'></div>
+                                         
+                                  </p></td><td></td>
+
+                                  </tr>
+                                 
+                    </tbody>
+                    </table>
+
+  </div>
+</div>
+
 </div>
 </section>
 
@@ -148,6 +180,9 @@
  
     </div>
   </div>
+
+
+
   <div id="monMenu" class="card col-8" style="opacity:0.6">
  
     <div class="card-body">
@@ -168,27 +203,9 @@
     
 
 
-<section>
 
-      <!-- Modal -->
-      <div class="modal fade" id="modifierMenue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-success" id="exampleModalLongTitle">Menue</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-                
-            <div class="modal-footer" >
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-             
-            </div>
-          </div>
-        </div>
-      </div>
-      
-</section>
+
+
+
 <hr>
 </article>

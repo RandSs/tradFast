@@ -1,8 +1,7 @@
-<section id="signIn">
-    <hr>
-  
-<div class="card border-success mx-auto  mb-5" style="max-width: 40rem; margin-left: 20rem; margin-top: 2rem; margin-bottom:10rem;">
-  <div class="card-header"><h4 class="card-title">Sign In</h4></div>
+<section  class=" signIn">
+ 
+<div class="card col-sm-6 border-success mb-3" style="margin: auto;">
+  <div class="card-header"><h4 class="card-title text-success">Restaurant <i class="fas fa-sign-in-alt"></i></h4></div>
   <div class="card-body">
     
          <form action="" method="POST">
@@ -17,13 +16,12 @@
                     <input type="password" class="form-control" id="mdp"  name="mdp" placeholder="Mot de passe">
                 </div>
              
-                <button type="submit" class="btn btn-success" style="float: right;">Valider</button>
+                <button type="submit" class="btn btn-success" style="float: right;">Sign In</button>
         </form>
 
   </div>
 </div>
 <div>
-    <hr>
+    
 </div>
 </section>
-

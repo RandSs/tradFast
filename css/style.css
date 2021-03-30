@@ -21,13 +21,23 @@ ul  {
     background-repeat: no-repeat;
 }
 
-#signIn{
-    background-color: rgb(238, 236, 230) ;
+#inscriptionR, #inscriptionC, #signInClient, #signInrestau{
+    
+    margin-top: 2rem;
   
+}
+
+.signIn{
+    background-color: rgb(228, 206, 142) ;
+    
+
 }
 header#header {
    
    background-color: rgb(71, 69, 69);
+}
+.id_plat{
+    color:green;
 }
 
 #mesClients, #monMenu{

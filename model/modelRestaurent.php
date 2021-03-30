@@ -1,6 +1,6 @@
 <?php
 
-include("controller/restaurent.php");
+include("users/restaurent.php");
 
 class RestaurentModel extends Restaurent
 {
@@ -84,7 +84,7 @@ class RestaurentModel extends Restaurent
           $bdd = Bdd::getConnection();
           // requete pour remplir la table [restaurent]. 
           $requete = "INSERT INTO restaurent(nom, pseudo, adresse, tel, 
-                                            email, code_postal, mdp, image,id_role)
+                                            email, code_postal, mdp, image, id_role)
                                             VALUES (:nom, :pseudo, :adresse, 
                                             :tel, :email, :code_postal, :mdp, :image, :id_role)";
 
@@ -98,13 +98,14 @@ class RestaurentModel extends Restaurent
                "id_role" => $this->id_role
 
           ]);
+
           //je récupère le dernier ID_restaurent grace à la fontion PHP lastInsertId()
           //et je le stock dans la variable $last_id 
           $last_id = $bdd->lastInsertId();
           echo  "New record created successfully. Last inserted ID is: " . $last_id;
           // requete pour remplir la table [specialite] grace au $last_id && id_cuisine
           $requeteTypeCuisine = "INSERT INTO specialite(id_cuisine, id_restaurent)
-                                VALUES (:id_cuisine, :id_restaurent) ";
+                                 VALUES (:id_cuisine, :id_restaurent) ";
 
           $typeCuisine = $bdd->prepare($requeteTypeCuisine);
           $typeResultat =   $typeCuisine->execute([
@@ -115,10 +116,14 @@ class RestaurentModel extends Restaurent
           ]);
 
           $bdd = null;
+          
 
-          return $resultat;
+          return $typeResultat;
      }
-     // déclarer une fonction pour se connecter a son compte.
+
+
+     //déclarer une fonction pour se connecter a son compte.
+
      public function seConnecter()
      {
 
@@ -210,10 +215,11 @@ class RestaurentModel extends Restaurent
      {
           $bdd = Bdd::getConnection();
           $commande = ("SELECT * FROM menue
-          INNER JOIN plat ON plat.id_menue = menue.id_menue      
+          INNER JOIN plat ON plat.id_menue = menue.id_menue     
           INNER JOIN commander ON commander.id_plat = plat.id_plat
           INNER JOIN commande ON commande.id_commande = commander.id_commande
           INNER JOIN client ON commande.id_client = client.id_client
+          INNER JOIN restaurent ON restaurent.id_restaurent = plat.id_restaurent
           WHERE menue.id_restaurent = :id_restaurent
           ");
 
@@ -226,6 +232,31 @@ class RestaurentModel extends Restaurent
         return $resultaCommandeInfos;
      }
 
+
+         /**
+          * 
+          */
+          public function voirMenu($id_restaurent)
+          {
+             
+
+               $bdd = Bdd::getConnection();
+
+               $requete = "SELECT * FROM menue
+                          INNER JOIN plat ON plat.id_menue = menue.id_menue     
+                          INNER JOIN restaurent ON restaurent.id_restaurent = plat.id_restaurent
+                          WHERE restaurent.id_restaurent = :id_restaurent";
+
+               $requeteMenu = $bdd->prepare($requete)     ;
+               $requeteMenu->execute([":id_restaurent" => $id_restaurent]);
+
+               $resultatMenu = $requeteMenu->fetchAll();
+
+               $bdd = null;
+
+               return $resultatMenu;
+
+          }
      /**
       * @param $id = $_SESSION["id_restaurent"] pour pouvoir le rajouter dans 
       *le champ id_restaurent dans les deux table [menue] && [plat].
@@ -269,4 +300,17 @@ class RestaurentModel extends Restaurent
                ":id_restaurent" => $id
           ]);
      }
+
+
+      /**
+       * fonction pour injecter les commades passer par les client.
+       */
+
+       public function accepterCommande($plat)
+       {
+            
+       }
+
+
+
 }

@@ -21,6 +21,7 @@ echo $message.$id_restaurent;
         <option value="entree">Entrée</option>
         <option value="main">Main</option>
         <option value="dessert">Dessert</option>
+        <option value="extras">Extras</option>
     </select>
 
 </div>

@@ -115,7 +115,7 @@
             $bdd = Bdd::getConnection();
 
             $page = (!empty($_GET['pL']) ? $_GET['pL'] : 1);
-            $limite = 4;
+            $limite = 8;
             $debut = ($page - 1) * $limite;
 
             $nbRows = ('SELECT COUNT(id_restaurent) AS nb FROM restaurent');

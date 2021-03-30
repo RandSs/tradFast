@@ -1,21 +1,24 @@
 <?php
 
-include("controller/user.php");
 
-class Restaurent extends User
+
+class Restaurent 
 {
+
  //restaurent
+
     public $id_restaurent;
     public $nom;
     public $pseudo;
     public $adresse;
     public $code_postal;
-    public $tel;
     public $email;
+    public $tel;
     public $mdp;
     public $image; 
-    public $id_role;
+  
 //commande
+
     public $id_commande;
     public $date_de_commande;
     public $quantite;
@@ -26,6 +29,7 @@ class Restaurent extends User
    public $id_plat;
 
    //plat
+
    public $plat;
    public $ingredient;
    public $prix;
@@ -35,10 +39,10 @@ class Restaurent extends User
    public $typeDePlat;
 
    //role
+   public $id_role;
    public $role;
    
    //specialite
-
    public $id_cuisine;
 
    //type_cuisine

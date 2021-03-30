@@ -137,7 +137,7 @@
                          { 
                                 if($plat["typeDePlat"] == "entree"){
                                   echo'<tr>
-                                  <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                  <td><h5>' .$plat["plat"] .'</h5><p style="font-size: 10px;">'
                                            .$plat["ingredient"].
                                 '</p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
                               </tr>';
@@ -167,7 +167,7 @@
                          { 
                                 if($plat["typeDePlat"] == "main"){
                                       echo'<tr>
-                                              <td><h5>'.$plat["plat"] .'</h5><p style="font-size: 10px;">'
+                                              <td><h5>' .$plat["plat"] .'</h5><p style="font-size: 10px;">'
                                                        .$plat["ingredient"].
                                             '</p></td><td><a href="#" ><i class="far fa-trash-alt text-danger"></i></a></td>
                                           </tr>';

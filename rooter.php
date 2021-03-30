@@ -28,6 +28,9 @@ class Rooter
 
                     $voirMenuRestau = new RestaurentController();
                     $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
+
+                 
+            
                     
                     break;
 
@@ -40,18 +43,49 @@ class Rooter
                 
                 break;
 
-            case 'signIn':
-                $signIn = new RestaurentController();
-                $signIn->connecteMoi();
+                case 'clientCompte':
+
+                 
+                 
+                    include("view/clientComte.php");
+                 
+                   
+                    break;
+                    case 'signIn':
+                
+                        include("view/signIn.php");
+                        break;
+
+            case 'signInRest':
+
+                $signInRestau = new RestaurentController();
+                $signInRestau->connecteMoi();
                 
                 break;
 
-                case 'modifier':
-                    $ajouter = new RestaurentController;
-                    $ajouter->ajouterPlat();
-                   
+                case 'signInClient':
+                  
+                    $singInClient = new ClientController();
+                    $singInClient->jeMeConnect();
+                    
                     break;
 
+                case 'modifier':
+                    $ajouter = new RestaurentController();
+                    $ajouter->ajouterPlat();
+
+                    $commande = new RestaurentController();
+                    $commande->passerCommande();
+                    break;
+
+
+                    case 'commandePlat':
+            
+                        $commande = new RestaurentController();
+                        $commande->passerCommande($_GET["plat"]);
+
+                        break;
+    
 
             case 'signOut':
 
@@ -64,12 +98,16 @@ class Rooter
 
                 $newRestaurent =  new RestaurentController();
                 $newRestaurent->setInscription();
+               
                 
                 break;
 
                 case 'inscriptionClient':
                    
-                    include("view/inscriptionClient.php");
+                    $newClient = new ClientController();
+                    $newClient->inscriptionControllerClient();
+                   
+                   
                 break;
 
                  case 'recherche':

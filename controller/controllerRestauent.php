@@ -2,6 +2,8 @@
 
 include("model/modelRestaurent.php");
 
+//include("controller/uploadFileController.php");
+
 class RestaurentController extends RestaurentModel 
 {
   
@@ -31,19 +33,23 @@ class RestaurentController extends RestaurentModel
      $this->image = $_POST["image"];
      $this->id_cuisine = $_POST["typeCuisine"];
      $this->id_role = $_POST["id_role"];
+    
      
      
-         if(isset($_POST['email']) && isset($_POST["typeCuisine"])){
-           $message = "votre inscription est prise en compte!"; 
+         if(isset($_POST['email']) && isset($_POST["typeCuisine"]) ){
+           $message = "votre inscription n'est pas prise en compte!"; 
            if(!$this->email) {
-             $message = "alert email wrong";
+             $message = " email incorrect";
            }
          } 
 
          if ($this->email && $this->nom && $this->pseudo) {
-          $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
-          
+
+           
+              $this->mdp = password_hash($_POST["mdp"], PASSWORD_DEFAULT);
+
           if ($this->inscription()) {
+            
           
               echo $message = "<center class='alert alert-info>Inscription est pris en compte </center>";
           } else {
@@ -54,6 +60,9 @@ class RestaurentController extends RestaurentModel
              include("view/inscriptionRestaurent.php");
 
   }
+
+
+
 
   public function connecteMoi()
   {
@@ -77,15 +86,17 @@ class RestaurentController extends RestaurentModel
        }
 
     }
-    include("view/viewSignIn.php");
+    include("view/viewSignInRestau.php");
   }
+
+
 
   public function restaurentCompte($id_restaurent = null)
   {
       if($id_restaurent !== null)
       {
             $compte = $this->getRestauCompte($id_restaurent);
-            $monRestaurentCompte = $this->fetchRestaurentData($id_restaurent);
+           
             $commadeInformation = $this->commandeInfos($id_restaurent);
 
            
@@ -101,18 +112,17 @@ class RestaurentController extends RestaurentModel
   {
     if($id_restaurent !== null)
     {
-          $compte = $this->getRestauCompte($id_restaurent);
-          $monRestaurentCompte = $this->fetchRestaurentData($id_restaurent);
-          $commadeInformation = $this->commandeInfos($id_restaurent);
-        
-         
+       $menus =  $this->voirMenu($id_restaurent);
+       $monRestaurentCompte = $this->fetchRestaurentData($id_restaurent);
           
           include("view/voireRestaurant.php");
     } else{
-            echo"sa marche pas!"; 
+            echo"cette page n'existe pas!"; 
     }
   }
 
+
+  
   public function ajouterPlat()
   {
    
@@ -146,6 +156,23 @@ class RestaurentController extends RestaurentModel
      
 
      include("view/rajouterPlat.php");
+  }
+
+
+
+  public function passerCommande($plat = null)
+  {
+   
+
+      if($plat == true )
+      {
+              
+       $commandes =  $this->accepterCommande($plat);
+       include("view/clientComte.php");
+      
+      }
+     
+     
   }
 
   
