@@ -1,46 +1,49 @@
 <?php
 
 ?>
-<h1>je le client </h1>
+<h1>Mon panier </h1>
 
-<section>
+<section class="container" >
 
-<div class="card" style="width: 18rem;">
+  <div class="card" >
 
-  <div class="card-body">
-    <h5 class="card-title text-success">Pannier</h5>
+    <div class="card-body">
+      <h5 class="card-title text-success">Panier</h5>
 
-    <table class="table">
-                    <thead class="">
-                      <tr >
-                        <th >Restaurant</th>
-                        <th >Plat</th>
-                        <th >Prix</th>
-                  
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-<?php 
-                                     
-          foreach( $commandes as $pl){
+      <table class="table">
+        <thead class="">
+          <tr>
+            <th>Restaurant</th>
+            <th>id plat</th>
+            <th>Plat</th>
+            <th>ingredient</th>
+            <th>Prix</th>
+            <th>quantité</th>
 
-       
-                    
-                 echo            
-                        
-                     '  <tr>
-                                  <td><h5 id="plat">    '. $pl .'     </h5><p  style="font-size: 10px;">
-                                         
-                                </p></td><td></td>
-                              </tr>';
+          </tr>
+        </thead>
+        <tbody>
+
+          <?php
+
+          foreach ($resultats as $plat) {
+
+            echo
+            '<tr>
+                 <td><h5 >' . $plat->pseudo . '</h5></td>
+                 <td><h5 >' . $plat->id_plat . '</h5></td>
+                 <td> ' . $plat->plat.'</td>
+                 <td><p style="font-size: 12px;">'.$plat->ingredient .'</p></td>
+                 <td>'. number_format($plat->prix, 2, ',', ' ' ).' €</td>
+             </tr>';
 
           }
-                              ?>    
-                    </tbody>
-                </table>
-      
-    <a href="#" class="btn btn-outline-success">Commander</a>
+
+          ?>
+        </tbody>
+      </table>
+
+      <a href="#" class="btn btn-outline-success">Commander</a>
+    </div>
   </div>
-</div>
 </section>

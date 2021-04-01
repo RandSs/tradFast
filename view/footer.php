@@ -8,7 +8,7 @@
     </div>
 </footer>
 
-<script src="javascript/script.js"></script>
+<script src="javascript/typeDeCuisine.js "></script>
 
 
 </body>

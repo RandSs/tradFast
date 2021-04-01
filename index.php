@@ -7,6 +7,7 @@ include("controller/controllerRestauent.php");
 
 include("controller/controllerRecherche.php");
 include("controller/clientController.php");
+include("addPanier.php");
 
 include("rooter.php");
 

@@ -1,135 +1,131 @@
 <?php
 
 
-class Rooter 
+class Rooter
 {
     private $page;
-   
 
-    public function __construct($page= null)
+
+    public function __construct($page = null)
     {
         $this->page = $page;
-    
-      
     }
 
-    function pageDemander(){
+    function pageDemander()
+    {
 
-        switch($this->page)
-        {
+        switch ($this->page) {
             case 'accueil':
-                
+
                 $dernierInscription = new RestaurentController();
                 $dernierInscription->afficheRestaurents($_GET["pL"]);
-          
-                
+
+
                 break;
-                case 'restaurant':
+            case 'restaurant':
 
-                    $voirMenuRestau = new RestaurentController();
-                    $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
+                $voirMenuRestau = new RestaurentController();
+                $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
 
-                 
-            
-                    
-                    break;
+
+
+
+                break;
 
 
             case 'restaurentCompte':
 
                 $restauCompte = new RestaurentController();
                 $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
-             
-                
+
+
                 break;
 
-                case 'clientCompte':
+            case 'clientCompte':
 
+                $clientCompte = new RestaurentController();
+                $clientCompte->restaurentCompte(@$_SESSION["id_client"]);
+
+             
+
+                break;
+
+               case 'addpaneir':
+
+                    $addPlat = new RestaurentController();
+                    $addPlat-> passerCommande($_GET['id_plat']);
                  
-                 
-                    include("view/clientComte.php");
-                 
-                   
+    
                     break;
-                    case 'signIn':
-                
-                        include("view/signIn.php");
-                        break;
+
+
+
+            case 'signIn':
+
+                include("view/signIn.php");
+                break;
 
             case 'signInRest':
 
                 $signInRestau = new RestaurentController();
                 $signInRestau->connecteMoi();
-                
+
                 break;
 
-                case 'signInClient':
-                  
-                    $singInClient = new ClientController();
-                    $singInClient->jeMeConnect();
-                    
-                    break;
+            case 'signInClient':
 
-                case 'modifier':
-                    $ajouter = new RestaurentController();
-                    $ajouter->ajouterPlat();
+                $singInClient = new ClientController();
+                $singInClient->jeMeConnect();
 
-                    $commande = new RestaurentController();
-                    $commande->passerCommande();
-                    break;
+                break;
 
+            case 'modifier':
+                $ajouter = new RestaurentController();
+                $ajouter->ajouterPlat();
 
-                    case 'commandePlat':
             
-                        $commande = new RestaurentController();
-                        $commande->passerCommande($_GET["plat"]);
+                break;
 
-                        break;
-    
 
             case 'signOut':
 
-              $_SESSION = array();
-              header('Location: index.php?page=accueil');
-                
+                $_SESSION = array();
+                header('Location: index.php?page=accueil');
+
                 break;
 
-                case 'inscriptionRestaurent':
+            case 'inscriptionRestaurent':
 
                 $newRestaurent =  new RestaurentController();
                 $newRestaurent->setInscription();
-               
-                
+
+
                 break;
 
-                case 'inscriptionClient':
-                   
-                    $newClient = new ClientController();
-                    $newClient->inscriptionControllerClient();
-                   
-                   
+            case 'inscriptionClient':
+
+                $newClient = new ClientController();
+                $newClient->inscriptionControllerClient();
+
+
                 break;
 
-                 case 'recherche':
+            case 'recherche':
 
-                        $chercherRestaurant = new RechecheController();
-                        $chercherRestaurant ->rechercheRestaurant($_GET["search"]);
-                       
-                        
-                 break;
-
-                 case 'typeDecuisine':
-
-                    $voirUnTypeDeCuisine = new RechecheController();
-                    $voirUnTypeDeCuisine ->AfficherUnTypeDeCuisine($_GET["tCuisine"]);
-                    
-                   
-                    
-             break;
+                $chercherRestaurant = new RechecheController();
+                $chercherRestaurant->rechercheRestaurant($_GET["search"]);
 
 
+                break;
+
+            case 'typeDecuisine':
+
+                $voirUnTypeDeCuisine = new RechecheController();
+                $voirUnTypeDeCuisine->AfficherUnTypeDeCuisine($_GET["tCuisine"]);
+
+
+
+                break;
         }
     }
 }
-
-

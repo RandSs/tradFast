@@ -7,6 +7,18 @@ include("model/modelRestaurent.php");
 class RestaurentController extends RestaurentModel 
 {
   
+  public function __construct()
+  {
+    if(!isset($_SESSION)){
+      echo ("vous ete pas connecter !");
+  
+    }
+    //if(!isset($_SESSION["panier"])){
+      //$_SESSION["panier"] = array();
+   // }
+    
+  }
+
     // déclarer une fonction pour récupérer les données du model et les passer à la vue.
     public function afficheRestaurents()
     {
@@ -160,21 +172,29 @@ class RestaurentController extends RestaurentModel
 
 
 
-  public function passerCommande($plat = null)
+  public function passerCommande($id_plat = null)
   {
    
+      if(isset($_GET['id_plat'])){
 
-      if($plat == true )
-      {
-              
-       $commandes =  $this->accepterCommande($plat);
-       include("view/clientComte.php");
-      
+        $resultats = $this->accepterCommande($id_plat);
+     
+     if(empty($resultats)){
+       die("pas de chance !! ");
+     }
+
+
+      } else {
+       
       }
-     
-     
+ 
+        include("view/clientComte.php");
+    
   }
 
+
+  
+  
   
       
 }
