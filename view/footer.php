@@ -9,6 +9,7 @@
 </footer>
 
 <script src="javascript/typeDeCuisine.js "></script>
+<script src="javascript/main.js"></script>
 
 
 </body>

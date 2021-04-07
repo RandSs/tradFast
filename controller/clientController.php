@@ -65,17 +65,20 @@ class ClientController  extends ClientModel
             $_SESSION["id_role"] = $client["id_role"];
             $_SESSION["role"] = $client["role"];
 
-            var_dump(  $client);
+             include("view/viewAccueil.php");
+        
+           // header("ocation: " . $_SESSION['page']);
 
-            header('Location: index.php?page=accueil');
 
         } else {
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";
-
+         include("view/viewSignInClient.php");
         }
+   
+       }else{
+        include("view/viewSignInClient.php");
        }
-       include("view/viewSignInClient.php");
-    
+       
     }
 
 

@@ -1,4 +1,6 @@
-
+<?php
+use tradFast\Bdd;
+?>
 
 <article id="article" >
 <section>

@@ -6,7 +6,7 @@
 <div class="card-deck container-fluid " style="margin-top: 2rem; margin-bottom:5rem; opacity:0.6;">
   
   
-  <div  class= "card col-10"  id="mesCommandes">
+  <div  class= "card col-12"  id="mesCommandes">
    
     <div class="card-body">
       <h5 class="card-title text-success">Menu</h5>
@@ -26,8 +26,11 @@
                          { 
                                 if($plat["typeDePlat"] == "entree"){
                                   echo'<tr>
-                                  <td ><i class="fas fa-shopping-basket placerAuPannier">
-                                  <a class="add" href="index.php?page=addpaneir&id_plat='. $plat["id_plat"] .'"  ><h5  id="id_plateau">'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5></i></a>
+                                  <td ><button  onclick="addPlat('. $id_plat .')"><i class="fas fa-shopping-basket"></i></button>
+                                  <a  href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  >
+                                  <h5  id="id_plat">'.$plat["id_plat"]. '</h5>
+                                  <h5 id="plat">'.$plat["plat"]. '</h5></a>
+                                  <input type="number" name ="qte" id="qte">
                                   <p style="font-size: 10px;">' .$plat["ingredient"].'</p></td>
 
                                   <td>'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
@@ -56,8 +59,8 @@
                                 if($plat["typeDePlat"] == "main"){
                                       echo
                                       '<tr>
-                                      <td ><a class="add" href="index.php?page=addpaneir&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
-                                      <h5  id="id_plateau">'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
+                                      <td ><a  href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
+                                      <h5 >'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
                                       </i></a>
                                       <p style="font-size: 10px;">'.$plat["ingredient"].'</p></td>
                                       <td>'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
@@ -85,12 +88,12 @@
                          foreach( $menus as $plat)
                          { 
                                 if($plat["typeDePlat"] == "dessert"){
-                                  '<tr>
-                                  <td ><a class="add" href="index.php?page=clientCompte&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
-                                  <h5  id="id_plateau">'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
+                               echo   '<tr>
+                                  <td ><a class="add" href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
+                                  <h5  >'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
                                   </i></a>
                                   <p style="font-size: 10px;">'.$plat["ingredient"].'</p></td>
-                                  <td>'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
+                                  <td id="prix">'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
                                   </tr>';
                                   }
                  
@@ -113,8 +116,8 @@
                          foreach( $menus as $plat)
                          { 
                                 if($plat["typeDePlat"] == "extras"){
-                                  '<tr>
-                                      <td ><a class="add" href="index.php?page=addpaneir&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
+                               echo   '<tr>
+                                      <td ><a class="add" href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
                                       <h5  id="id_plateau">'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
                                       </i></a>
                                       <p style="font-size: 10px;">'.$plat["ingredient"].'</p></td>
@@ -133,51 +136,14 @@
 
     </div>
   </div>
-  <div class="card col-2" style="width: 18rem;">
-
-  <div class="card-body">
-    <h5 class="card-title text-success">Pannier</h5>
-
-    <table class="table">
-                    <thead class="">
-                      <tr >
-                        <th >Restaurant</th>
-                        <th >Plat</th>
-                        <th >Prix</th>
-                  
-                      </tr>
-                    </thead>
-                    <tbody>
-                    
-                          <form  action='' id="commandeForm"  method='GET' >
-                                  <tr>
-                                 
-                                  <td><h5 id="plat"></h5>
-                                  <p  style="font-size: 10px;">
-                                 
-                                         
-                                  </p></td><td>
-                                 </td>
-                                  </tr>
-                                  <button type="submit" id="commande" href='#'  >Commande</button>
-
-                                
-                                </form>
-      
-                                 
-                    </tbody>
-                    </table>
-
-  </div>
-</div>
-
+  
 </div>
 </section>
 
      
     
  
-</section>
+
 <section>
 <div  class="card-deck container-fluid" style="margin-bottom: 2rem;">
   
@@ -196,8 +162,6 @@
     </div>
   </div>
 
-
-
   <div id="monMenu" class="card col-8" style="opacity:0.6">
  
     <div class="card-body">
@@ -209,7 +173,6 @@
       } 
       ?>
      
-
     </div>
   </div>
 </div>

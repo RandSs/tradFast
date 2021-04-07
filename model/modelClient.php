@@ -1,4 +1,5 @@
 <?php
+use tradFast\Bdd;
 
 include("users/client.php");
 

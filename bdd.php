@@ -1,4 +1,7 @@
 <?php
+namespace tradFast;
+use PDO;
+use Exception;
 
 class Bdd
 {
@@ -9,8 +12,8 @@ class Bdd
                     $bdd = new PDO("mysql:host=localhost;dbname=tradFast", "root", "",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                     return $bdd;
 
-                }catch(Exception $e){
-                        die('erreur de connexion à la base de données');
+                }catch(Exception $exception){
+                        die('Erreur: '. $exception->getMessage());
                 }
   }
 

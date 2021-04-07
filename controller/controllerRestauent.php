@@ -1,5 +1,6 @@
 <?php 
 
+
 include("model/modelRestaurent.php");
 
 //include("controller/uploadFileController.php");
@@ -7,17 +8,7 @@ include("model/modelRestaurent.php");
 class RestaurentController extends RestaurentModel 
 {
   
-  public function __construct()
-  {
-    if(!isset($_SESSION)){
-      echo ("vous ete pas connecter !");
-  
-    }
-    //if(!isset($_SESSION["panier"])){
-      //$_SESSION["panier"] = array();
-   // }
-    
-  }
+ 
 
     // déclarer une fonction pour récupérer les données du model et les passer à la vue.
     public function afficheRestaurents()
@@ -91,7 +82,7 @@ class RestaurentController extends RestaurentModel
              $_SESSION["id_role"] = $restaurent["id_role"];
              $_SESSION["role"] = $restaurent["role"];
 
-             header('Location: index.php?page=restaurentCompte');
+             header('location: index.php?page=restaurentCompte');
        }else{
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";
         
@@ -168,28 +159,6 @@ class RestaurentController extends RestaurentModel
      
 
      include("view/rajouterPlat.php");
-  }
-
-
-
-  public function passerCommande($id_plat = null)
-  {
-   
-      if(isset($_GET['id_plat'])){
-
-        $resultats = $this->accepterCommande($id_plat);
-     
-     if(empty($resultats)){
-       die("pas de chance !! ");
-     }
-
-
-      } else {
-       
-      }
- 
-        include("view/clientComte.php");
-    
   }
 
 

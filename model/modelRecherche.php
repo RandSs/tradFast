@@ -1,5 +1,5 @@
 <?php
-
+use tradFast\Bdd;
 
 class RechercheModel 
 {

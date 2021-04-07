@@ -164,14 +164,14 @@
                 </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=clientCompte"  >
-                      Pannier
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=addpanier"  >
+                      Panier
                 </a>
                 </li>
               
 
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=contact">
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=clientCompte">
                       Contact
                 </a>
                 </li>

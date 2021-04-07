@@ -1,6 +1,6 @@
 <?php
 
-
+use CommandeController; 
 class Rooter
 {
     private $page;
@@ -15,55 +15,59 @@ class Rooter
     {
 
         switch ($this->page) {
+
             case 'accueil':
 
                 $dernierInscription = new RestaurentController();
                 $dernierInscription->afficheRestaurents($_GET["pL"]);
 
-
                 break;
+
             case 'restaurant':
 
                 $voirMenuRestau = new RestaurentController();
                 $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
 
-
-
-
                 break;
 
-
-            case 'restaurentCompte':
+             case 'restaurentCompte':
 
                 $restauCompte = new RestaurentController();
                 $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
 
+             break;
 
-                break;
+       
+               case 'addpanier':
 
-            case 'clientCompte':
+                    $commanderPlat = new CommandeController();
+                    $commanderPlat->passerCommande($_GET['id_plat']);
 
-                $clientCompte = new RestaurentController();
-                $clientCompte->restaurentCompte(@$_SESSION["id_client"]);
+             break;
 
+         
+             case 'panier':
+
+                $panier = new Panier();
+                $panier->panier($_GET['id_plat']);
              
+            break;
 
-                break;
+              case 'clientCompte': 
 
-               case 'addpaneir':
-
-                    $addPlat = new RestaurentController();
-                    $addPlat-> passerCommande($_GET['id_plat']);
-                 
-    
-                    break;
-
+                        $addPlat = new CommandeController();
+                        $addPlat->passerCommande($_SESSION['nom_client']);
+            
+              break;
+            
 
 
-            case 'signIn':
+
+             case 'signIn':
 
                 include("view/signIn.php");
-                break;
+
+             break;
 
             case 'signInRest':
 
@@ -76,6 +80,8 @@ class Rooter
 
                 $singInClient = new ClientController();
                 $singInClient->jeMeConnect();
+              
+           
 
                 break;
 

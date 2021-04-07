@@ -1,31 +1,24 @@
-<?php 
+<?php
+session_start();
 
-class Pannier
+class Panier
 {
-   public function __construct()
-   {
-
   
-         if(!isset($_SESSION))
-         {
-             session_start();
-         }  
+    public function panier()
+    {
 
-         if(!isset($_SESSION))
-         {
-             $_SESSION['panier']=array(); 
-         }
-   }
+        $id = $_GET['id_plat'];
+        $qte = $_GET['qte'];
 
+         $_SESSION['id_client'][$id] = $qte;
+       
+       //echo json_decode($_SESSION['id_client']);
+        //include('view/clientCompte.php');
+     
+    }
 
-   public function query($requete , $data = array() )
-   {
-       $req = Bdd::getConnection()->prepare($requete);
-       $req->execute($data);
-       return $req->fetchAll(PDO::FETCH_OBJ);
-   }
-
-   
-
-
+    
+    
+    
 }
+
