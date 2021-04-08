@@ -1,9 +1,10 @@
 function addPlat(id_plat)
 {
-    var qte =  document.getElementById("qte").value;
-    var id_plat =  document.getElementById("id_plat").innerText;
-    var plat =  document.getElementById("plat").innerText;
-    var prix =  document.getElementById("prix").innerText;
+
+    var id_plat =  document.getElementById("id_plat_" + id_plat ).innerText;
+    var plat =  document.getElementById("plat_" + id_plat ).innerText;
+    var prix =  document.getElementById("prix_"+ id_plat).innerText;
+    var qte =  document.getElementById("qte_" + id_plat).value;
     location.href = "index.php?page=addpanier&id_plat=" + id_plat + "&qte=" + qte + "&plat=" + plat + "&prix=" + prix ;
 
 /*
@@ -18,6 +19,7 @@ function addPlat(id_plat)
     };
     xhr.send();
     */
+
 }
 
 

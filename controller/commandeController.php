@@ -25,18 +25,29 @@ class CommandeController extends CommandeRepo
 
             die("<center class='alert alert-danger'><h2>il faut etre un client avant de passer une commande!</h2></center>
       <center><a href='index.php?page=inscriptionClient'>S'inscrir</a></center>");
+
         }
-        if (!isset($_SESSION['panier'])); 
 
-            // on déclare la session['panier'].
-            $panier = $_SESSION['panier'];
+        if (!isset($_SESSION['panier'])){
+               // on déclare la session['panier'].
+            $_SESSION['panier'] = array();
+              
+            $_SESSION['panier']['id_plat'] = array();
+            $_SESSION['panier']['plat']= array();
+            $_SESSION['panier']['prix']= array();
+            $_SESSION['panier']['qte']= array();
 
-            $id = $_GET['id_plat'];
-            $qte = $_GET['qte'];
-            $plat = $_GET['plat'];
-            $prix = $_GET['prix'];
+        }
+           
+                $id_plat = $_GET['id_plat'];
+               
+                $plat = $_GET['plat'];
+                $prix = $_GET['prix'];
+                $qte = $_GET['qte'];
 
-            $_SESSION['panier'][$id] = $qte;
+             
+              
+                
 
             if (isset($_GET['id_plat'])) {
 
@@ -45,27 +56,24 @@ class CommandeController extends CommandeRepo
                 if (empty($resultats)) {
 
                     die("Vous n'avais commander aucun plat !! ");
-                }
+                }else{
 
-                $_SESSION['panier'][$resultats[0]->id_plat] = 1;
-                
-          //die('le plat a bien été ajouté à votre panier <a href="javascript:history.back()">retourner sur le menu</a>');
+                    array_push( $_SESSION['panier']['id_plat'], $id_plat);
+                    array_push( $_SESSION['panier']['plat'], $plat);
+                    array_push( $_SESSION['panier']['prix'], $prix);
+                    array_push( $_SESSION['panier']['qte'], $qte);
 
-                $ids = array_keys($_SESSION['panier']);
-
-               print_r("mon $ids :  " . $ids);
-
-                if (empty($ids)) {
-
-                    $resultats = array();
-                } else {
+                    die('le plat a bien été ajouté à votre panier <a href="javascript:history.back()">retourner sur le menu</a>');
 
                 }
                
-            }
+               }
+             $panier = $_SESSION['panier'];
+             $panierId = $_SESSION['panier']['id_plat'];
+             $panierPlat = $_SESSION['panier']['plat'];
+             $panierPrix = $_SESSION['panier']['prix'];
+             $panierQte = $_SESSION['panier']['qte'];
 
-
-     
-       include("view/clientCompte.php");
+            include("view/clientCompte.php");
     }
 }

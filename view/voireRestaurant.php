@@ -16,7 +16,7 @@
                     <thead class="">
                       <tr >
                         <th >Entrée</th>
-                  
+            
                       </tr>
                     </thead>
                     <tbody>
@@ -25,16 +25,29 @@
                          foreach( $menus as $plat)
                          { 
                                 if($plat["typeDePlat"] == "entree"){
-                                  echo'<tr>
-                                  <td ><button  onclick="addPlat('. $id_plat .')"><i class="fas fa-shopping-basket"></i></button>
-                                  <a  href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  >
-                                  <h5  id="id_plat">'.$plat["id_plat"]. '</h5>
-                                  <h5 id="plat">'.$plat["plat"]. '</h5></a>
-                                  <input type="number" name ="qte" id="qte">
-                                  <p style="font-size: 10px;">' .$plat["ingredient"].'</p></td>
 
-                                  <td>'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
-                              </tr>';
+                                  echo 
+
+                           '<tr>
+                              <td >
+  
+                                 <span id="id_plat_'.$plat['id_plat'].'">'.$plat['id_plat'].'</span>
+
+                                 <span id="plat_'.$plat["id_plat"] .'"> ' .$plat["plat"]. '</span>
+
+                                  <p style="font-size: 10px;"> Ingredients : ' .$plat["ingredient"].'</p>
+
+                                  <label>Qte : </label>
+                                  <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
+
+                                  <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
+                    
+                                 </button>
+                              </td>
+
+                               <td id="prix_'.$plat['id_plat'].'">'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
+
+                         </tr>';
                                   }
                  
                          }
@@ -59,12 +72,25 @@
                                 if($plat["typeDePlat"] == "main"){
                                       echo
                                       '<tr>
-                                      <td ><a  href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
-                                      <h5 >'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
-                                      </i></a>
-                                      <p style="font-size: 10px;">'.$plat["ingredient"].'</p></td>
-                                      <td>'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
-                                      </tr>';
+                                      <td >
+          
+                                         <span id="id_plat_'.$plat['id_plat'].'">'.$plat['id_plat'].'</span>
+        
+                                         <span id="plat_'.$plat["id_plat"] .'"> ' .$plat["plat"]. '</span>
+        
+                                          <p style="font-size: 10px;"> Ingredients : ' .$plat["ingredient"].'</p>
+        
+                                          <label>Qte : </label>
+                                          <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
+        
+                                          <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
+                            
+                                         </button>
+                                      </td>
+        
+                                       <td id="prix_'.$plat['id_plat'].'">'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
+        
+                                 </tr>';
                                   }
                  
                          }
@@ -88,13 +114,26 @@
                          foreach( $menus as $plat)
                          { 
                                 if($plat["typeDePlat"] == "dessert"){
-                               echo   '<tr>
-                                  <td ><a class="add" href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
-                                  <h5  >'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
-                                  </i></a>
-                                  <p style="font-size: 10px;">'.$plat["ingredient"].'</p></td>
-                                  <td id="prix">'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
-                                  </tr>';
+                               echo  '<tr>
+                               <td >
+   
+                                  <span id="id_plat_'.$plat['id_plat'].'">'.$plat['id_plat'].'</span>
+ 
+                                  <span id="plat_'.$plat["id_plat"] .'"> ' .$plat["plat"]. '</span>
+ 
+                                   <p style="font-size: 10px;"> Ingredients : ' .$plat["ingredient"].'</p>
+ 
+                                   <label>Qte : </label>
+                                   <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
+ 
+                                   <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
+                     
+                                  </button>
+                               </td>
+ 
+                                <td id="prix_'.$plat['id_plat'].'">'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
+ 
+                          </tr>';
                                   }
                  
                          }
@@ -116,13 +155,27 @@
                          foreach( $menus as $plat)
                          { 
                                 if($plat["typeDePlat"] == "extras"){
-                               echo   '<tr>
-                                      <td ><a class="add" href="index.php?page=addpanier&id_plat='. $plat["id_plat"] .'"  ><i class="fas fa-shopping-basket ">
-                                      <h5  id="id_plateau">'.$plat["id_plat"]. ' '.$plat["plat"]. '</h5>
-                                      </i></a>
-                                      <p style="font-size: 10px;">'.$plat["ingredient"].'</p></td>
-                                      <td>'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
-                                      </tr>';
+                               echo  
+                               '<tr>
+                               <td >
+   
+                                  <span id="id_plat_'.$plat['id_plat'].'">'.$plat['id_plat'].'</span>
+ 
+                                  <span id="plat_'.$plat["id_plat"] .'"> ' .$plat["plat"]. '</span>
+ 
+                                   <p style="font-size: 10px;"> Ingredients : ' .$plat["ingredient"].'</p>
+ 
+                                   <label>Qte : </label>
+                                   <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
+ 
+                                   <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
+                     
+                                  </button>
+                               </td>
+ 
+                                <td id="prix_'.$plat['id_plat'].'">'. number_format($plat["prix"], 2, ',', ' ' ).' €</td>
+ 
+                          </tr>';
                                   }
                  
                          }

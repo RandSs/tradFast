@@ -37,7 +37,6 @@ class Rooter
 
              break;
 
-       
                case 'addpanier':
 
                     $commanderPlat = new CommandeController();
@@ -45,7 +44,6 @@ class Rooter
 
              break;
 
-         
              case 'panier':
 
                 $panier = new Panier();
