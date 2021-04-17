@@ -19,9 +19,9 @@
                 <button type="submit" class="btn btn-success" style="float: right;">Sign In</button>
         </form>
 
+    </div>
   </div>
-</div>
-<div>
-    
+ <div>
+     
 </div>
 </section>

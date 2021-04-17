@@ -5,8 +5,6 @@ include("model/modelClient.php");
 class ClientController  extends ClientModel
 {
    
-
-
   public function inscriptionControllerClient()
   {
       $this->nom_client = $_POST["nom_client"];
@@ -67,23 +65,18 @@ class ClientController  extends ClientModel
 
              include("view/viewAccueil.php");
         
-           // header("ocation: " . $_SESSION['page']);
-
+            //header("location: " . $_SESSION['page']);
 
         } else {
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";
          include("view/viewSignInClient.php");
         }
-   
+
        }else{
         include("view/viewSignInClient.php");
        }
        
     }
-
-
-
-
-
+  
   
 }

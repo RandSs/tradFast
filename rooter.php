@@ -1,6 +1,7 @@
 <?php
 
-use CommandeController; 
+use CommandeController;
+
 class Rooter
 {
     private $page;
@@ -16,56 +17,22 @@ class Rooter
 
         switch ($this->page) {
 
-            case 'accueil':
+            //inscription restaurant.
 
-                $dernierInscription = new RestaurentController();
-                $dernierInscription->afficheRestaurents($_GET["pL"]);
+            case 'inscriptionRestaurent':
 
-                break;
-
-            case 'restaurant':
-
-                $voirMenuRestau = new RestaurentController();
-                $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
+                $newRestaurent =  new RestaurentController();
+                $newRestaurent->setInscription();
 
                 break;
-
-             case 'restaurentCompte':
-
-                $restauCompte = new RestaurentController();
-                $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
-
-             break;
-
-               case 'addpanier':
-
-                    $commanderPlat = new CommandeController();
-                    $commanderPlat->passerCommande($_GET['id_plat']);
-
-             break;
-
-             case 'panier':
-
-                $panier = new Panier();
-                $panier->panier($_GET['id_plat']);
-             
-            break;
-
-              case 'clientCompte': 
-
-                        $addPlat = new CommandeController();
-                        $addPlat->passerCommande($_SESSION['nom_client']);
-            
-              break;
-            
-
-
-
-             case 'signIn':
+                //page sign in pour diriger les utilisateur restuarant ou client.
+            case 'signIn':
 
                 include("view/signIn.php");
 
-             break;
+                break;
+
+                //sign in restaurant.
 
             case 'signInRest':
 
@@ -73,61 +40,100 @@ class Rooter
                 $signInRestau->connecteMoi();
 
                 break;
+               //le compte restaurant pour gérer les commandes et le menu ect.
+            case 'restaurentCompte':
 
-            case 'signInClient':
-
-                $singInClient = new ClientController();
-                $singInClient->jeMeConnect();
-              
-           
+                $restauCompte = new RestaurentController();
+                $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
 
                 break;
 
+                //page = restaurant&id_restaurent => pour visualiser le menu de chaque restaurant par les clients.
+            case 'restaurant':
+                $voirMenuRestau = new RestaurentController();
+                $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
+
+                break;
+            //formulaire pour pouvoir ajouter un plat au menu par le restaurant.
             case 'modifier':
                 $ajouter = new RestaurentController();
                 $ajouter->ajouterPlat();
 
-            
                 break;
 
-
-            case 'signOut':
-
-                $_SESSION = array();
-                header('Location: index.php?page=accueil');
-
-                break;
-
-            case 'inscriptionRestaurent':
-
-                $newRestaurent =  new RestaurentController();
-                $newRestaurent->setInscription();
-
-
-                break;
-
+              //inscription client.
             case 'inscriptionClient':
 
                 $newClient = new ClientController();
                 $newClient->inscriptionControllerClient();
 
+                break;
+
+                // sign in client.
+            case 'signInClient':
+
+               $singInClient = new ClientController();
+                $singInClient->jeMeConnect();
 
                 break;
 
+                //page client ou il peut visualiser le panier et ces commandes 
+
+            case 'addpanier':
+   
+                $passerCommande = new CommandeController();
+                $passerCommande->getCommande();
+               
+                break;
+                
+
+                case 'sql':
+                    
+                    $sql = new CommandeController();
+                    $sql->sql();
+
+                    break;
+    
+                //gérer le panier d'une commande par le client.
+
+            case  $_SESSION['nom_client']:
+
+                $commanderPlat = new CommandeController();
+                $commanderPlat->passerCommande($_GET['id_plat']);
+               
+                break;
+
+                // recherche un restaurant pricis par les client.
             case 'recherche':
 
                 $chercherRestaurant = new RechecheController();
                 $chercherRestaurant->rechercheRestaurant($_GET["search"]);
 
-
                 break;
+
+                // recherche un type de cuisine ? resultats afficher tous les restaurant qui 
+                //ont le meme type de cuisine.
 
             case 'typeDecuisine':
 
                 $voirUnTypeDeCuisine = new RechecheController();
                 $voirUnTypeDeCuisine->AfficherUnTypeDeCuisine($_GET["tCuisine"]);
 
+                break;
 
+              // la page d'accueil.
+            case 'accueil':
+
+                $dernierInscription = new RestaurentController();
+                $dernierInscription->afficheRestaurents($_GET["pL"]);
+
+                break;
+              //sign out.
+            case 'signOut':
+
+                $_SESSION = array();
+
+                header('Location: index.php?page=accueil');
 
                 break;
         }

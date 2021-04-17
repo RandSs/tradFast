@@ -30,7 +30,6 @@
 
                            '<tr>
                               <td >
-  
                                  <span id="id_plat_'.$plat['id_plat'].'">'.$plat['id_plat'].'</span>
 
                                  <span id="plat_'.$plat["id_plat"] .'"> ' .$plat["plat"]. '</span>
@@ -39,6 +38,7 @@
 
                                   <label>Qte : </label>
                                   <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
+                                  <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
 
                                   <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                     
@@ -82,7 +82,8 @@
         
                                           <label>Qte : </label>
                                           <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
-        
+                                          <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+
                                           <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                             
                                          </button>
@@ -125,7 +126,8 @@
  
                                    <label>Qte : </label>
                                    <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
- 
+                                   <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+
                                    <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                      
                                   </button>
@@ -167,7 +169,8 @@
  
                                    <label>Qte : </label>
                                    <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
- 
+                                   <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+
                                    <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                      
                                   </button>

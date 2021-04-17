@@ -6,7 +6,7 @@ class Commande
 {
     public $id_commande;
     public $date_de_commande;
-    public $quantite;
+
     public $date_de_livraison;
      
     public function __construct()

@@ -159,19 +159,19 @@
 
                 <?php }elseif (isset($_SESSION["id_client"])) { ?>
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=clientCompte">
-                      <?php echo ucfirst($_SESSION['nom_client']); ?>
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=addpanier">
+                   <?php echo ucfirst($_SESSION['nom_client']); ?>
                 </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=addpanier"  >
-                      Panier
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=<?= $_SESSION['nom_client']?>"  >
+                  Panier 
                 </a>
                 </li>
               
 
                 <li class="nav-item">
-                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=clientCompte">
+                  <a class="nav-link"  style="color: rgb(127, 255, 8);" href="index.php?page=sql">
                       Contact
                 </a>
                 </li>

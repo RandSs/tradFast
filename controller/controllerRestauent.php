@@ -140,21 +140,19 @@ class RestaurentController extends RestaurentModel
     {
     if( $this->plat && $this->typeDePlat )
     {
-    if($this->ajouterIdMenueEtUnPlat($id) )
-    {
-      echo $message = "votre plat est ajouter dans le menu !" ;
-    }
-    else
-    {
-      echo  $message = "votre plat n'est pas ajouter au menu! ";
-    }
-      }
+       $this->ajouterIdMenueEtUnPlat($id) ;
+       echo $message = "votre plat est ajouter dans le menu !" ;
+    
          $message = "votre mise a jour est prise en compte!";
 
-         if(!$this->plat)
+      }  
+      if(!$this->plat)
          {
            $message = "votre mise a jour na pas ete prise en compte! ";
+        echo  $message = "votre plat n'est pas ajouter au menu! ";
          }
+
+         
     }
      
 

@@ -18,10 +18,11 @@ class Restaurent
     public $mdp;
     public $image; 
   
-//commande
+    //commande
 
    
     //commander
+    public $quantite;
 
    public $id_plat;
 

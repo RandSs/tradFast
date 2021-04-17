@@ -1,6 +1,4 @@
 <?php 
-
-//$id= $_SESSION["id_restaurent"];
 echo $message.$id_restaurent; 
 ?>
 <section>
