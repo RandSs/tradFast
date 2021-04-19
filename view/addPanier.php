@@ -2,7 +2,6 @@
 session_start();
 $totalAmount = new CommandeController();
 
-
 echo'<center>
 <h1 class="text-success">Bienvenue : '.strtoupper($_SESSION['nom_client']).'</h1>
 </center>';
@@ -10,7 +9,6 @@ echo'<center>
 echo'<center>
   <h4 class="text-success">Mes Commandes</h4>
 </center>';
-
 
 ?>
 
@@ -35,7 +33,7 @@ echo'<center>
               <th scope="col"></th>
             <?php foreach ($panier as  $keys => $valeurs) {
               echo  '<th scope="col" >' . $keys . '</th>';
-              var_dump($keys);
+         
             }
           
             echo '<th>Sup</th>';
@@ -47,19 +45,19 @@ echo'<center>
 
             for ($num = 0; $num < count($panierId); $num++) {
 
-              echo  ' <tr>
+              echo  ' <tr id="supPlat">
           <th scope="row"> plat </th>
           <td>' . $panier['id_plat'][$num] . '</td>
-          <input type="text" id="id_plat_" name="commandePla[]" value="'.$panier['id_plat'][$num].'">
+          <input type="hidden" id="id_plat_" name="commandePla[]" value="'.$panier['id_plat'][$num].'">
           <td>' . $panier['plat'][$num] . '</td>
           <td >' . $panier['prix'][$num] . '</td>
           <td >' . $panier['qte'][$num] . '</td>
           <td >' . $panier['id_restaurent'][$num] . '</td>
-          <input type="text" id="id_restaurent_" name="commandeRest" value="'.$panier['id_restaurent'][$num].'">
-          <input type="text" id="qte_" name="commandeQte[]" value="'.$panier['qte'][$num].'">
+          <input type="hidden" id="id_restaurent_" name="commandeRest" value="'.$panier['id_restaurent'][$num].'">
+          <input type="hidden" id="qte_" name="commandeQte[]" value="'.$panier['qte'][$num].'">
           
-          <td>
-                <a href ="index.php?page=clientCompte" >
+          <td id="sup">
+                <a href ="#" >
               <i class="fas fa-trash-alt text-danger"></i></a>
           </td></tr>';
             }
@@ -67,8 +65,8 @@ echo'<center>
             '<th scope="row" class="text-success">Total</th>
         <td></td>
         <td></td>
-        <td >' . $totalAmount->getTotal(). ' €</td>
-        <td>' . $quantitePlats . '</td>
+        <td id="supTot">' . $totalAmount->getTotal(). ' €</td>
+        <td id="supQte">' . $quantitePlats . '</td>
         <td></td>';
           };
 
@@ -83,7 +81,7 @@ echo'<center>
        <label for="date_de_livraison">Date de livraison
        <input type="date" name="date_de_livraison" id="date_de_livraison" value="" >
        </label>
-       <input type="text" id="id_client_" name="id_client_commande" value="<?=$_SESSION['id_client']?>">
+       <input type="hidden" id="id_client_" name="id_client_commande" value="<?=$_SESSION['id_client']?>">
 
         <button  id="submitCommande"  class="btn btn-outline-success">Commander</button>
         </form>

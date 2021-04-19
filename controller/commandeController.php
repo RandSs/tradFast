@@ -37,8 +37,8 @@ class CommandeController extends CommandeRepo
             $_SESSION['panier']['prix'] = array();
             $_SESSION['panier']['qte'] = array();
             $_SESSION['panier']['id_restaurent'] = array();
-            $_SESSION['panier']['date_de_commande'] = array();
-            $_SESSION['panier']['date_de_livraison'] = array();
+           // $_SESSION['panier']['date_de_commande'] = array();
+           // $_SESSION['panier']['date_de_livraison'] = array();
 
         
         }

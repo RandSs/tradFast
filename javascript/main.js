@@ -49,9 +49,9 @@ function envoyerData(id_client)
 
 
 
-$(document).ready(function(){
+/*$(document).ready(function(){
 
-   /* $("#submitCommande").on("click", function(){
+ $("#submitCommande").on("click", function(){
    var idPlat = $("#id_plat").val();
    var  idrestaurent = $("#idrestaurent").val();
    var quantite = $("#qte").val();
@@ -62,7 +62,7 @@ $(document).ready(function(){
        $("#return").html("<h4 style='color:red;'> il faut remplir tous les champs Merci!</h4>")
    } else{
        $.ajax({
-           url:"panierSql.php",
+           url:"index.php?page=sql",
            method:"POST",
            data:$("#data"),
            success: function(data){
@@ -75,5 +75,19 @@ $(document).ready(function(){
        });
     }
 
-    })*/
+    })
+})*/
+
+$(document).ready(function(){
+ 
+$("#sup").on("click", function(){
+    alert("es que vous ete sure de vouloir suprimer ce plat?");
+    $("#supPlat").remove();
+    $("#suptot").remove();
+    $("#supQte").remove();
+
+    
+})
+
+
 })
