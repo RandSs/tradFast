@@ -1,5 +1,5 @@
 <article id="restau">
-<h1 class="text-dark" style="text-align: center;">Bienvenue: <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
+<h1 class="text-dark" style="text-align: center;">Bienvenue: <?php echo strtoupper($monrestaurantCompte['nom']); ?> </h1>
 
 <section >
 <div class="card-deck container-fluid " style="margin-top: 2rem; margin-bottom:5rem;">
@@ -108,10 +108,10 @@
    
     <div class="card-body">
       <h5 class="card-title text-success">Mes Infos</h5>
-      <h6> <?php echo'Mon N° restaurant c\'est : ' . ucfirst($monRestaurentCompte['id_restaurent']) ?></h6>
-      <h6> <?php echo'Ma spécialité c\'est : ' . ucfirst($monRestaurentCompte['cuisine']) ?></h6>
-      <h6> <?php echo'Mon email c\'est : ' . $monRestaurentCompte['email'] ?></h6>
-      <h6> <?php echo'Mon N° tel c\'est : ' . ucfirst($monRestaurentCompte['tel']) ?></h6>
+      <h6> <?php echo'Mon N° restaurant c\'est : ' . ucfirst($monrestaurantCompte['id_restaurant']) ?></h6>
+      <h6> <?php echo'Ma spécialité c\'est : ' . ucfirst($monrestaurantCompte['cuisine']) ?></h6>
+      <h6> <?php echo'Mon email c\'est : ' . $monrestaurantCompte['email'] ?></h6>
+      <h6> <?php echo'Mon N° tel c\'est : ' . ucfirst($monrestaurantCompte['tel']) ?></h6>
       
  
     </div>
@@ -218,11 +218,11 @@
 <section>
 
       <!-- Modal -->
-      <div class="modal fade" id="modifierMenue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal fade" id="modifiermenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title text-success" id="exampleModalLongTitle">Menue</h5>
+              <h5 class="modal-title text-success" id="exampleModalLongTitle">menu</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

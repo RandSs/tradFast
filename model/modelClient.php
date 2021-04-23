@@ -1,13 +1,17 @@
 <?php
 use tradFast\Bdd;
 
-include("users/client.php");
+include("classes/Client.php");
+require_once("classes/Restaurant.php");
 
-class ClientModel extends Client
+class ClientModel 
 
 {
-    public function clientInscription()
+    public function clientInscription($clientInfos)
     {
+
+        var_dump($clientInfos);
+      
         $bdd = Bdd::getConnection();
 
         $requete = "INSERT INTO client(nom_client, prenom_client, 
@@ -19,10 +23,10 @@ class ClientModel extends Client
 
         $newClient = $bdd->prepare($requete);
         $resultat =  $newClient->execute([
-                 ":nom_client"=> $this->nom_client,":prenom_client"=> $this->prenom_client,
-                 ":adresse"=> $this->adresse, ":code_postal"=>$this->code_postal,
-                 ":client_email"=>$this->client_email, ":tel"=>$this->tel, 
-                 ":mdp_client" =>$this->mdp_client, ":id_role"=>$this->id_role
+                 ":nom_client"=>  $clientInfos->nom_client,":prenom_client"=>  $clientInfos->prenom_client,
+                 ":adresse"=>  $clientInfos->adresse, ":code_postal"=> $clientInfos->code_postal,
+                 ":client_email"=> $clientInfos->client_email, ":tel"=> $clientInfos->tel, 
+                 ":mdp_client" => $clientInfos->mdp_client, ":id_role"=> $clientInfos->id_role
         ]);
 
         $bdd = null; 
@@ -31,8 +35,10 @@ class ClientModel extends Client
 
     }
 
-    public function requetePourMeConnecter()
+    public function requetePourMeConnecter($email)
     {
+
+       var_dump($email);
          $bdd = Bdd::getConnection();
 
          $requete = ("SELECT * FROM client
@@ -41,7 +47,7 @@ class ClientModel extends Client
                       WHERE client.client_email = :client_email");
 
          $client = $bdd->prepare($requete);
-         $client->execute([":client_email" => $this->client_email]);  
+         $client->execute([":client_email" => $email->client_email]);  
          
          $clientResultat = $client->fetch();
 

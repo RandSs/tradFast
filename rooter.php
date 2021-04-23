@@ -18,45 +18,45 @@ class Rooter
         switch ($this->page) {
 
             //inscription restaurant.
+            case 'inscriptionRestaurant':
 
-            case 'inscriptionRestaurent':
-
-                $newRestaurent =  new RestaurentController();
-                $newRestaurent->setInscription();
+                $newRestaurant =  new RestaurantController();
+                $newRestaurant->setInscription();
 
                 break;
+
                 //page sign in pour diriger les utilisateur restuarant ou client.
             case 'signIn':
-
-                include("view/signIn.php");
-
+                 $signIn = new Controller();
+                 $signIn->signIn();
+            
                 break;
 
                 //sign in restaurant.
 
             case 'signInRest':
 
-                $signInRestau = new RestaurentController();
-                $signInRestau->connecteMoi();
+                $signInRestau = new RestaurantController();
+                $signInRestau->meConnecte();
 
                 break;
                //le compte restaurant pour gérer les commandes et le menu ect.
-            case 'restaurentCompte':
+            case 'restaurantCompte':
 
-                $restauCompte = new RestaurentController();
-                $restauCompte->restaurentCompte(@$_SESSION["id_restaurent"]);
+                $restauCompte = new RestaurantController();
+                $restauCompte->restaurantCompte(@$_SESSION["id_restaurant"]);
 
                 break;
 
-                //page = restaurant&id_restaurent => pour visualiser le menu de chaque restaurant par les clients.
+                //page = restaurant&id_restaurant => pour visualiser le menu de chaque restaurant par les clients.
             case 'restaurant':
-                $voirMenuRestau = new RestaurentController();
-                $voirMenuRestau->voireMenu(@$_GET["id_restaurent"]);
+                $voirMenuRestau = new RestaurantController();
+                $voirMenuRestau->voireMenu(@$_GET["id_restaurant"]);
 
                 break;
             //formulaire pour pouvoir ajouter un plat au menu par le restaurant.
             case 'modifier':
-                $ajouter = new RestaurentController();
+                $ajouter = new RestaurantController();
                 $ajouter->ajouterPlat();
 
                 break;
@@ -72,7 +72,7 @@ class Rooter
                 // sign in client.
             case 'signInClient':
 
-               $singInClient = new ClientController();
+                $singInClient = new ClientController();
                 $singInClient->jeMeConnect();
 
                 break;
@@ -124,16 +124,15 @@ class Rooter
               // la page d'accueil.
             case 'accueil':
 
-                $dernierInscription = new RestaurentController();
-                $dernierInscription->afficheRestaurents($_GET["pL"]);
+                $dernierInscription = new RestaurantController();
+                $dernierInscription->afficheRestaurants($_GET["pL"]);
 
                 break;
               //sign out.
             case 'signOut':
 
-                $_SESSION = array();
-
-                header('Location: index.php?page=accueil');
+               $signOut = new Controller(); 
+               $signOut->signOut();
 
                 break;
         }

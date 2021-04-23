@@ -1,6 +1,6 @@
 <?php
  
-class FileController extends Restaurent
+class FileController extends restaurant
 {
    
 

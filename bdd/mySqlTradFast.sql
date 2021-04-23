@@ -15,11 +15,11 @@ CREATE TABLE role(
 
 
 #------------------------------------------------------------
-# Table: restaurent 
+# Table: restaurant 
 #------------------------------------------------------------
 
-CREATE TABLE restaurent(
-        id_restaurent Int  Auto_increment  NOT NULL ,
+CREATE TABLE restaurant(
+        id_restaurant Int  Auto_increment  NOT NULL ,
         nom           Varchar (50) NOT NULL ,
         pseudo        Varchar (50) NOT NULL ,
         adresse       Varchar (100) NOT NULL ,
@@ -29,9 +29,9 @@ CREATE TABLE restaurent(
         mdp           Varchar (100) NOT NULL ,
         image         Varchar (1000) NOT NULL ,
         id_role       Int NOT NULL
-	,CONSTRAINT restaurent_PK PRIMARY KEY (id_restaurent)
+	,CONSTRAINT restaurant_PK PRIMARY KEY (id_restaurant)
 
-	,CONSTRAINT restaurent_role_FK FOREIGN KEY (id_role) REFERENCES role(id_role)
+	,CONSTRAINT restaurant_role_FK FOREIGN KEY (id_role) REFERENCES role(id_role)
 )ENGINE=InnoDB;
 
 
@@ -73,7 +73,7 @@ CREATE TABLE client(
 CREATE TABLE commande(
         id_commande       Int  Auto_increment  NOT NULL ,
         date_de_commande  Date NOT NULL ,
-        quantite          Numeric NOT NULL ,
+       
         date_de_livraison Date NOT NULL ,
         id_client         Int NOT NULL
 	,CONSTRAINT commande_PK PRIMARY KEY (id_commande)
@@ -83,16 +83,16 @@ CREATE TABLE commande(
 
 
 #------------------------------------------------------------
-# Table: menue
+# Table: menu
 #------------------------------------------------------------
 
-CREATE TABLE menue(
-        id_menue      Int  Auto_increment  NOT NULL ,
+CREATE TABLE menu(
+        id_menu      Int  Auto_increment  NOT NULL ,
         typeDePlat     Varchar (50) NOT NULL ,
-        id_restaurent Int NOT NULL
-	,CONSTRAINT menue_PK PRIMARY KEY (id_menue)
+        id_restaurant Int NOT NULL
+	,CONSTRAINT menu_PK PRIMARY KEY (id_menu)
 
-	,CONSTRAINT menue_restaurent_FK FOREIGN KEY (id_restaurent) REFERENCES restaurent(id_restaurent)
+	,CONSTRAINT menu_restaurant_FK FOREIGN KEY (id_restaurant) REFERENCES restaurant(id_restaurant)
 )ENGINE=InnoDB;
 
 
@@ -105,10 +105,10 @@ CREATE TABLE plat(
         plat       Varchar (200) NOT NULL ,
         ingredient Varchar (1000) NOT NULL ,
         prix       Numeric NOT NULL ,
-        id_menue   Int NOT NULL
+        id_menu   Int NOT NULL
 	,CONSTRAINT plat_PK PRIMARY KEY (id_plat)
 
-	,CONSTRAINT plat_menue_FK FOREIGN KEY (id_menue) REFERENCES menue(id_menue)
+	,CONSTRAINT plat_menu_FK FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
 )ENGINE=InnoDB;
 
 
@@ -118,11 +118,11 @@ CREATE TABLE plat(
 
 CREATE TABLE specialite(
         id_cuisine    Int NOT NULL ,
-        id_restaurent Int NOT NULL
-	,CONSTRAINT specialite_PK PRIMARY KEY (id_cuisine,id_restaurent)
+        id_restaurant Int NOT NULL
+	,CONSTRAINT specialite_PK PRIMARY KEY (id_cuisine,id_restaurant)
 
 	,CONSTRAINT specialite_type_cuisine_FK FOREIGN KEY (id_cuisine) REFERENCES type_cuisine(id_cuisine)
-	,CONSTRAINT specialite_restaurent0_FK FOREIGN KEY (id_restaurent) REFERENCES restaurent(id_restaurent)
+	,CONSTRAINT specialite_restaurant0_FK FOREIGN KEY (id_restaurant) REFERENCES restaurant(id_restaurant)
 )ENGINE=InnoDB;
 
 
@@ -133,9 +133,10 @@ CREATE TABLE specialite(
 CREATE TABLE commander(
         id_commande Int NOT NULL ,
         id_plat     Int NOT NULL
-	,CONSTRAINT commander_PK PRIMARY KEY (id_commande,id_plat)
+        ,CONSTRAINT commander_PK PRIMARY KEY (id_commande,id_plat)
 
 	,CONSTRAINT commander_commande_FK FOREIGN KEY (id_commande) REFERENCES commande(id_commande)
-	,CONSTRAINT commander_plat0_FK FOREIGN KEY (id_plat) REFERENCES plat(id_plat)
+	,CONSTRAINT commander_plat0_FK FOREIGN KEY (id_plat) REFERENCES plat(id_plat),
+         quantite          Numeric NOT NULL ,
 )ENGINE=InnoDB;
 

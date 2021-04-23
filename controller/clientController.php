@@ -1,60 +1,64 @@
 <?php
+use client\Client;
 
 include("model/modelClient.php");
 
-class ClientController  extends ClientModel
+class ClientController 
 {
    
   public function inscriptionControllerClient()
   {
-      $this->nom_client = $_POST["nom_client"];
-      $this->prenom_client = $_POST["prenom_client"];
-      $this->adresse = $_POST["adresse"];
-      $this->code_postal = $_POST["code_postal"];
-      $this->client_email = $_POST["client_email"];
-      $this->mdp_client = $_POST["mdp_client"];
-      $this->tel = $_POST["tel"];
-      $this->id_role = $_POST["id_role"];
+    $clientProperties = new Client();
+     
+    $clientProperties->nom_client = $_POST["nom_client"];
+    $clientProperties->prenom_client = $_POST["prenom_client"];
+    $clientProperties->adresse = $_POST["adresse"];
+    $clientProperties->code_postal = $_POST["code_postal"];
+    $clientProperties->client_email = $_POST["client_email"];
+    $clientProperties->mdp_client = $_POST["mdp_client"];
+    $clientProperties->tel = $_POST["tel"];
+    $clientProperties->id_role = $_POST["id_role"];
 
       if(isset($_POST["client_email"]) && isset($_POST["nom_client"]))
       {
 
-        $message = "votre inscription n'est pas prise en compte!"; 
+        $message = "votre inscription na pas été prise en compte!"; 
 
-          if(!$this->client_email)
+          if(!$clientProperties->client_email)
           {
            echo   "Merci de rentrer votre email!";
           }
       }
 
-      if($this->client_email && $this->prenom_client)
+      if($clientProperties->client_email && $clientProperties->prenom_client)
       {
-          $this->mdp_client  = password_hash($_POST["mdp_client"], PASSWORD_DEFAULT);
-
-          if($this->clientInscription())
-          {
-              
+        $clientProperties->mdp_client  = password_hash($_POST["mdp_client"], PASSWORD_DEFAULT);
+          $inscription = new ClientModel();
+          if($inscription->clientInscription($clientProperties))
+          {  
             echo $message = "<center class='alert alert-info>Inscription est pris en compte </center>";
 
-           
-          
-         } else {
-             include("view/inscriptionClient.php");
-         }
-
+          } else {
+            // include("view/inscriptionClient.php");
+          }
 
       }
+
      include("view/inscriptionClient.php");
 
     }
 
     public function jeMeConnect()
     {
+        $clientProperties = new Client();
+        $connection = new ClientModel();
+        var_dump(     $connection);
         if(isset($_POST["client_email"]) && isset($_POST["mdp_client"]))
         {
-            $this->client_email = ($_POST["client_email"]);
-            $client = $this->requetePourMeConnecter();
-       
+            $clientProperties->client_email = ($_POST["client_email"]);
+            $client =  $connection->requetePourMeConnecter($clientProperties);
+
+            var_dump($_POST["mdp_client"]) ; var_dump( $client["mdp_client"]);
         if(password_verify($_POST["mdp_client"], $client["mdp_client"]))
         {
             $_SESSION["id_client"] = $client["id_client"];
@@ -64,8 +68,6 @@ class ClientController  extends ClientModel
             $_SESSION["role"] = $client["role"];
 
              include("view/viewAccueil.php");
-        
-            //header("location: " . $_SESSION['page']);
 
         } else {
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";

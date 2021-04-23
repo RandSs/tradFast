@@ -1,5 +1,5 @@
 <?php 
-echo $message.$id_restaurent; 
+echo $message.$id_restaurant; 
 ?>
 <section>
 <div class="card border-success mb-3 mx-auto" style="max-width: 40rem; margin-top:3rem;">
@@ -45,7 +45,7 @@ echo $message.$id_restaurent;
                 
                 
                 <div class="col-10">
-                    <input type="hidden" class="form-control" id="id_restaurtent" name="id_restaurent" value="<?php  $id  ?>">
+                    <input type="hidden" class="form-control" id="id_restaurtent" name="id_restaurant" value="<?php  $id  ?>">
                 </div>
                
                 <div class="form-group"> 

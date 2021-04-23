@@ -72,7 +72,7 @@ echo $message;
                 </div>
                 
                 <div class="col">
-                    <input type="hidden" class="form-control" id="id_role" name="id_role" value="2">
+                    <input type="hidden" class="form-control" id="id_role" name="id_role" value="1">
                 </div>
                
                 <div class="form-group"> 

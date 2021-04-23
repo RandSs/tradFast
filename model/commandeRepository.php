@@ -20,7 +20,7 @@ class CommandeRepo
             $bdd = Bdd::getConnection();
 
            $requete = 'SELECT * FROM plat
-                       INNER JOIN restaurent ON plat.id_restaurent = restaurent.id_restaurent
+                       INNER JOIN restaurant ON plat.id_restaurant = restaurant.id_restaurant
                        WHERE id_plat = :id_plat';
            $prepareRequete = $bdd->prepare($requete);
            $prepareRequete->execute([":id_plat" => $id_plat ]);
@@ -43,14 +43,14 @@ class CommandeRepo
 
          $infosCommande = new Commande();
          $infosClient   = new Client();
-         $infosRestau   = new Restaurent();
+         $infosRestau   = new restaurant();
          $infosPlat     = new Plat();
 
       
          $date_de_commande = $infosCommande->date_de_commande;
          $date_de_livraison = $infosCommande->date_de_livraison;
          $id_client = $infosClient->id_client;
-         $id_restaurent = $infosRestau->id_restaurent ;
+         $id_restaurant = $infosRestau->id_restaurant ;
          $id_plat = $infosPlat->id_plat; 
          $quantite = $infosRestau->quantite; 
 
@@ -59,22 +59,22 @@ class CommandeRepo
          {
             $id_plat = mysqli_real_escape_string($bdd, $_POST["commandePla[]"]) ;
             $id_client  = mysqli_real_escape_string($bdd, $_POST["id_client_commande"]);
-            $id_restaurent =  mysqli_real_escape_string($bdd, $_POST["commandeRest[]"]);
+            $id_restaurant =  mysqli_real_escape_string($bdd, $_POST["commandeRest[]"]);
             $quantite =  mysqli_real_escape_string($bdd, $_POST["commandeQte[]"]);
             $date_de_commande = mysqli_real_escape_string($bdd,$_POST["date_de_commande"]);
             $date_de_livraison = mysqli_real_escape_string($bdd, $_POST["date_de_livraison"]);
          
 
-         $requete = 'INSERT INTO commande(date_de_commande, date_de_livraison, id_client, id_restaurent)
+         $requete = 'INSERT INTO commande(date_de_commande, date_de_livraison, id_client, id_restaurant)
                      VALUES :date_de_commande, :date_de_livraison, 
-                            :id_client, :id_restaurent';
+                            :id_client, :id_restaurant';
 
            $commande = $bdd->prepare($requete);
            $inserCommande =  $commande->execute([
                     ":date_de_commnde"=> $date_de_commande,  
                     ":date_de_livraison"=> $date_de_livraison,
                     ":id_client"=>$id_client,
-                    ":id_restaurent"=>  $id_restaurent  
+                    ":id_restaurant"=>  $id_restaurant  
            ]);               
            
            $lastIdCommande = $bdd->lastInsertId();

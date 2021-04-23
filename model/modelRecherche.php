@@ -6,12 +6,12 @@ class RechercheModel
     public function requeteRestaurant($search)
         {
           $bdd = Bdd::getConnection();
-                $requete = ("SELECT * FROM restaurent 
+                $requete = ("SELECT * FROM restaurant 
                             INNER JOIN specialite  
-                            ON restaurent.id_restaurent = specialite.id_restaurent
+                            ON restaurant.id_restaurant = specialite.id_restaurant
                             INNER JOIN type_cuisine 
                             ON type_cuisine.id_cuisine = specialite.id_cuisine
-                            WHERE restaurent.nom LIKE :search OR pseudo LIKE :search");
+                            WHERE restaurant.nom LIKE :search OR pseudo LIKE :search");
 
 
 
@@ -31,9 +31,9 @@ class RechercheModel
         {
                $bdd = Bdd::getConnection();
 
-               $requete = ("SELECT * FROM restaurent 
+               $requete = ("SELECT * FROM restaurant 
                             INNER JOIN specialite  
-                            ON restaurent.id_restaurent = specialite.id_restaurent
+                            ON restaurant.id_restaurant = specialite.id_restaurant
                             INNER JOIN type_cuisine 
                             ON type_cuisine.id_cuisine = specialite.id_cuisine
                             WHERE type_cuisine.cuisine = :cuisine" );

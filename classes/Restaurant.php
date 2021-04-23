@@ -1,20 +1,22 @@
 <?php
+namespace restaurant;
 
 
 
-
-class Restaurent 
+class Restaurant 
 {
 
- //restaurent
+ //restaurant
 
-    public $id_restaurent;
+    public $id_restaurant;
     public $nom;
     public $pseudo;
     public $adresse;
-    public $code_postal;
-    public $email;
     public $tel;
+    public $email;
+    public $code_postal;
+    
+
     public $mdp;
     public $image; 
   
@@ -22,37 +24,37 @@ class Restaurent
 
    
     //commander
-    public $quantite;
+   // public $quantite;
 
-   public $id_plat;
+//   public $id_plat;
 
    //plat
 
-   public $plat;
-   public $ingredient;
-   public $prix;
+  // public $plat;
+  // public $ingredient;
+   //public $prix;
 
-   //menue
-   public $id_menue;
-   public $typeDePlat;
+   //menu
+  // public $id_menu;
+   //public $typeDePlat;
 
    //role
    public $id_role;
-   public $role;
+   //public $role;
    
    //specialite
    public $id_cuisine;
 
    //type_cuisine
-   public $cuisine;
+   //public $cuisine;
 
     /**
      * getters 
      */
 
-     public function getIdRestaurent(): int 
+     public function getIdrestaurant(): int 
      {
-         return $this->id_restaurent;
+         return $this->id_restaurant;
      }
      public function getNom(): string
      {

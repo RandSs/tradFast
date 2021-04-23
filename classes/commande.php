@@ -1,6 +1,6 @@
 <?php
 namespace commande;
-use Restaurent;
+use Restaurant;
 
 class Commande
 {

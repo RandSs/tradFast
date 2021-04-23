@@ -17,7 +17,7 @@
                   <h5 class="card-title">'.ucfirst($resultat["nom"]) . '</h5>
                   <p class="card-text" style="color:green;"><b>Cuisine :  ' . ucfirst($resultat["cuisine"]) . '</b></p>
 
-                  <a href="index.php?page=restaurant&id_restaurent='. $resultat["id_restaurent"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
+                  <a href="index.php?page=restaurant&id_restaurant='. $resultat["id_restaurant"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
 
                 </div>
              

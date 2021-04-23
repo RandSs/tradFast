@@ -1,5 +1,5 @@
 <article id="voirestau">
-<h1 class="text-success" style="text-align: center;">Soyez les bienvenus chez : <?php echo strtoupper($monRestaurentCompte['nom']); ?> </h1>
+<h1 class="text-success" style="text-align: center;">Soyez les bienvenus chez : <?php echo strtoupper($monrestaurantCompte['nom']); ?> </h1>
 
 <section >
 
@@ -38,7 +38,7 @@
 
                                   <label>Qte : </label>
                                   <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
-                                  <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+                                  <input type="hidden" name="id_restaurant" id="id_restaurant_'.$plat['id_plat'].'"   value="'.$plat['id_restaurant'].'">
 
                                   <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                     
@@ -82,7 +82,7 @@
         
                                           <label>Qte : </label>
                                           <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
-                                          <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+                                          <input type="hidden" name="id_restaurant" id="id_restaurant_'.$plat['id_plat'].'"   value="'.$plat['id_restaurant'].'">
 
                                           <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                             
@@ -126,7 +126,7 @@
  
                                    <label>Qte : </label>
                                    <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
-                                   <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+                                   <input type="hidden" name="id_restaurant" id="id_restaurant_'.$plat['id_plat'].'"   value="'.$plat['id_restaurant'].'">
 
                                    <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                      
@@ -169,7 +169,7 @@
  
                                    <label>Qte : </label>
                                    <input type="number" name ="qte" id="qte_'.$plat['id_plat'].'" style="width:50px; height:30px;">
-                                   <input type="hidden" name="id_restaurent" id="id_restaurent_'.$plat['id_plat'].'"   value="'.$plat['id_restaurent'].'">
+                                   <input type="hidden" name="id_restaurant" id="id_restaurant_'.$plat['id_plat'].'"   value="'.$plat['id_restaurant'].'">
 
                                    <button onclick="addPlat(' . $plat["id_plat"].' ) "><i class="fas fa-shopping-basket"></i>
                      
@@ -207,12 +207,12 @@
    
     <div class="card-body">
       <h5 class="card-title text-success">Contact nous</h5>
-      <h6> <?php echo'Mon N° restaurant c\'est : ' . ucfirst($monRestaurentCompte['id_restaurent']) ?></h6>
-      <h6> <?php echo'Ma spécialité c\'est : ' . ucfirst($monRestaurentCompte['cuisine']) ?></h6>
-      <h6> <?php echo'Mon email c\'est : ' . $monRestaurentCompte['email'] ?></h6>
-      <h6> <?php echo'Mon N° tel c\'est : ' . ucfirst($monRestaurentCompte['tel']) ?></h6>
-      <h6> <?php echo'Mon adresse c\'est : ' . ucfirst($monRestaurentCompte['adresse']) ?></h6>
-      <h6> <?php echo'Mon code postal c\'est : ' . ucfirst($monRestaurentCompte['code_postal']) ?></h6>
+      <h6> <?php echo'Mon N° restaurant c\'est : ' . ucfirst($monrestaurantCompte['id_restaurant']) ?></h6>
+      <h6> <?php echo'Ma spécialité c\'est : ' . ucfirst($monrestaurantCompte['cuisine']) ?></h6>
+      <h6> <?php echo'Mon email c\'est : ' . $monrestaurantCompte['email'] ?></h6>
+      <h6> <?php echo'Mon N° tel c\'est : ' . ucfirst($monrestaurantCompte['tel']) ?></h6>
+      <h6> <?php echo'Mon adresse c\'est : ' . ucfirst($monrestaurantCompte['adresse']) ?></h6>
+      <h6> <?php echo'Mon code postal c\'est : ' . ucfirst($monrestaurantCompte['code_postal']) ?></h6>
       
  
     </div>

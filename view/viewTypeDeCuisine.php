@@ -16,7 +16,7 @@
                   <h5 class="card-title">'.ucfirst($typeDeCuisine["nom"]) . '</h5>
                   <p class="card-text" style="color:green;"><b>Cuisine :  ' . ucfirst($typeDeCuisine["cuisine"]) . '</b></p>
 
-                  <a href="index.php?page=restaurant&id_restaurent='. $typeDeCuisine["id_restaurent"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
+                  <a href="index.php?page=restaurant&id_restaurant='. $typeDeCuisine["id_restaurant"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
 
                 </div>
              

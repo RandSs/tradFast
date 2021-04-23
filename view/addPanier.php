@@ -52,8 +52,8 @@ echo'<center>
           <td>' . $panier['plat'][$num] . '</td>
           <td >' . $panier['prix'][$num] . '</td>
           <td >' . $panier['qte'][$num] . '</td>
-          <td >' . $panier['id_restaurent'][$num] . '</td>
-          <input type="hidden" id="id_restaurent_" name="commandeRest" value="'.$panier['id_restaurent'][$num].'">
+          <td >' . $panier['id_restaurant'][$num] . '</td>
+          <input type="hidden" id="id_restaurant_" name="commandeRest" value="'.$panier['id_restaurant'][$num].'">
           <input type="hidden" id="qte_" name="commandeQte[]" value="'.$panier['qte'][$num].'">
           
           <td id="sup">

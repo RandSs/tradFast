@@ -1,4 +1,5 @@
 <?php 
+namespace client;
 
 
 class Client  

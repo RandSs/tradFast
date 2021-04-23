@@ -3,9 +3,9 @@ use commande\Commande;
 //use CommandeRepo;
 //include("classes/commande.php");
 include("model/commandeRepository.php");
-require_once("classes/plat.php");
-require_once("classes/commande.php");
-require_once("users/restaurent.php");
+require_once("classes/Plat.php");
+require_once("classes/Commande.php");
+require_once("users/Restaurant.php");
 
 
 class CommandeController extends CommandeRepo
@@ -36,7 +36,7 @@ class CommandeController extends CommandeRepo
             $_SESSION['panier']['plat'] = array();
             $_SESSION['panier']['prix'] = array();
             $_SESSION['panier']['qte'] = array();
-            $_SESSION['panier']['id_restaurent'] = array();
+            $_SESSION['panier']['id_restaurant'] = array();
            // $_SESSION['panier']['date_de_commande'] = array();
            // $_SESSION['panier']['date_de_livraison'] = array();
 
@@ -58,7 +58,7 @@ class CommandeController extends CommandeRepo
                     $plat = $_GET['plat'];
                     $prix = $_GET['prix'];
                     $qte = $_GET['qte'];
-                    $id_restaurent = $_GET['id_restaurent'];
+                    $id_restaurant = $_GET['id_restaurant'];
                 
               if (isset($_GET['id_plat'])) {
 
@@ -79,7 +79,7 @@ class CommandeController extends CommandeRepo
                 array_push($_SESSION['panier']['plat'], $plat);
                 array_push($_SESSION['panier']['prix'], $prix);
                 array_push($_SESSION['panier']['qte'], $qte);
-                array_push($_SESSION['panier']['id_restaurent'], $id_restaurent);
+                array_push($_SESSION['panier']['id_restaurant'], $id_restaurant);
 
                 //on donne la possibiliter au client de pouvoir retourner a la page precedente grace a fonction 
                 //history.back();
@@ -93,7 +93,7 @@ class CommandeController extends CommandeRepo
         $panierPlat = $_SESSION['panier']['plat'];
         $panierPrix = $_SESSION['panier']['prix'];
         $panierQte = $_SESSION['panier']['qte'];
-        $panierIdRes = $_SESSION['panier']['id_restaurent'];
+        $panierIdRes = $_SESSION['panier']['id_restaurant'];
 
         //on calcule le totale des plat choisis grace a la methode array_sum().
 
@@ -129,11 +129,11 @@ class CommandeController extends CommandeRepo
 
             $infosCommande = new Commande();
             $infosClient   = new Client();
-            $infosRestau   = new Restaurent();
+            $infosRestau   = new Restaurant();
             $infosPlat     = new Plat();
         /*
             $infosPlat->id_plat = $_POST['commandePla'];
-            $infosRestau->id_restaurent =  $_POST['commandeRest'];
+            $infosRestau->id_restaurant =  $_POST['commandeRest'];
             $infosRestau->quantite  =  $_POST['commandeQte'];
             $infosCommande->date_de_commande = $_POST['date_de_commande'];
             $infosCommande->date_de_livraison = $_POST['date_de_livraison'];
@@ -145,13 +145,13 @@ class CommandeController extends CommandeRepo
                     $date_de_livraison = $_GET['dateDeLivrason'];
                     $date_de_commande = $_GET['dateDeCommande'];
                     $qte = $_GET['qte'];
-                    $id_restaurent = $_GET['id_restaurent'];
+                    $id_restaurant = $_GET['id_restaurant'];
                     
            /*  if (isset( $_POST['date_de_commande'])){
                 foreach($infosPlat->id_plat as $k => $v){
 
 
-                    echo  "<br/> <br/> id plat est : " . $v."  id rest est : " . $infosRestau->id_restaurent[$k] ." la qte : "
+                    echo  "<br/> <br/> id plat est : " . $v."  id rest est : " . $infosRestau->id_restaurant[$k] ." la qte : "
                     . $infosRestau->quantite[$k]. "\n" ; 
     
                     }
@@ -180,12 +180,12 @@ class CommandeController extends CommandeRepo
                 {
                     $infosCommande = new Commande();
                     $infosClient   = new Client();
-                    $infosRestau   = new Restaurent();
+                    $infosRestau   = new Restaurant();
                     $infosPlat     = new Plat();
                    
 
                     $infosPlat->id_plat = $_POST['commandePla'];
-                    $infosRestau->id_restaurent =  $_POST['commandeRest'];
+                    $infosRestau->id_restaurant =  $_POST['commandeRest'];
                     $infosRestau->quantite  =  $_POST['commandeQte'];
                     $infosCommande->date_de_commande = $_POST['date_de_commande'];
                     $infosCommande->date_de_livraison = $_POST['date_de_livraison'];

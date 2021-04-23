@@ -1,5 +1,6 @@
 <?php
 use tradFast\Bdd;
+
 ?>
 
 <article id="article" >
@@ -13,11 +14,11 @@ use tradFast\Bdd;
 <section>
 
       <!-- Modal -->
-      <div class="modal fade" id="voirMenue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal fade" id="voirmenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title text-success" id="exampleModalLongTitle">Menue</h5>
+              <h5 class="modal-title text-success" id="exampleModalLongTitle">menu</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -120,15 +121,15 @@ use tradFast\Bdd;
             $limite = 8;
             $debut = ($page - 1) * $limite;
 
-            $nbRows = ('SELECT COUNT(id_restaurent) AS nb FROM restaurent');
+            $nbRows = ('SELECT COUNT(id_restaurant) AS nb FROM restaurant');
             $nbRows= $bdd->query($nbRows);
             $result = $nbRows->execute();
             $resultNbRows =  $nbRows->fetchColumn();
             $nbDePage = ceil( $resultNbRows/ $limite);
 
-            $query = ("SELECT * FROM restaurent 
+            $query = ("SELECT * FROM restaurant 
                         INNER JOIN specialite
-                        ON specialite.id_restaurent = restaurent.id_restaurent
+                        ON specialite.id_restaurant = restaurant.id_restaurant
                         INNER JOIN type_cuisine
                         ON type_cuisine.id_cuisine = specialite.id_cuisine
                         LIMIT :limite  OFFSET :debut " );
@@ -149,7 +150,7 @@ use tradFast\Bdd;
                   <h5 class="card-title">'.ucfirst($element["nom"]) . '</h5>
                   <p class="card-text" style="color:green;"><b>Cuisine :  ' . ucfirst($element["cuisine"]) . '</b></p>
 
-                  <a href="index.php?page=restaurant&id_restaurent='. $element["id_restaurent"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
+                  <a href="index.php?page=restaurant&id_restaurant='. $element["id_restaurant"].'" role="button" class="btn btn-outline-success" >Voire restaurant </a>
 
                 </div>
              

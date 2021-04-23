@@ -11,8 +11,7 @@ session_start();
 function insert()
 {
     //connexion à la bdd avec le PDO.
-    try {
-        $bdd = new PDO(
+    try {       $bdd = new PDO(
             "mysql:host=localhost;dbname=tradFast",
             "root",
             "",
@@ -30,7 +29,7 @@ function insert()
     // que je récuper grace à la superglobal $_GET.
     $arrayCommande = array();
     $id_plat = $_GET['commandePla'];
-    $id_restaurent =  $_GET['commandeRest'];
+    $id_restaurant =  $_GET['commandeRest'];
     $quantite  =  $_GET['commandeQte'];
     $date_de_commande = $_GET['date_de_commande'];
     $date_de_livraison = $_GET['date_de_livraison'];
@@ -40,7 +39,7 @@ function insert()
     $arrayCommande["date_de_commande"]  = $date_de_commande;
     $arrayCommande["date_de_livraison"] = $date_de_livraison;
     $arrayCommande["id_client"] = $id_client;
-    $arrayCommande["id_restaurent"] = $id_restaurent;
+    $arrayCommande["id_restaurant"] = $id_restaurant;
 
     //je utilise la fonction implode pour transformer la contenue de la @var $arrayCommande
     // de type array pour que j'obtien a la sortie un string on lui passon le premier argument de séparation
