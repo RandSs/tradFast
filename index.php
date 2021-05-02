@@ -5,11 +5,12 @@ include("bdd.php");
 
 include("view/header.php");
 include("controller/Controller.php");
-include("controller/controllerRestaurant.php");
+include("controller/restaurantController.php");
 
-include("controller/controllerRecherche.php");
+include("controller/rechercheController.php");
 include("controller/clientController.php");
-//include("controller/commandeController.php");
+
+include("controller/commandeController.php");
 
 include("rooter.php");
 

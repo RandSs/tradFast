@@ -26,7 +26,7 @@ class Restaurant
     //commander
    // public $quantite;
 
-//   public $id_plat;
+  //public $id_plat;
 
    //plat
 

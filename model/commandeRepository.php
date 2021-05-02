@@ -1,16 +1,17 @@
 <?php
 use tradFast\Bdd;
-use PDO;
-use Commande\Commande;
 
-//require_once('controller/commandeController.php');
+use Commande\Commande;
+use restaurant\Restaurant;
+use client\Client;
+use plat\Plat;
 
 class CommandeRepo 
 {
       /**
        * fonction pour selectioner un plat choisi par un client.
        *  @param int $id_plat  qui va etre choisi par un client.
-       * @return {obj} 
+       *  @return {object} 
        */
 
       public function recupererPlat($id_plat)
@@ -57,13 +58,7 @@ class CommandeRepo
 
          if(isset($_POST["commandePla[]"]))
          {
-            $id_plat = mysqli_real_escape_string($bdd, $_POST["commandePla[]"]) ;
-            $id_client  = mysqli_real_escape_string($bdd, $_POST["id_client_commande"]);
-            $id_restaurant =  mysqli_real_escape_string($bdd, $_POST["commandeRest[]"]);
-            $quantite =  mysqli_real_escape_string($bdd, $_POST["commandeQte[]"]);
-            $date_de_commande = mysqli_real_escape_string($bdd,$_POST["date_de_commande"]);
-            $date_de_livraison = mysqli_real_escape_string($bdd, $_POST["date_de_livraison"]);
-         
+          
 
          $requete = 'INSERT INTO commande(date_de_commande, date_de_livraison, id_client, id_restaurant)
                      VALUES :date_de_commande, :date_de_livraison, 
@@ -94,7 +89,6 @@ class CommandeRepo
 
             }
 
-          var_dump( $inserQuantite);
             return $inserQuantite;
             
 

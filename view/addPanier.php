@@ -44,7 +44,7 @@ echo'<center>
          <tbody>';
 
             for ($num = 0; $num < count($panierId); $num++) {
-
+   
               echo  ' <tr id="supPlat">
           <th scope="row"> plat </th>
           <td>' . $panier['id_plat'][$num] . '</td>
@@ -81,8 +81,8 @@ echo'<center>
        <label for="date_de_livraison">Date de livraison
        <input type="date" name="date_de_livraison" id="date_de_livraison" value="" >
        </label>
-       <input type="hidden" id="id_client_" name="id_client_commande" value="<?=$_SESSION['id_client']?>">
-
+        <input type="hidden" id="id_client_" name="id_client_commande" value="<?=$_SESSION['id_client']?>">
+       
         <button  id="submitCommande"  class="btn btn-outline-success">Commander</button>
         </form>
 

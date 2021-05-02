@@ -1,14 +1,19 @@
 <?php
 use commande\Commande;
+use restaurant\Restaurant;
+use client\Client;
+use plat\Plat;
+
 //use CommandeRepo;
 //include("classes/commande.php");
 include("model/commandeRepository.php");
-require_once("classes/Plat.php");
-require_once("classes/Commande.php");
-require_once("users/Restaurant.php");
+//require_once("entities/Client.php");
+//require_once("classes/Commande.php");
+//require_once("users/Restaurant.php");
 
 
-class CommandeController extends CommandeRepo
+
+class CommandeController 
 {
     public function __construct()
     {
@@ -45,6 +50,8 @@ class CommandeController extends CommandeRepo
            
 
     }
+
+
     /**
      * @param int $id_plat  qui va etre choisi par un client.
      * récuperer les données d'un plat selectionner par le client grace a la superglobale @var $_GET.
@@ -65,8 +72,8 @@ class CommandeController extends CommandeRepo
                //si le $_GET['id_plat'] on execute la fonction  recupererPlat($id_plat)
                // du model pour pouvoir fair le fetch d'un plat precis selectionner par le client
                //est on stock les données dans la var  $resultats.
-
-               $resultats = $this->recupererPlat($id_plat);
+               $repos = new CommandeRepo();
+               $resultats =  $repos->recupererPlat($id_plat);
                
             if (empty($resultats)) {
                  //si le client na rien choisi on fait die avec un msg.
@@ -104,8 +111,6 @@ class CommandeController extends CommandeRepo
        include("view/addPanier.php");
       
     }
-
-
 
    /**
    *On calcule le montant total du panier
@@ -172,9 +177,6 @@ class CommandeController extends CommandeRepo
            
              
                 }
-
-
-
 
                 public function sql()
                 {

@@ -18,13 +18,13 @@
 
   <link rel="stylesheet" href="css/style.css">
 
-  <title>trad Fast</title>
+  <title>Trad</title>
 </head>
 
 <body id="body">
   <header id="header">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="index.php?page=accueil" style="color:  rgb(127, 255, 8); font-size:3rem; margin-right:8rem;">TradfasT</a>
+      <a class="navbar-brand" href="index.php?page=accueil" style="color:  rgb(127, 255, 8); font-size:3rem; margin-right:8rem;">Trad</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

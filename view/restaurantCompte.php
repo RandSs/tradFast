@@ -236,5 +236,5 @@
         </div>
       </div>
 </section>
-<hr>
+<hr style="margin-bottom: auto;">
   </article>

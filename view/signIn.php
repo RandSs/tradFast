@@ -1,32 +1,40 @@
 
 
 
+<section >
 
-
-<section  style="margin-bottom: 15re;">
-
-<div class="row ">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="index.php?page=signInRest" class="btn btn-primary">Restaurant</a>
+<div class="row justify-content-around  " style="margin-top: 1rem;">
+<div class="col-sm-5  signInRest"  style="height: 30rem;">
+<a href="index.php?page=signInRest" > <i class="fas fa-sign-in-alt" style="color: snow; font-size:2rem ; margin-top:1rem"></i></a>
+  
+      <div class="card-body  ">
+        <h5 class="card-title text-success"></h5>
+        <p class="card-text"></p>
+     
       </div>
-    </div>
+ 
+  
   </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="index.php?page=signInClient" class="btn btn-primary">Client</a>
+  <div class="col-sm-5  signInClient"  style="height: 30rem; ">
+  <a href="index.php?page=signInClient" ><i class="fas fa-sign-in-alt " style="color: snow; font-size:2rem;margin-top:1rem"></i></a>
+  
+      <div class="card-body  ">
+        <h5 class="card-title text-success"></h5>
+        <p class="card-text"></p>
+     
       </div>
-    </div>
+ 
+  
   </div>
+
+
+  
+
 </div>
 
 
 
 </section>
+
+<hr style="margin-bottom: 0;">
 

@@ -1,4 +1,5 @@
 <?php
+namespace plat;
 
 class Plat
 {

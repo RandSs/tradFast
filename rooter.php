@@ -27,6 +27,7 @@ class Rooter
 
                 //page sign in pour diriger les utilisateur restuarant ou client.
             case 'signIn':
+
                  $signIn = new Controller();
                  $signIn->signIn();
             
@@ -38,8 +39,10 @@ class Rooter
 
                 $signInRestau = new RestaurantController();
                 $signInRestau->meConnecte();
+           
 
                 break;
+
                //le compte restaurant pour gérer les commandes et le menu ect.
             case 'restaurantCompte':
 
@@ -54,6 +57,7 @@ class Rooter
                 $voirMenuRestau->voireMenu(@$_GET["id_restaurant"]);
 
                 break;
+
             //formulaire pour pouvoir ajouter un plat au menu par le restaurant.
             case 'modifier':
                 $ajouter = new RestaurantController();
@@ -74,7 +78,7 @@ class Rooter
 
                 $singInClient = new ClientController();
                 $singInClient->jeMeConnect();
-
+          
                 break;
 
                 //page client ou il peut visualiser le panier et ces commandes 
@@ -82,11 +86,11 @@ class Rooter
             case 'addpanier':
    
                 $passerCommande = new CommandeController();
-                $passerCommande->getCommande();
+               // $passerCommande->getCommande();
+                $passerCommande->passerCommande($_GET['id_plat']);
                
                 break;
                 
-
                 case 'sql':
                     
                     $sql = new CommandeController();
@@ -128,6 +132,7 @@ class Rooter
                 $dernierInscription->afficheRestaurants($_GET["pL"]);
 
                 break;
+
               //sign out.
             case 'signOut':
 

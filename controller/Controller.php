@@ -2,32 +2,60 @@
 
 class Controller 
 {
-   public function signIn()
+       public function signIn(){
+
+        if($_SESSION){
+            echo "<center><h1 class='alert alert-danger' >vous ete deja connecter</h1></center>";
+         
+        } else{
+ 
+           include("view/signIn.php");
+         }    
+
+       }
+
+   public function restaurantSignIn()
    {
        if($_SESSION){
-           echo "<center><h1 class='alert alert-danger' >vous ete deja connecter</h1></center>";
+        echo"<script>
+        location.href = 'index.php?page=restaurantCompte'
+        </script>";
+
         } else{
 
-            var_dump($_SESSION);
-            include("view/signIn.php");
+           
+        }    
+     
+
+  }
+  public function clientSignIn()
+   {
+       if($_SESSION){
+        echo"<script>
+        location.href = 'index.php?page=".$_SESSION['nom_client']."'
+        </script>";
+
+        } else{
+
+           
         }    
      
 
   }
          
-       
- 
     public function signOut()
     {
 
         if($_SESSION == true ){
 
-           include("view/viewAccueil.php");
-            session_destroy();
+            echo"<script>
+            location.href = 'index.php?page=accueil'
+            </script>";
 
-            
+            session_destroy();
+           
           }
-       
+     
     }
 
 

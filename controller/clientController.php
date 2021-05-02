@@ -1,9 +1,9 @@
 <?php
 use client\Client;
 
-include("model/modelClient.php");
+include("model/clientRepository.php");
 
-class ClientController 
+class ClientController extends Controller
 {
    
   public function inscriptionControllerClient()
@@ -52,7 +52,7 @@ class ClientController
     {
         $clientProperties = new Client();
         $connection = new ClientModel();
-        var_dump(     $connection);
+     
         if(isset($_POST["client_email"]) && isset($_POST["mdp_client"]))
         {
             $clientProperties->client_email = ($_POST["client_email"]);
@@ -67,7 +67,7 @@ class ClientController
             $_SESSION["id_role"] = $client["id_role"];
             $_SESSION["role"] = $client["role"];
 
-             include("view/viewAccueil.php");
+            $this->clientSignIn();
 
         } else {
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";

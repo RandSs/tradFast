@@ -1,8 +1,8 @@
 <?php
 use tradFast\Bdd;
 
-include("classes/Client.php");
-require_once("classes/Restaurant.php");
+include("entities/Client.php");
+require_once("entities/Restaurant.php");
 
 class ClientModel 
 

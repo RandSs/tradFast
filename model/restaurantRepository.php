@@ -1,13 +1,13 @@
 <?php
-
 namespace restauModel;
 
 use tradFast\Bdd;
 use restaurant\Restaurant;
 
-require_once("classes/Restaurant.php");
-require_once("classes/Plat.php");
-require_once("classes/Menu.php");
+
+require_once("entities/Restaurant.php");
+require_once("entities/Plat.php");
+require_once("entities/Menu.php");
 
 class RestaurantModel
 {
@@ -90,6 +90,8 @@ class RestaurantModel
       */
      public function inscription(object $valeur): bool
      {
+          $valeur = new Restaurant();
+         
           // je me connect a la bdd. 
           $bdd = Bdd::getConnection();
 
@@ -102,7 +104,7 @@ class RestaurantModel
           $newrestaurant = $bdd->prepare($requete);
           $resultat = $newrestaurant->execute([
 
-               ":nom" => $valeur->nom, ":pseudo" => $valeur->pseudo,
+               ":nom" => $valeur->nom , ":pseudo" => $valeur->pseudo,
                ":adresse" => $valeur->adresse, ":tel" => $valeur->tel,
                ":email" => $valeur->email, ":code_postal" => $valeur->code_postal,
                ":mdp" => $valeur->mdp, ":image" => $valeur->image,
@@ -264,10 +266,11 @@ class RestaurantModel
       * @param $id = $_SESSION["id_restaurant"] pour pouvoir le rajouter dans 
       *le champ id_restaurant dans les deux table [menu] && [plat].
       */
-     public function ajouterIdmenuEtUnPlat($id)
+     public function ajouterIdmenuEtUnPlat($id, $platInfos, $menuInfos )
      {
-          $menuInfos = new Menu();
-          $platInfos = new Plat();
+          var_dump( $menuInfos ). "</br>";
+          var_dump($platInfos);
+         
           $bdd = Bdd::getConnection();
 
           //requete pour ajouter un type de plat dans la table de menu..  
@@ -302,6 +305,7 @@ class RestaurantModel
                ":plat" => $platInfos->plat, ":ingredient" => $platInfos->ingredient,
                ":prix" => $platInfos->prix, ":id_menu" => $lastId_menu,
                ":id_restaurant" => $id
+              
           ]);
      }
 }

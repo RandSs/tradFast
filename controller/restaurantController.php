@@ -1,8 +1,10 @@
 <?php 
 use restauModel\RestaurantModel;
 use restaurant\Restaurant;
+use menu\Menu;
+use plat\Plat;
 
-include("model/modelRestaurant.php");
+include("model/restaurantRepository.php");
 
 //require_once("classes/Restaurant.php");
 //require_once("classes/Menu.php");
@@ -10,7 +12,7 @@ include("model/modelRestaurant.php");
 
 //include("controller/uploadFileController.php");
 
-class RestaurantController
+class RestaurantController  extends Controller
 {
     // déclarer une fonction pour récupérer les données du model et les passer à la vue.
     public function afficheRestaurants()
@@ -66,9 +68,6 @@ class RestaurantController
 
   }
 
-
-
-
   public function meConnecte()
   {
   
@@ -78,12 +77,10 @@ class RestaurantController
       $restInfos->email = ($_POST["email"]);
 
         $connection = new RestaurantModel();
-        var_dump(     $connection);
+        var_dump($connection);
 
        $restaurant =  $connection->seConnecter($restInfos); // model
-      // var_dump($restaurant["mdp"]) ; echo "je suis rest </br>";
-       //var_dump($_POST["mdp"]);
-       //var_dump(($_POST["email"]), $_POST["mdp"]);
+   
        if(password_verify($_POST["mdp"], $restaurant["mdp"]))
        {
        
@@ -92,8 +89,8 @@ class RestaurantController
              $_SESSION["id_restaurant"] = $restaurant["id_restaurant"];
              $_SESSION["id_role"] = $restaurant["id_role"];
              $_SESSION["role"] = $restaurant["role"];
-
-             header('location: index.php?page=restaurantCompte');
+            $this->restaurantSignIn();
+    
        }else{
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";
         
@@ -114,10 +111,10 @@ class RestaurantController
             $compte = $restaurantCompte ->getRestauCompte($id_restaurant);
            
             $commadeInformation = $restaurantCompte->commandeInfos($id_restaurant);
-            
+           
             include("view/restaurantCompte.php");
       } else{
-                echo "on est pas connecter";
+                echo "vous ete pas connecter";
             }
       
   }
@@ -127,7 +124,7 @@ class RestaurantController
     $voirMenu = new RestaurantModel();
     if($id_restaurant !== null)
     {
-       $menus =   $voirMenu ->voirMenu($id_restaurant);
+       $menus =   $voirMenu->voirMenu($id_restaurant);
        $monrestaurantCompte =  $voirMenu->fetchrestaurantData($id_restaurant);
           
           include("view/voireRestaurant.php");
@@ -149,12 +146,12 @@ class RestaurantController
     $platInfos->prix = $_POST["prix"];
     $platInfos->ingredient = $_POST["ingredient"];
     $menuInfos->typeDePlat = $_POST["typeDePlat"];
-   
+  
     if( isset($_POST["typeDePlat"])  && isset($_POST["plat"]))
     {
     if( $platInfos->plat &&  $menuInfos->typeDePlat )
     {
-      $ajouter->ajouterIdmenuEtUnPlat($id) ;
+      $ajouter->ajouterIdmenuEtUnPlat($id, $platInfos, $menuInfos ) ;
        echo $message = "votre plat est ajouter dans le menu !" ;
     
          $message = "votre mise a jour est prise en compte!";

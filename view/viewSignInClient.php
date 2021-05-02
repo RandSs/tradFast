@@ -1,7 +1,8 @@
 
 
-
-<section  class=" signIn " > 
+<div class=" signIn ">
+  <hr style="margin-top:auto;">
+<section  style="margin-top:6rem ; margin-bottom:6rem;"  > 
 
   
 <div class="card  col-sm-6  border-success mb-3" style="margin: auto;" >
@@ -30,6 +31,8 @@
 </div>
 
 </section>
+<hr style="margin-bottom:auto;">
+</div>
 
 
 

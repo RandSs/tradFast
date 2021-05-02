@@ -3,7 +3,6 @@
 <?php
 session_start();
 
-
 /**
  * déclarer une fonction pour inserer les commandes dans la bdd.
  */
@@ -12,7 +11,7 @@ function insert()
 {
     //connexion à la bdd avec le PDO.
     try {       $bdd = new PDO(
-            "mysql:host=localhost;dbname=tradFast",
+            "mysql:host=localhost;dbname=trad",
             "root",
             "",
             array(
@@ -39,7 +38,7 @@ function insert()
     $arrayCommande["date_de_commande"]  = $date_de_commande;
     $arrayCommande["date_de_livraison"] = $date_de_livraison;
     $arrayCommande["id_client"] = $id_client;
-    $arrayCommande["id_restaurant"] = $id_restaurant;
+  //  $arrayCommande["id_restaurant"] = $id_restaurant;
 
     //je utilise la fonction implode pour transformer la contenue de la @var $arrayCommande
     // de type array pour que j'obtien a la sortie un string on lui passon le premier argument de séparation
@@ -57,9 +56,11 @@ function insert()
 
         $rest = $bdd->prepare($query);
         $resultat =  $rest->execute();
+        
     }
+   
     // je déclare @var  $lastCommandeId comme array[]
-    //pour stocker le dernier id qui ete créer dans la table commande 
+    //pour stocker le dernier id qui été créer dans la table commande 
     //pour que je l'utilise pour inserer la deuxiem partie de la commande 
     //dans la table commander.
 
@@ -67,7 +68,7 @@ function insert()
     //j'utilise la methode array_push pour stocker le dernier id_commande.
     array_push($lastCommandeId, $bdd->lastInsertId());
 
-    // je test si l'inseration dans la table commande si true 
+    // je test si l'inseration dans la table commande, si c'est true
     //je contenue le processe de l'inseration de la deuxiem partie.
     if ($resultat === true) {
         //je déclare @var $arrayCommander une array.
@@ -81,6 +82,7 @@ function insert()
         // deux @var $id_plat === $lastCommandeId 
         //pour avoir le meme count dans chaque array sinon 
         // je peut pas inserer les données.
+
         if (count($id_plat) === count($lastCommandeId)) {
             //je fait rien.
         } else {
@@ -101,11 +103,15 @@ function insert()
 
         //je déclare @var $count pour stocker le count($lastCommandeId).
         $count =  count($lastCommandeId);
+        var_dump($count);
+
          //je déclare for statement pour looper chaque row 
          //pour pouvoir les inserer les une  après l'autre.
         for ($i = 0; $i < $count; $i++) {
+
           // sql query ou j'utilise l'implode pour les colonnes
-          //et j'append les values de chaque row .=  
+          //et j'append les values de chaque row  avec le  .=  
+
             $queryCommander = " INSERT INTO commander($colonnes)
                VALUES ('";
             $queryCommander .= $lastCommandeId[$i] . "', '";
@@ -114,6 +120,7 @@ function insert()
 
             $prepareRequete = $bdd->prepare($queryCommander);
             $resultatRequete =  $prepareRequete->execute();
+       
         }
         //si true je fait un echo "Votre commnade a bien ete enregistre"
         if ($resultatRequete === true) {
@@ -129,12 +136,7 @@ function insert()
 
 
 
-
-
-
-
 insert();
-
 
 
 

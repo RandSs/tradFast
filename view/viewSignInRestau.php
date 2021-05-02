@@ -1,5 +1,9 @@
-<section  class=" signIn">
+
  
+
+<div class=" signIn ">
+  <hr style="margin-top:auto;">
+<section  style="margin-top:6rem ; margin-bottom:6rem;"  > 
 <div class="card col-sm-6 border-success mb-3" style="margin: auto;">
   <div class="card-header"><h4 class="card-title text-success">Restaurant <i class="fas fa-sign-in-alt"></i></h4></div>
   <div class="card-body">
@@ -25,3 +29,5 @@
      
 </div>
 </section>
+<hr style="margin-bottom: auto;">
+</div>

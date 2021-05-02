@@ -4,7 +4,6 @@
     background-repeat: no-repeat;
      background-size: cover;
 
-
 }
 
 ul  {
@@ -28,8 +27,7 @@ ul  {
 }
 
 .signIn{
-    background-color: rgb(228, 206, 142) ;
-    
+    background-color: rgb(228, 206, 142) ;    
 
 }
 header#header {
@@ -50,4 +48,17 @@ header#header {
 
     overflow-y: auto;
     height: 20rem ;
+}
+
+.signInRest{
+    background-image: url("/trad/images/retro-vintage-insignia-logotype-label-600w-247152196.webp");
+    background-repeat: no-repeat;
+     background-size: cover; 
+
+}
+.signInClient{
+    background-image: url("/trad/images/hungry-man-thinking-what-he-600w-1771754309.webp");
+    background-repeat: no-repeat;
+     background-size: cover; 
+
 }

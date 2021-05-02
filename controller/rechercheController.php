@@ -1,6 +1,6 @@
 <?php
 
-include("model/modelRecherche.php");
+include("model/rechercheRepository.php");
 
 class RechecheController extends RechercheModel 
 {
