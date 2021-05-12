@@ -4,14 +4,7 @@ use restaurant\Restaurant;
 use client\Client;
 use plat\Plat;
 
-//use CommandeRepo;
-//include("classes/commande.php");
 include("model/commandeRepository.php");
-//require_once("entities/Client.php");
-//require_once("classes/Commande.php");
-//require_once("users/Restaurant.php");
-
-
 
 class CommandeController 
 {
@@ -136,14 +129,7 @@ class CommandeController
             $infosClient   = new Client();
             $infosRestau   = new Restaurant();
             $infosPlat     = new Plat();
-        /*
-            $infosPlat->id_plat = $_POST['commandePla'];
-            $infosRestau->id_restaurant =  $_POST['commandeRest'];
-            $infosRestau->quantite  =  $_POST['commandeQte'];
-            $infosCommande->date_de_commande = $_POST['date_de_commande'];
-            $infosCommande->date_de_livraison = $_POST['date_de_livraison'];
-            $infosClient->id_client  = $_POST['id_client_commande'];
-         */
+      
 
                     $id_plat = $_GET['id_plat'] ;
                     $id_client = $_GET['id_client'];
@@ -151,28 +137,7 @@ class CommandeController
                     $date_de_commande = $_GET['dateDeCommande'];
                     $qte = $_GET['qte'];
                     $id_restaurant = $_GET['id_restaurant'];
-                    
-           /*  if (isset( $_POST['date_de_commande'])){
-                foreach($infosPlat->id_plat as $k => $v){
-
-
-                    echo  "<br/> <br/> id plat est : " . $v."  id rest est : " . $infosRestau->id_restaurant[$k] ." la qte : "
-                    . $infosRestau->quantite[$k]. "\n" ; 
-    
-                    }
-       
-                echo'<br>';
-               echo "date de commande: " .   $infosCommande->date_de_commande ."\n";
-               echo"date de livraison: " .  $infosCommande->date_de_livraison ."\n";
-              echo "id client: ".  $infosClient->id_client ."\n";   
-               
-
-           $implode =     implode(', ',  $infosPlat->id_plat);
-           echo 'je suis le implode : '. $implode;
-        
-
-            }
-            */
+                
             include("view/clientCompte.php");
            
              
@@ -203,6 +168,19 @@ class CommandeController
                  
                     include("panierSql.php");
                     
+                }
+
+                public function del($id_plat)
+                {
+                   
+                    $id_plat = $_SESSION['panier']['id_plat'];
+                  var_dump($_SESSION['panier']['id_plat']);
+                    unset( $id_plat );
+                    echo
+                    "
+                    <script>
+                    location.href = 'index.php?page=addpanier';
+                    </script>";
                 }
         
  

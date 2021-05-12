@@ -1,7 +1,10 @@
 <h1>bonjour</h1>
+
+
 <pre>
 <?php
 session_start();
+
 
 /**
  * déclarer une fonction pour inserer les commandes dans la bdd.
@@ -38,12 +41,13 @@ function insert()
     $arrayCommande["date_de_commande"]  = $date_de_commande;
     $arrayCommande["date_de_livraison"] = $date_de_livraison;
     $arrayCommande["id_client"] = $id_client;
+
   //  $arrayCommande["id_restaurant"] = $id_restaurant;
 
     //je utilise la fonction implode pour transformer la contenue de la @var $arrayCommande
     // de type array pour que j'obtien a la sortie un string on lui passon le premier argument de séparation
     //"la vergule" et sa permis de guarder le meme order.  
-
+       
     $champs = implode(", ", array_keys($arrayCommande));
     $insertSql =  '\'' . implode('\', \'', $arrayCommande) . '\'';
     // je test la connection si false return die(msg)
@@ -125,6 +129,11 @@ function insert()
         //si true je fait un echo "Votre commnade a bien ete enregistre"
         if ($resultatRequete === true) {
             echo "Votre commnade a bien ete enregistre";
+            echo
+            "
+            <script>
+            location.href = 'index.php?page=accueil';
+            </script>";
        //else echo "Error" + le sql query  $queryCommander 
         } else {
             echo "Error: " .  $queryCommander . '<br>';
@@ -132,6 +141,7 @@ function insert()
     } else {
         echo "Error: " . $query . '<br>';
     }
+
 }
 
 
@@ -143,3 +153,4 @@ insert();
 ?>
 
 </pre>
+<script src="javascript/main.js"></script>

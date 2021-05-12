@@ -30,8 +30,8 @@
     </div>
 </footer>
 
-<script src="javascript/typeDeCuisine.js "></script>
-<script src="javascript/main.js"></script>
+<script src="/assets/javascript/typeDeCuisine.js"></script>
+<script src="/assets/javascript/main.js"></script>
 
 
 </body>

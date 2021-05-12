@@ -105,10 +105,12 @@ CREATE TABLE plat(
         plat       Varchar (200) NOT NULL ,
         ingredient Varchar (1000) NOT NULL ,
         prix       Numeric NOT NULL ,
-        id_menu   Int NOT NULL
-	,CONSTRAINT plat_PK PRIMARY KEY (id_plat)
+        id_menu   Int NOT NULL,
+        id_restaurant Int NOT NULL,
+        CONSTRAINT plat_PK PRIMARY KEY (id_plat),
+        CONSTRAINT plat_menu_FK FOREIGN KEY (id_menu) REFERENCES menu(id_menu),
+        CONSTRAINT plat_restaurant_FK FOREIGN KEY (id_restaurant) REFERENCES restaurant(id_restaurant)
 
-	,CONSTRAINT plat_menu_FK FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
 )ENGINE=InnoDB;
 
 
@@ -132,11 +134,11 @@ CREATE TABLE specialite(
 
 CREATE TABLE commander(
         id_commande Int NOT NULL ,
-        id_plat     Int NOT NULL
-        ,CONSTRAINT commander_PK PRIMARY KEY (id_commande,id_plat)
-
-	,CONSTRAINT commander_commande_FK FOREIGN KEY (id_commande) REFERENCES commande(id_commande)
-	,CONSTRAINT commander_plat0_FK FOREIGN KEY (id_plat) REFERENCES plat(id_plat),
-         quantite          Numeric NOT NULL ,
+        id_plat     Int NOT NULL,
+        quantite   Numeric NOT NULL ,
+        CONSTRAINT commander_PK PRIMARY KEY (id_commande,id_plat),
+        CONSTRAINT commander_commande_FK FOREIGN KEY (id_commande) REFERENCES commande(id_commande),
+        CONSTRAINT commander_plat0_FK FOREIGN KEY (id_plat) REFERENCES plat(id_plat),
+         
 )ENGINE=InnoDB;
 

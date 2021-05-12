@@ -1,6 +1,17 @@
 <?php
 session_start();
+use commande\Commande;
+
+require_once("entities/Commande.php");
+
 $totalAmount = new CommandeController();
+
+extract($_POST);
+if($action == "suprimerPlat"){
+  print_r($_SESSION['panier']);
+}
+
+
 
 echo'<center>
 <h1 class="text-success">Bienvenue : '.strtoupper($_SESSION['nom_client']).'</h1>
@@ -46,27 +57,27 @@ echo'<center>
             for ($num = 0; $num < count($panierId); $num++) {
    
               echo  ' <tr id="supPlat">
-          <th scope="row"> plat </th>
+          <th class="sup" scope="row"> plat </th>
           <td>' . $panier['id_plat'][$num] . '</td>
           <input type="hidden" id="id_plat_" name="commandePla[]" value="'.$panier['id_plat'][$num].'">
-          <td>' . $panier['plat'][$num] . '</td>
+          <td >' . $panier['plat'][$num] . '</td>
           <td >' . $panier['prix'][$num] . '</td>
           <td >' . $panier['qte'][$num] . '</td>
           <td >' . $panier['id_restaurant'][$num] . '</td>
           <input type="hidden" id="id_restaurant_" name="commandeRest" value="'.$panier['id_restaurant'][$num].'">
           <input type="hidden" id="qte_" name="commandeQte[]" value="'.$panier['qte'][$num].'">
           
-          <td id="sup">
-                <a href ="#" >
-              <i class="fas fa-trash-alt text-danger"></i></a>
+          <td id="sup" class="suprimer"  >
+                <a onclick="suprimerPlat('.$panier['id_plat'][$num].')";>
+              <i  class="fas fa-trash-alt text-danger"></i></a>
           </td></tr>';
             }
             echo
             '<th scope="row" class="text-success">Total</th>
         <td></td>
         <td></td>
-        <td id="supTot">' . $totalAmount->getTotal(). ' €</td>
-        <td id="supQte">' . $quantitePlats . '</td>
+        <td >' . $totalAmount->getTotal(). ' €</td>
+        <td >' . $quantitePlats . '</td>
         <td></td>';
           };
 

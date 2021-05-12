@@ -1,6 +1,6 @@
 <?php
 
-use CommandeController;
+
 
 class Rooter
 {
@@ -12,7 +12,7 @@ class Rooter
         $this->page = $page;
     }
 
-    function pageDemander()
+    public function pageDemander()
     {
 
         switch ($this->page) {
@@ -86,9 +86,8 @@ class Rooter
             case 'addpanier':
    
                 $passerCommande = new CommandeController();
-               // $passerCommande->getCommande();
                 $passerCommande->passerCommande($_GET['id_plat']);
-               
+       
                 break;
                 
                 case 'sql':
@@ -106,6 +105,14 @@ class Rooter
                 $commanderPlat->passerCommande($_GET['id_plat']);
                
                 break;
+                //suprimer un plat du panier avant de valider la commande.
+                case  'suprimer':
+
+                    $suprimer = new CommandeController ();
+                    $suprimer->del($_GET['id_plat']);
+                   
+                    break;
+
 
                 // recherche un restaurant pricis par les client.
             case 'recherche':

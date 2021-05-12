@@ -32,8 +32,5 @@ class Commande
     }
   
   
-    public function del($id_plat)
-    {
-        unset($_SESSION['panier'][$id_plat]);
-    }
+   
 }
