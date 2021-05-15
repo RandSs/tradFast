@@ -1,5 +1,5 @@
 <?php
-use tradFast\Bdd;
+use App\Bdd;
 
 ?>
 

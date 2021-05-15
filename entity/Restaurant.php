@@ -1,5 +1,5 @@
 <?php
-namespace restaurant;
+namespace Entity;
 
 
 

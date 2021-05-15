@@ -3,18 +3,18 @@ session_start();
 
 include("bdd.php");
 
-include("view/header.php");
+include("view/coreView/header.php");
 include("controller/Controller.php");
-include("controller/restaurantController.php");
+include("controller/RestaurantController.php");
 
-include("controller/rechercheController.php");
-include("controller/clientController.php");
+include("controller/RechercheController.php");
+include("controller/ClientController.php");
 
-include("controller/commandeController.php");
+include("controller/CommandeController.php");
 
-include("rooter.php");
+include("router.php");
 
-$root = new Rooter($_GET['page']);
-$root->pageDemander();
+$route = new Router($_GET['page']);
+$route->pageDemander();
 
-include("view/footer.php");
+include("view/coreView/footer.php");

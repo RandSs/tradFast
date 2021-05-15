@@ -1,7 +1,8 @@
 <?php
-use client\Client;
+use Ripository\ClientRepository;
+use Entity\Client;
 
-include("model/clientRepository.php");
+include("model/ClientRepository.php");
 
 class ClientController extends Controller
 {
@@ -33,7 +34,7 @@ class ClientController extends Controller
       if($clientProperties->client_email && $clientProperties->prenom_client)
       {
         $clientProperties->mdp_client  = password_hash($_POST["mdp_client"], PASSWORD_DEFAULT);
-          $inscription = new ClientModel();
+          $inscription = new ClientRepository();
           if($inscription->clientInscription($clientProperties))
           {  
             echo $message = "<center class='alert alert-info>Inscription est pris en compte </center>";
@@ -44,14 +45,14 @@ class ClientController extends Controller
 
       }
 
-     include("view/inscriptionClient.php");
+     include("view/clientView/inscriptionClient.php");
 
     }
 
     public function jeMeConnect()
     {
         $clientProperties = new Client();
-        $connection = new ClientModel();
+        $connection = new ClientRepository();
      
         if(isset($_POST["client_email"]) && isset($_POST["mdp_client"]))
         {
@@ -71,11 +72,11 @@ class ClientController extends Controller
 
         } else {
          echo $message = "<center class='alert alert-danger'>Email ou mot de passe incorrect </center>";
-         include("view/viewSignInClient.php");
+         include("view/clientView/viewSignInClient.php");
         }
 
        }else{
-        include("view/viewSignInClient.php");
+        include("view/clientView/viewSignInClient.php");
        }
        
     }

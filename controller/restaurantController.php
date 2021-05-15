@@ -1,10 +1,10 @@
 <?php 
-use restauModel\RestaurantModel;
-use restaurant\Restaurant;
-use menu\Menu;
-use plat\Plat;
+use Ripository\RestaurantRepository;
+use Entity\Restaurant;
+use Entity\Menu;
+use Entity\Plat;
 
-include("model/restaurantRepository.php");
+include("model/RestaurantRepository.php");
 
 //require_once("classes/Restaurant.php");
 //require_once("classes/Menu.php");
@@ -18,7 +18,7 @@ class RestaurantController  extends Controller
     public function afficheRestaurants()
     {
           //$restaurants  = $this->pagination();// model
-              include("view/viewAccueil.php"); 
+              include("view/coreView/viewAccueil.php"); 
      }
 
     /**
@@ -28,7 +28,7 @@ class RestaurantController  extends Controller
   public function setInscription()
   {
         
-    $inscription = new RestaurantModel(); 
+    $inscription = new RestaurantRepository(); 
     $restInfos = new Restaurant();
 
     $restInfos->nom = $_POST["nom"];
@@ -64,7 +64,7 @@ class RestaurantController  extends Controller
           }
       }
         
-             include("view/inscriptionRestaurant.php");
+             include("view/restaurantView/inscriptionRestaurant.php");
 
   }
 
@@ -76,7 +76,7 @@ class RestaurantController  extends Controller
     {
       $restInfos->email = ($_POST["email"]);
 
-        $connection = new RestaurantModel();
+        $connection = new RestaurantRepository();
         var_dump($connection);
 
        $restaurant =  $connection->seConnecter($restInfos); // model
@@ -97,14 +97,14 @@ class RestaurantController  extends Controller
        }
 
     }
-    include("view/viewSignInRestau.php");
+    include("view/restaurantView/viewSignInRestau.php");
   }
 
 
 
   public function restaurantCompte($id_restaurant = null)
   {
-      $restaurantCompte = new  RestaurantModel();
+      $restaurantCompte = new  RestaurantRepository();
       if($id_restaurant !== null)
 
       {
@@ -121,7 +121,7 @@ class RestaurantController  extends Controller
 
   public function voireMenu($id_restaurant = null)
   {
-    $voirMenu = new RestaurantModel();
+    $voirMenu = new RestaurantRepository();
     if($id_restaurant !== null)
     {
        $menus =   $voirMenu->voirMenu($id_restaurant);
@@ -138,7 +138,7 @@ class RestaurantController  extends Controller
   public function ajouterPlat()
   {
     $platInfos  = new Plat();
-    $ajouter = new RestaurantModel();
+    $ajouter = new RestaurantRepository();
     $menuInfos = new Menu();
     $id = $_SESSION["id_restaurant"];
   

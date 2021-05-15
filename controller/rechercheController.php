@@ -1,8 +1,8 @@
 <?php
 
-include("model/rechercheRepository.php");
+include("model/RechercheRepository.php");
 
-class RechecheController extends RechercheModel 
+class RechecheController extends RechercheRepository
 {
 
 
@@ -13,11 +13,11 @@ class RechecheController extends RechercheModel
         {
             $resultats = $this->requeteRestaurant($search);
 
-            include("view/viewRecherche.php"); 
+            include("view/rechercheView/viewRecherche.php"); 
              
         }else 
         {
-            include("view/404.php"); 
+            include("view/coreView/404.php"); 
         }
    
     }
@@ -28,7 +28,7 @@ class RechecheController extends RechercheModel
             if($tCuisine !== null)
             {
                 $resultatTypeCuisine = $this->requeterUnTypeDeCuisine($tCuisine);
-                include("view/viewTypeDeCuisine.php");
+                include("view/rechercheView/viewTypeDeCuisine.php");
             }
     }
 

@@ -1,5 +1,5 @@
 <?php
-namespace tradFast;
+namespace App;
 use PDO;
 use PDOException;
 

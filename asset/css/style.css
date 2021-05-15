@@ -1,6 +1,6 @@
 #article {
    
-   background-image: url("/trad/images/pasta-green-pesto-spinach-pine-600w-1897568725.webp");
+   background-image: url("/trad/asset/images/pasta-green-pesto-spinach-pine-600w-1897568725.webp");
     background-repeat: no-repeat;
      background-size: cover;
 
@@ -51,13 +51,13 @@ header#header {
 }
 
 .signInRest{
-    background-image: url("/trad/images/retro-vintage-insignia-logotype-label-600w-247152196.webp");
+    background-image: url("/trad/asset/images/retro-vintage-insignia-logotype-label-600w-247152196.webp");
     background-repeat: no-repeat;
      background-size: cover; 
 
 }
 .signInClient{
-    background-image: url("/trad/images/hungry-man-thinking-what-he-600w-1771754309.webp");
+    background-image: url("/trad/asset/images/hungry-man-thinking-what-he-600w-1771754309.webp");
     background-repeat: no-repeat;
      background-size: cover; 
 

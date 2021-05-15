@@ -1,10 +1,12 @@
 <?php
-use tradFast\Bdd;
+namespace Ripository;
+use App\Bdd;
 
-include("entities/Client.php");
-require_once("entities/Restaurant.php");
+include("entity/Client.php");
+require_once("entity/Restaurant.php");
 
-class ClientModel 
+class ClientRepository
+
 
 {
     public function clientInscription($clientInfos)

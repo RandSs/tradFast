@@ -1,15 +1,14 @@
 <?php
-namespace restauModel;
+namespace Ripository;
 
-use tradFast\Bdd;
-use restaurant\Restaurant;
+use App\Bdd;
+use Entity\Restaurant;
 
+require_once("entity/Restaurant.php");
+require_once("entity/Plat.php");
+require_once("entity/Menu.php");
 
-require_once("entities/Restaurant.php");
-require_once("entities/Plat.php");
-require_once("entities/Menu.php");
-
-class RestaurantModel
+class RestaurantRepository
 {
 
      /* public function pagination()

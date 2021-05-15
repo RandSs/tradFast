@@ -9,7 +9,7 @@ class Controller
          
         } else{
  
-           include("view/signIn.php");
+           include("view/coreView/signIn.php");
          }    
 
        }

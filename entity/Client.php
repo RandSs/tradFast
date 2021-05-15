@@ -1,5 +1,5 @@
 <?php 
-namespace client;
+namespace Entity;
 
 
 class Client  

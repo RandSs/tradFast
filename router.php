@@ -2,7 +2,7 @@
 
 
 
-class Rooter
+class Router
 {
     private $page;
 

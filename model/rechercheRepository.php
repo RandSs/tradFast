@@ -1,7 +1,7 @@
 <?php
-use tradFast\Bdd;
+use App\Bdd;
 
-class RechercheModel 
+class RechercheRepository
 {
     public function requeteRestaurant($search)
         {

@@ -1,6 +1,6 @@
 <?php
-namespace commande;
-use Restaurant;
+namespace Entity;
+use Entity\Restaurant;
 
 class Commande
 {

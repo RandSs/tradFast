@@ -1,5 +1,5 @@
 <?php
-namespace menu;
+namespace Entity;
 
 
 class Menu

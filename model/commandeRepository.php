@@ -1,12 +1,12 @@
 <?php
-use tradFast\Bdd;
+use App\Bdd;
 
-use Commande\Commande;
-use restaurant\Restaurant;
-use client\Client;
-use plat\Plat;
+use Entity\Commande;
+use Entity\Restaurant;
+use Entity\Client;
+use Entity\Plat;
 
-class CommandeRepo 
+class CommandeRepository 
 {
       /**
        * fonction pour selectioner un plat choisi par un client.

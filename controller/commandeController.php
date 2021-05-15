@@ -1,8 +1,8 @@
 <?php
-use commande\Commande;
-use restaurant\Restaurant;
-use client\Client;
-use plat\Plat;
+use Entity\Commande;
+use Entity\Restaurant;
+use Entity\Client;
+use Entity\Plat;
 
 include("model/commandeRepository.php");
 

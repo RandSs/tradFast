@@ -1,5 +1,5 @@
 <?php
-namespace plat;
+namespace Entity;
 
 class Plat
 {
