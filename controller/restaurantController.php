@@ -112,7 +112,7 @@ class RestaurantController  extends Controller
            
             $commadeInformation = $restaurantCompte->commandeInfos($id_restaurant);
            
-            include("view/restaurantCompte.php");
+            include("view/restaurantView/restaurantCompte.php");
       } else{
                 echo "vous ete pas connecter";
             }
@@ -127,7 +127,7 @@ class RestaurantController  extends Controller
        $menus =   $voirMenu->voirMenu($id_restaurant);
        $monrestaurantCompte =  $voirMenu->fetchrestaurantData($id_restaurant);
           
-          include("view/voireRestaurant.php");
+          include("view/restaurantView/voireRestaurant.php");
     } else{
             echo"cette page n'existe pas!"; 
     }
@@ -167,7 +167,7 @@ class RestaurantController  extends Controller
     }
      
 
-     include("view/rajouterPlat.php");
+     include("view/restaurantView/rajouterPlat.php");
   }
 
 

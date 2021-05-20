@@ -1,4 +1,5 @@
 <?php
+namespace Ripository;
 use App\Bdd;
 
 class RechercheRepository

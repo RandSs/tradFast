@@ -34,6 +34,10 @@ $("").on("click", function(){
     $(".suprimer").remove();
     //$("#suptot").remove();
     //$("#supQte").remove();
+    $("#dateDeCommande").click(function(){
+        $("#dateForm").submit();
+    }); 
+
     
 })
 

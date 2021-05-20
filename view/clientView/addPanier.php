@@ -1,14 +1,14 @@
 <?php
 session_start();
-use commande\Commande;
+use Entity\Commande;
 
-require_once("entities/Commande.php");
+require_once("entity/Commande.php");
 
 $totalAmount = new CommandeController();
 
 extract($_POST);
 if($action == "suprimerPlat"){
-  print_r($_SESSION['panier']);
+ 
 }
 
 
@@ -36,7 +36,9 @@ echo'<center>
       } else {
       ?>
 
-      <form id="data" name="dataForm" action="panierSql.php" >
+
+      <form id="dateForm" name="dataForm" action="index.php" method="GET">
+        <input type="hidden" name="page" value="validerCommande">
         <table class="table">
 
           <thead class="thead-light">
@@ -44,6 +46,7 @@ echo'<center>
               <th scope="col"></th>
             <?php foreach ($panier as  $keys => $valeurs) {
               echo  '<th scope="col" >' . $keys . '</th>';
+             
          
             }
           
@@ -94,7 +97,7 @@ echo'<center>
        </label>
         <input type="hidden" id="id_client_" name="id_client_commande" value="<?=$_SESSION['id_client']?>">
        
-        <button  id="submitCommande"  class="btn btn-outline-success">Commander</button>
+        <button type="submit" id="dateDeCommande" role="button" name="date"  class="btn btn-outline-success">Commander</a>
         </form>
 
         <div id="return"></div>

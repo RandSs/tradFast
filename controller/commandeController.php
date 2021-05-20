@@ -3,8 +3,8 @@ use Entity\Commande;
 use Entity\Restaurant;
 use Entity\Client;
 use Entity\Plat;
-
-include("model/commandeRepository.php");
+use Ripository\CommandeRepository;
+include("model/CommandeRepository.php");
 
 class CommandeController 
 {
@@ -35,9 +35,7 @@ class CommandeController
             $_SESSION['panier']['prix'] = array();
             $_SESSION['panier']['qte'] = array();
             $_SESSION['panier']['id_restaurant'] = array();
-           // $_SESSION['panier']['date_de_commande'] = array();
-           // $_SESSION['panier']['date_de_livraison'] = array();
-
+         
         
         }
            
@@ -45,66 +43,7 @@ class CommandeController
     }
 
 
-    /**
-     * @param int $id_plat  qui va etre choisi par un client.
-     * récuperer les données d'un plat selectionner par le client grace a la superglobale @var $_GET.
-     * @return array[panier] de la session.
-     */
-
-    public function passerCommande($id_plat = null)
-    {
-
-                    $id_plat = $_GET['id_plat'];
-                    $plat = $_GET['plat'];
-                    $prix = $_GET['prix'];
-                    $qte = $_GET['qte'];
-                    $id_restaurant = $_GET['id_restaurant'];
-                
-              if (isset($_GET['id_plat'])) {
-
-               //si le $_GET['id_plat'] on execute la fonction  recupererPlat($id_plat)
-               // du model pour pouvoir fair le fetch d'un plat precis selectionner par le client
-               //est on stock les données dans la var  $resultats.
-               $repos = new CommandeRepo();
-               $resultats =  $repos->recupererPlat($id_plat);
-               
-            if (empty($resultats)) {
-                 //si le client na rien choisi on fait die avec un msg.
-                die("Vous n'avais commander aucun plat !! ");
-                //si le client a bien choisi un plat on remplit les array[]
-                //déclarer au paravant grace a la methode php array_push 
-            } else {
-
-                array_push($_SESSION['panier']['id_plat'], $id_plat);
-                array_push($_SESSION['panier']['plat'], $plat);
-                array_push($_SESSION['panier']['prix'], $prix);
-                array_push($_SESSION['panier']['qte'], $qte);
-                array_push($_SESSION['panier']['id_restaurant'], $id_restaurant);
-
-                //on donne la possibiliter au client de pouvoir retourner a la page precedente grace a fonction 
-                //history.back();
-
-                die('le plat a bien été ajouté à votre panier <a href="javascript:history.back()">retourner sur le menu</a>');
-            }
-        }
-
-        $panier = $_SESSION['panier'];
-        $panierId = $_SESSION['panier']['id_plat'];
-        $panierPlat = $_SESSION['panier']['plat'];
-        $panierPrix = $_SESSION['panier']['prix'];
-        $panierQte = $_SESSION['panier']['qte'];
-        $panierIdRes = $_SESSION['panier']['id_restaurant'];
-
-        //on calcule le totale des plat choisis grace a la methode array_sum().
-
-        $quantitePlats =  array_sum($panierQte);
-       //on  passe les @var a la vus
-       //pour pouvoir afficher un  panier remplit .
-    
-       include("view/addPanier.php");
-      
-    }
-
+ 
    /**
    *On calcule le montant total du panier
    * 
@@ -138,52 +77,141 @@ class CommandeController
                     $qte = $_GET['qte'];
                     $id_restaurant = $_GET['id_restaurant'];
                 
-            include("view/clientCompte.php");
+            include("view/clientView/clientCompte.php");
            
              
                 }
 
-                public function sql()
+               
+
+             
+
+
+                public function commandeInfos($id_plat)
                 {
-                    $infosCommande = new Commande();
-                    $infosClient   = new Client();
-                    $infosRestau   = new Restaurant();
-                    $infosPlat     = new Plat();
-                   
-
-                    $infosPlat->id_plat = $_POST['commandePla'];
-                    $infosRestau->id_restaurant =  $_POST['commandeRest'];
-                    $infosRestau->quantite  =  $_POST['commandeQte'];
-                    $infosCommande->date_de_commande = $_POST['date_de_commande'];
-                    $infosCommande->date_de_livraison = $_POST['date_de_livraison'];
-                    $infosClient->id_client  = $_POST['id_client_commande'];
-
-
-
-                    if(isset($_POST['commandePla'])){
-                    echo"hello";
-                    }else{
-                            echo"no"; 
-                        }
-                 
-                    include("panierSql.php");
-                    
-                }
-
-                public function del($id_plat)
-                {
-                   
-                    $id_plat = $_SESSION['panier']['id_plat'];
-                  var_dump($_SESSION['panier']['id_plat']);
-                    unset( $id_plat );
-                    echo
-                    "
-                    <script>
-                    location.href = 'index.php?page=addpanier';
-                    </script>";
-                }
+                    $id_plat = $_GET['id_plat'];
+                    $plat = $_GET['plat'];
+                    $prix = $_GET['prix'];
+                    $qte = $_GET['qte'];
+                    $id_restaurant = $_GET['id_restaurant'];
+              if (isset($_GET['id_plat'])) {
+                $commande = new CommandeRepository;
+                $resultats = $commande->recupererPlat($id_plat);
+            if (empty($resultats)) {
+                 //si le client na rien choisi on fait die avec un msg.
+                die("Vous n'avais commander aucun plat !! ");
+                //si le client a bien choisi un plat on remplit les array[]
+                //déclarer au paravant grace a la methode php array_push 
+            } else {
+               array_push($_SESSION['panier']['id_plat'], $id_plat);
+                array_push($_SESSION['panier']['plat'], $plat);
+                array_push($_SESSION['panier']['prix'], $prix);
+                array_push($_SESSION['panier']['qte'], $qte);
+                array_push($_SESSION['panier']['id_restaurant'], $id_restaurant);
+                //on donne la possibiliter au client de pouvoir retourner a la page precedente grace a fonction 
+                //history.back();
+               
+                die('le plat a bien été ajouté à votre panier <a href="javascript:history.back()">retourner sur le menu</a>');
+            }
+          
+        }
+        $panier = $_SESSION['panier'];
+        $panierId = $_SESSION['panier']['id_plat'];
+        $panierPlat = $_SESSION['panier']['plat'];
+        $panierPrix = $_SESSION['panier']['prix'];
+        $panierQte = $_SESSION['panier']['qte'];
+        $panierIdRes = $_SESSION['panier']['id_restaurant'];
         
- 
+        include("view/clientView/addPanier.php");
 
+
+    }
+
+     
+    public function validerCommande($id_plat){
+
+       
+                            // déclarer une $arrayCommande[] array pour stocker les données 
+                        // que je récuper grace à la superglobal $_GET.
+                        $arrayCommande = array();
+                        //je récupere les données. 
+                        $id_plat = $_GET['commandePla'];
+                        $id_restaurant =  $_GET['commandeRest'];
+                        $quantite  =  $_GET['commandeQte'];
+                         $date_de_commande = $_GET['date_de_commande'];
+                        $date_de_livraison = $_GET['date_de_livraison'];
+                          $id_client  = $_GET['id_client_commande'];
+                   
+                        // je remplie la variable type array $arrayCommande avec les données est au
+                        //meme temps je défini les clées du tableau.    
+                        $arrayCommande["date_de_commande"]  = $date_de_commande;
+                        $arrayCommande["date_de_livraison"] = $date_de_livraison;
+                        $arrayCommande["id_client"] = $id_client;
+                 
+                        if(isset($_GET['commandePla'])){
+                            //var_dump( $arrayCommande );
+                        }
+               
+                    
+                       
+                    
+                      //  $arrayCommande["id_restaurant"] = $id_restaurant;
+                    
+                        //j'utilise la fonction implode pour transformer le contenue de la @var $arrayCommande
+                        // de type array pour que j'obtien a la sortie un string on lui passon le premier argument de séparation
+                        //"la vergule" et sa permis de guarder le meme order.  
+                           
+                     if(!empty($arrayCommande)){
+                         echo "pas de données!";
+                     }else{
+                         $inject = new CommandeRepository; 
+                         $inject ->panier();
+                     }
+                       
+                        // je test si l'inseration dans la table commande, si c'est true
+                        //je contenue le processe de l'inseration de la deuxiem partie.
+                        if ($resultat === true) {
+                            //je déclare @var $arrayCommander une array.
+                            //pour stocker les données que je vais avoir besoin.
+                            $arrayCommander                = array();
+                            $arrayCommander["id_commande"] = $lastCommandeId;
+                            $arrayCommander["id_plat"]     = $id_plat;
+                            $arrayCommander["quantite"]    = $quantite;
+                
+                            //si true je fait un echo "Votre commnade a bien ete enregistre"
+                            if ($resultatRequete === true) {
+                                echo "Votre commnade a bien ete enregistre";
+                                echo
+                                "
+                                <script>
+                                location.href = 'index.php?page=accueil';
+                                </script>";
+                           //else echo "Error" + le sql query  $queryCommander 
+                            } else {
+                                echo "Error: " .  $queryCommander . '<br>';
+                            }
+                        } else {
+                            echo "Error: " . $query . '<br>';
+                        }
+                    
+                    }
+                    
+                    
+                    public function del($id_plat)
+                    {
+                       
+                        $id_plat = $_SESSION['panier']['id_plat'];
+              
+                        unset( $_SESSION['panier']['id_plat'][$id_plat] );
+                        echo
+                        "
+                        <script>
+                        location.href = 'index.php?page=addpanier';
+                        </script>";
+                    }
+            
+         
+    
+                
   
 }

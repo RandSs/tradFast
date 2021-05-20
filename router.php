@@ -77,7 +77,7 @@ class Router
             case 'signInClient':
 
                 $singInClient = new ClientController();
-                $singInClient->jeMeConnect();
+                $singInClient->connexionClient();
           
                 break;
 
@@ -86,23 +86,29 @@ class Router
             case 'addpanier':
    
                 $passerCommande = new CommandeController();
-                $passerCommande->passerCommande($_GET['id_plat']);
+              //  $passerCommande->passerCommande($_GET['id_plat']);
+                $passerCommande->commandeInfos($_GET['id_plat']);
        
                 break;
                 
-                case 'sql':
+                case 'validerCommande':
+                   
                     
-                    $sql = new CommandeController();
-                    $sql->sql();
-
+                    $validerCommande = new CommandeController();
+                    $validerCommande->validerCommande($_GET['id_plat']);
+               
+                    echo  $date_de_commande = $_GET['date_de_commande'];
                     break;
     
                 //gérer le panier d'une commande par le client.
 
             case  $_SESSION['nom_client']:
 
-                $commanderPlat = new CommandeController();
-                $commanderPlat->passerCommande($_GET['id_plat']);
+                //$commanderPlat = new CommandeController();
+                //$commanderPlat->passerCommande($_GET['id_plat']);
+                $passerCommande = new CommandeController();
+                //  $passerCommande->passerCommande($_GET['id_plat']);
+                  $passerCommande->commandeInfos($_GET['id_plat']);
                
                 break;
                 //suprimer un plat du panier avant de valider la commande.
@@ -145,6 +151,11 @@ class Router
 
                $signOut = new Controller(); 
                $signOut->signOut();
+
+                break;
+                default:
+                $dernierInscription = new RestaurantController();
+                $dernierInscription->afficheRestaurants($_GET["pL"]);
 
                 break;
         }

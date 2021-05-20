@@ -1,17 +1,18 @@
 <?php
+use Ripository\RechercheRepository;
 
 include("model/RechercheRepository.php");
 
-class RechecheController extends RechercheRepository
-{
 
+class RechecheController 
+{
 
     public function rechercheRestaurant($search = null)
     {
-       
-        if($search == true && $this->requeteRestaurant($search) == true )
+        $recherche = new RechercheRepository;
+        if($search == true && $recherche->requeteRestaurant($search) == true )
         {
-            $resultats = $this->requeteRestaurant($search);
+            $resultats = $recherche->requeteRestaurant($search);
 
             include("view/rechercheView/viewRecherche.php"); 
              
@@ -22,17 +23,15 @@ class RechecheController extends RechercheRepository
    
     }
 
-
     public function AfficherUnTypeDeCuisine($tCuisine = null)
     {
+        $typeDeCuisine = new RechercheRepository;
             if($tCuisine !== null)
             {
-                $resultatTypeCuisine = $this->requeterUnTypeDeCuisine($tCuisine);
+                $resultatTypeCuisine = $typeDeCuisine->requeterUnTypeDeCuisine($tCuisine);
                 include("view/rechercheView/viewTypeDeCuisine.php");
             }
     }
-
-
 
 
 }

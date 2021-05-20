@@ -1,5 +1,7 @@
 <?php
+namespace Ripository;
 use App\Bdd;
+use PDO;
 
 use Entity\Commande;
 use Entity\Restaurant;
@@ -29,7 +31,7 @@ class CommandeRepository
           $resultat =   $prepareRequete->fetchAll(PDO::FETCH_OBJ);
 
           $bdd = null;
-   
+      
           return $resultat;
       }
 
@@ -92,6 +94,80 @@ class CommandeRepository
             return $inserQuantite;
             
 
+
+      }
+
+      public function panier()
+      {
+            $bdd = Bdd::getConnection();
+            $champs = implode(", ", array_keys($arrayCommande));
+            $insertSql =  '\'' . implode('\', \'', $arrayCommande) . '\'';
+            // je test la connection si false return die(msg)
+            if (!$bdd) {
+                die("connection failled: " . $exception->getMessage());
+                //else je fait l'inseration dabore dans la table commande
+            } else {
+                $query = " INSERT INTO commande($champs)
+                               VALUES ($insertSql) ";
+        
+                $rest = $bdd->prepare($query);
+                $resultat =  $rest->execute();
+                
+            }
+             // je déclare @var  $lastCommandeId comme array[]
+                        //pour stocker le dernier id qui été créer dans la table commande 
+                        //pour que je l'utilise pour inserer la deuxiem partie de la commande 
+                        //dans la table commander.
+                    
+                        $lastCommandeId = array();
+                        //j'utilise la methode array_push pour stocker le dernier id_commande.
+                        array_push($lastCommandeId, $bdd->lastInsertId());
+                            
+                            //je fait un if statement pour voir si le count de 
+                            // deux @var $id_plat === $lastCommandeId 
+                            //pour avoir le meme count dans chaque array sinon 
+                            // je peut pas inserer les données.
+                    
+                            if (count($id_plat) === count($lastCommandeId)) {
+                              //je fait rien.
+                          } else {
+                              // je lence une do while statement
+                              do {
+                                  // j'utilse array_push pour remplir @var $lastCommandeId 
+                                  //avec la meme valeur $lastCommandeId[0].
+                                  array_push($lastCommandeId, $lastCommandeId[0]);
+                              }
+                              // la condition 
+                              while (count($lastCommandeId) < count($id_plat));
+                          }
+                          //je utilise la fonction implode pour transformer la contenue de la @var $arrayCommande
+                          // de type array pour que j'obtien a la sortie un string on lui passon le premier argument de séparation
+                          //"la vergule" et sa permis de guarder le meme order.  
+                  
+                          $colonnes = implode(", ", array_keys($arrayCommander));
+                  
+                          //je déclare @var $count pour stocker le count($lastCommandeId).
+                          $count =  count($lastCommandeId);
+                          var_dump($count);
+                  
+                           //je déclare for statement pour looper chaque row 
+                           //pour pouvoir les inserer les une  après l'autre.
+                          for ($i = 0; $i < $count; $i++) {
+                  
+                            // sql query ou j'utilise l'implode pour les colonnes
+                            //et j'append les values de chaque row  avec le  .=  
+                  
+                              $queryCommander = " INSERT INTO commander($colonnes)
+                                 VALUES ('";
+                              $queryCommander .= $lastCommandeId[$i] . "', '";
+                              $queryCommander .= $id_plat[$i] . "', '";
+                              $queryCommander .= $quantite[$i] . "') ";
+                  
+                              $prepareRequete = $bdd->prepare($queryCommander);
+                              $resultatRequete =  $prepareRequete->execute();
+                         
+                          }
+           
 
       }
 
