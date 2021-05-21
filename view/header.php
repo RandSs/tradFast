@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
+
+
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
@@ -19,39 +27,37 @@
   <link rel="stylesheet" href="css/style.css">
   
   <title>trad Fast</title>
+
 </head>
 
+
+
 <body id="body">
+
   <header id="header"> 
+
+  
+
     <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="index.php?page=accueil" style="color:  rgb(127, 255, 8); font-size:3rem; margin-right:8rem;">TradfasT</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <a class="navbar-brand logo" href="index.php?page=accueil" ><h2 class="logo">TradfasT</h2></a>
+
+    <div>
+      
+      <form class="form-inline my-2 my-lg-0 search_form " method="GET">
+        <input type="hidden" name="page" value="recherche" >
+        <input class="form-control mr-sm-2 search_input" type="search" name ="search"  id="search" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 search_button" type="submit">Search</button>
+      </form>
+    </div>
+
+     
+     <button class="navbar-toggler menu" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
       </button>
 
-      
+               <div class="dropdown show  " style="margin-left: 1rem;">
 
-
-      <div>
-      
-        <form class="form-inline my-2 my-lg-0" method="GET">
-          <input type="hidden" name="page" value="recherche" >
-          <input class="form-control mr-sm-2" type="search" name ="search"  id="search" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-
-    
-              
-                      
-                              
-                              
-                   
-      
-               <div class="dropdown show   " style="margin-left: 1rem;">
-
-
-                <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn btn-outline-success dropdown-toggle type_de_cuisine" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Type de cuisine
                 </a>
 
@@ -182,7 +188,7 @@
               
                 <?php } else { ?>
                 <li class="nav-item">
-                  <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionRestaurent">Restaurent</a>
+                  <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionRestaurent">Restaurant</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" style="color: rgb(127, 255, 8);" href="index.php?page=inscriptionClient">Client</a>

@@ -1,6 +1,8 @@
 <?php
 session_start();
-$totalAmount = new CommandeController();
+
+
+$totalAmount = new CommandeController($id_plat);
 
 echo'<center>
 <h1 class="text-success">Bienvenue : '.strtoupper($_SESSION['nom_client']).'</h1>
@@ -57,7 +59,7 @@ echo'<center>
           <input type="hidden" id="qte_" name="commandeQte[]" value="'.$panier['qte'][$num].'">
           
           <td id="sup">
-                <a href ="#" >
+                <a href="index.php?page=addpanier&id_pl='. $panier['id_plat'][$num].'" >
               <i class="fas fa-trash-alt text-danger"></i></a>
           </td></tr>';
             }

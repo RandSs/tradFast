@@ -1,7 +1,7 @@
 <?php
 use commande\Commande;
-//use CommandeRepo;
-//include("classes/commande.php");
+use CommandeRepo;
+include("classes/commande.php");
 include("model/commandeRepository.php");
 require_once("classes/plat.php");
 require_once("classes/commande.php");
@@ -37,14 +37,13 @@ class CommandeController extends CommandeRepo
             $_SESSION['panier']['prix'] = array();
             $_SESSION['panier']['qte'] = array();
             $_SESSION['panier']['id_restaurent'] = array();
-           // $_SESSION['panier']['date_de_commande'] = array();
-           // $_SESSION['panier']['date_de_livraison'] = array();
 
         
         }
-           
+          
 
     }
+
     /**
      * @param int $id_plat  qui va etre choisi par un client.
      * récuperer les données d'un plat selectionner par le client grace a la superglobale @var $_GET.
@@ -201,6 +200,18 @@ class CommandeController extends CommandeRepo
                  
                     include("panierSql.php");
                     
+                }
+
+
+
+                public function del($id_pl){
+         
+                    if(isset($_GET['id_pl'])){
+                        echo "le id c'est: " . $_GET['id_pl'];
+                    unset($_SESSION['panier'][$id_pl]);
+                    }
+
+
                 }
         
  

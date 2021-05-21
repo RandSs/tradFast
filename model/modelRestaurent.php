@@ -127,7 +127,6 @@ class RestaurentModel extends Restaurent
 
      public function seConnecter()
      {
-
           $bdd = Bdd::getConnection();
 
           //requete pour récupérer les information d'une seule ligne de la table [restaurent]
@@ -147,8 +146,6 @@ class RestaurentModel extends Restaurent
 
           return $resultatRestau;
      }
-
-
      /**
       * @param  $id_restaurent du restaurent que je veut récupérer.
       */

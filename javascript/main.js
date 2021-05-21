@@ -18,18 +18,7 @@ function addPlat(id_plat)
 
     location.href = "index.php?page=addpanier&id_plat=" + id_plat + "&qte=" + qte + "&plat=" + plat + "&prix=" + prix + "&id_restaurent=" + id_restaurent;
 
-    /*
-      Ajax.
-    url = "index.php?page=addpanier&id_plat=" + id_plat + "&qte=" + qte;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200){
-            console.log(xhr.responseText);
-        }
-       };
-    xhr.send();
-    */
+
 
 }
 /*
@@ -78,13 +67,39 @@ function envoyerData(id_client)
     })
 })*/
 
+
+function ajax(){
+
+    
+   var idPlat = document.getElementById("id_plat_" + id_client).value;
+   var idrestaurent = document.getElementById("id_restaurent_" + id_client).value;
+   var quantite = document.getElementById("qte_" + id_client).value;
+   var id_client = document.getElementById("id_client_" + id_client).value;
+   var dateDeLivraison = document.getElementById("date_de_livraison_" + id_client).value;
+   var dateDeCommande = document.getElementById("date_de_commande_" + id_client).value;
+
+
+
+    url = "index.php?page=sql&id_plat=" + idPlat + "&qte=" + quantite ;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            console.log(xhr.responseText);
+        }
+       };
+    xhr.send();
+}
+
 $(document).ready(function(){
- 
-$("#sup").on("click", function(){
+
+$("#sup" ).on("click", function(event){
+    event.preventDefault(); 
     alert("es que vous ete sure de vouloir suprimer ce plat?");
     $("#supPlat").remove();
     $("#suptot").remove();
     $("#supQte").remove();
+ 
 
     
 })

@@ -1,6 +1,6 @@
 <?php
 
-use CommandeController;
+//use CommandeController;
 
 class Rooter
 {
@@ -83,12 +83,24 @@ class Rooter
    
                 $passerCommande = new CommandeController();
                 $passerCommande->getCommande();
+                $suprimerPlat= new CommandeController();
+                $suprimerPlat->del($_GET['id_pl']);
+             
                
                 break;
+
+
+                case 'del':
+   
+                   // $suprimerPlat= new CommandeController();
+                 //   $suprimerPlat->del($_GET['id_pl']);
+                   
+                    break;
+                    
                 
 
                 case 'sql':
-                    
+
                     $sql = new CommandeController();
                     $sql->sql();
 
@@ -98,7 +110,7 @@ class Rooter
 
             case  $_SESSION['nom_client']:
 
-                $commanderPlat = new CommandeController();
+                $commanderPlat = new CommandeController($id_plat);
                 $commanderPlat->passerCommande($_GET['id_plat']);
                
                 break;
