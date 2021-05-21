@@ -93,11 +93,9 @@ class Router
                 
                 case 'validerCommande':
                    
-                    
                     $validerCommande = new CommandeController();
                     $validerCommande->validerCommande($_GET['id_plat']);
                
-                    echo  $date_de_commande = $_GET['date_de_commande'];
                     break;
     
                 //gérer le panier d'une commande par le client.

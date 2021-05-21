@@ -138,18 +138,27 @@ class CommandeController
                         $id_plat = $_GET['commandePla'];
                         $id_restaurant =  $_GET['commandeRest'];
                         $quantite  =  $_GET['commandeQte'];
-                         $date_de_commande = $_GET['date_de_commande'];
+                        $date_de_commande = $_GET['date_de_commande'];
                         $date_de_livraison = $_GET['date_de_livraison'];
-                          $id_client  = $_GET['id_client_commande'];
+                        $id_client  = $_GET['id_client_commande'];
                    
                         // je remplie la variable type array $arrayCommande avec les données est au
                         //meme temps je défini les clées du tableau.    
                         $arrayCommande["date_de_commande"]  = $date_de_commande;
                         $arrayCommande["date_de_livraison"] = $date_de_livraison;
                         $arrayCommande["id_client"] = $id_client;
+
+
+                        $arrayCommander                = array();
+
+                        $arrayCommander["id_plat"]     = $id_plat;
+                        $arrayCommander["quantite"]    = $quantite;
+            
                  
                         if(isset($_GET['commandePla'])){
-                            //var_dump( $arrayCommande );
+                            $inject = new CommandeRepository; 
+                            $inject->panier($arrayCommande,  $arrayCommander );
+                            
                         }
                
                     
@@ -164,43 +173,24 @@ class CommandeController
                      if(!empty($arrayCommande)){
                          echo "pas de données!";
                      }else{
-                         $inject = new CommandeRepository; 
-                         $inject ->panier();
+                     
                      }
                        
-                        // je test si l'inseration dans la table commande, si c'est true
-                        //je contenue le processe de l'inseration de la deuxiem partie.
-                        if ($resultat === true) {
-                            //je déclare @var $arrayCommander une array.
-                            //pour stocker les données que je vais avoir besoin.
-                            $arrayCommander                = array();
-                            $arrayCommander["id_commande"] = $lastCommandeId;
-                            $arrayCommander["id_plat"]     = $id_plat;
-                            $arrayCommander["quantite"]    = $quantite;
-                
-                            //si true je fait un echo "Votre commnade a bien ete enregistre"
-                            if ($resultatRequete === true) {
-                                echo "Votre commnade a bien ete enregistre";
-                                echo
-                                "
-                                <script>
-                                location.href = 'index.php?page=accueil';
-                                </script>";
-                           //else echo "Error" + le sql query  $queryCommander 
-                            } else {
-                                echo "Error: " .  $queryCommander . '<br>';
-                            }
-                        } else {
-                            echo "Error: " . $query . '<br>';
+                        
+                          
                         }
                     
-                    }
                     
+
+                    /**
+                     * @param id_plat INT 
+                     * fonction pour supprimer un plat donnée du panier.
+                     */
                     
                     public function del($id_plat)
                     {
                        
-                        $id_plat = $_SESSION['panier']['id_plat'];
+                        $id_plat = $_SESSION['panier']['id_plat'][$id_plat];
               
                         unset( $_SESSION['panier']['id_plat'][$id_plat] );
                         echo

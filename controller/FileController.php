@@ -1,61 +1,44 @@
 <?php
- 
-class FileController 
+
+class FileController
 {
-   
+
+    private $image;
 
     public function chargerFile()
     {
 
-    
-        if(isset($_FILES['image']))
-       
-        {
-    
-            $image_name = $_FILES['image']['name'];
-            $image_ext = explode(".",   $image_name );
-            $image_ext = strtolower(end($image_ext));
-            $image_new_name = uniqid('', true) . '.' .  $image_ext ;
-            $image_destination = 'images/' . $image_new_name ;
-            $this->image = $image_destination ;
+        if (isset($_FILES['image'])) {
 
-        
-             $image_size = $_FILES['image']['size'];
-             $image_error =  $_FILES['image']['error'];
+            $image_name = $_FILES['image']['name']; //image name
+            $image_elements = explode(".",   $image_name); // array[] 
+            $image_ext  = strtolower(end($image_elements)); //récupéré l'extension
+            $image_new_name = uniqid('', true) . '.' .  $image_ext; //généré un id unique que je conctaine avec extension
+            $image_destination = 'upload/images/' . $image_new_name;
+            $this->image = $image_destination;
 
+            $image_size = $_FILES['image']['size'];
+            $image_error =  $_FILES['image']['error'];
 
-            
+            $accepted_ext = array("jpg", "png", "jpeg", "gif");
 
-             $accepted_ext = array("jpg", "png", "jpeg", "gif") ;
+            if (in_array($image_ext,  $accepted_ext)) {
+                if ($image_error === 0) {
+                    if ($image_size <= 20000000) {
 
+                
+                        /*if (!file_exists($image_destination)) {
+                            echo "no file!";
+                        }
+                       */
 
-             if(in_array( $image_ext,   $accepted_ext ))
-             {
-                 if($image_error === 0)
-                 {
-                     if( $image_size <= 10000000)
-                     {
-                       
-                        
-                        //echo  $image_destination ;
-                         if(!file_exists( $image_destination)){
-                             echo "no file!"  ;
-                            }
-
-                          if(move_uploaded_file(   $_FILES['image']['tmp_name'] , basename($image_destination)))
-                          {
-                             echo"move";
-                          }
-                     
-                 }
+                        if(move_uploaded_file($_FILES['image']['tmp_name'], $image_destination)) {
+                            echo "move $image_destination";
+                        }
+                    }
                 }
-
-
-             }
-             
-
+            }
         }
-
     }
 
 
@@ -99,6 +82,4 @@ class FileController
 
  
    }*/
-
-
 }
