@@ -94,15 +94,15 @@ class CommandeRepository
             return $inserQuantite;
       }
 
-      public function panier($commande, $commander )
+      public function panier($commande, $id_plat, $quantite)
       {
             $bdd = Bdd::getConnection();
-            var_dump($commander);
+       //var_dump($id_plat);
 
             $champs = implode(", ", array_keys($commande));
-            $insertSql =  '\'' . implode('\', \'',   $commande) . '\'';
+           $insertSql =  '\'' . implode('\', \'',   $commande) . '\'';
 
-            if (!empty($inject)) {
+            if (!empty($commande)) {
                   //else je fait l'inseration dabore dans la table commande
                   $query = " INSERT INTO commande($champs)
                   VALUES ($insertSql) ";
@@ -114,11 +114,14 @@ class CommandeRepository
                   //pour stocker le dernier id qui été créer dans la table commande 
                   //pour que je l'utilise pour inserer la deuxiem partie de la commande 
                   //dans la table commander.
-                 
+                  $arrayCommander                = array();
                   $lastCommandeId = array();
                   $commander["id_commande"] = $lastCommandeId;
+                  $arrayCommander["id_plat"]     = $id_plat;
+                  $arrayCommander["quantite"]    = $quantite;
                   //j'utilise la methode array_push pour stocker le dernier id_commande.
                   array_push($lastCommandeId, $bdd->lastInsertId());
+                  var_dump($arrayCommander );
 
                   //je fait un if statement pour voir si le count de 
                   // deux @var $id_plat === $lastCommandeId 
@@ -126,7 +129,6 @@ class CommandeRepository
                   // je peut pas inserer les données.
             }
 
-           
 
             if (count($id_plat) === count($lastCommandeId)) {
                   //je fait rien.
