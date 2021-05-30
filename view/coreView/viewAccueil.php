@@ -5,8 +5,8 @@ use App\Bdd;
 
 <article id="article" >
 <section>
-        <div>
-              <h1 style="text-align: center;  color: green; opacity:0.7">La liste des restaurants</h1>
+        <div class="list">
+              <h1 >La liste des restaurants</h1>
         </div>
 
 </section>

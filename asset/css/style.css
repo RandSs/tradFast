@@ -62,3 +62,8 @@ header#header {
      background-size: cover; 
 
 }
+
+.list{
+    text-align: center;  
+    color: rgb(7, 163, 7);
+}

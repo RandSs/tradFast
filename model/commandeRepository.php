@@ -97,10 +97,10 @@ class CommandeRepository
       public function panier($commande, $id_plat, $quantite)
       {
             $bdd = Bdd::getConnection();
-       //var_dump($id_plat);
+            //var_dump($id_plat);
 
             $champs = implode(", ", array_keys($commande));
-           $insertSql =  '\'' . implode('\', \'',   $commande) . '\'';
+            $insertSql =  '\'' . implode('\', \'',   $commande) . '\'';
 
             if (!empty($commande)) {
                   //else je fait l'inseration dabore dans la table commande
@@ -114,14 +114,15 @@ class CommandeRepository
                   //pour stocker le dernier id qui été créer dans la table commande 
                   //pour que je l'utilise pour inserer la deuxiem partie de la commande 
                   //dans la table commander.
-                  $arrayCommander                = array();
                   $lastCommandeId = array();
-                  $commander["id_commande"] = $lastCommandeId;
-                  $arrayCommander["id_plat"]     = $id_plat;
-                  $arrayCommander["quantite"]    = $quantite;
                   //j'utilise la methode array_push pour stocker le dernier id_commande.
                   array_push($lastCommandeId, $bdd->lastInsertId());
-                  var_dump($arrayCommander );
+                  $arrayCommander                = array();
+
+                  $arrayCommander["id_commande"] = $lastCommandeId;
+                  $arrayCommander["id_plat"]     = $id_plat;
+                  $arrayCommander["quantite"]    = $quantite;
+
 
                   //je fait un if statement pour voir si le count de 
                   // deux @var $id_plat === $lastCommandeId 
@@ -150,12 +151,12 @@ class CommandeRepository
             if ($resultat === true) {
                   //je déclare @var $arrayCommander une array.
                   //pour stocker les données que je vais avoir besoin.
-                 
-                  $colonnes = implode(", ", array_keys($commander));
+
+                  $colonnes = implode(", ", array_keys($arrayCommander));
 
                   //je déclare @var $count pour stocker le count($lastCommandeId).
                   $count =  count($lastCommandeId);
-                  // var_dump($count);
+
 
                   //je déclare for statement pour looper chaque row 
                   //pour pouvoir les inserer les une  après l'autre.

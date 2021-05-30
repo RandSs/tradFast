@@ -11,6 +11,7 @@ include("controller/RechercheController.php");
 include("controller/ClientController.php");
 
 include("controller/CommandeController.php");
+include("model/CommandeRepository.php");
 
 include("router.php");
 

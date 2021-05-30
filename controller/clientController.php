@@ -33,6 +33,7 @@ class ClientController extends Controller
 
       if($client->client_email && $client->prenom_client)
       {
+        // on utilise l'algorithme " bcrypt" par default por hacher un mdp. 
         $client->mdp_client  = password_hash($_POST["mdp_client"], PASSWORD_DEFAULT);
           $inscription = new ClientRepository();
           if($inscription->clientInscription($client))

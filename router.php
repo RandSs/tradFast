@@ -17,7 +17,7 @@ class Router
 
         switch ($this->page) {
 
-            //inscription restaurant.
+                //inscription restaurant.
             case 'inscriptionRestaurant':
 
                 $newRestaurant =  new RestaurantController();
@@ -28,22 +28,21 @@ class Router
                 //page sign in pour diriger les utilisateur restuarant ou client.
             case 'signIn':
 
-                 $signIn = new Controller();
-                 $signIn->signIn();
-            
+                $signIn = new Controller();
+                $signIn->signIn();
+
                 break;
 
                 //sign in restaurant.
-
             case 'signInRest':
 
                 $signInRestau = new RestaurantController();
                 $signInRestau->meConnecte();
-           
+
 
                 break;
 
-               //le compte restaurant pour gérer les commandes et le menu ect.
+                //le compte restaurant pour gérer les commandes et le menu ect.
             case 'restaurantCompte':
 
                 $restauCompte = new RestaurantController();
@@ -58,14 +57,14 @@ class Router
 
                 break;
 
-            //formulaire pour pouvoir ajouter un plat au menu par le restaurant.
+                //formulaire pour pouvoir ajouter un plat au menu par le restaurant.
             case 'modifier':
                 $ajouter = new RestaurantController();
                 $ajouter->ajouterPlat();
 
                 break;
 
-              //inscription client.
+                //inscription client.
             case 'inscriptionClient':
 
                 $newClient = new ClientController();
@@ -78,45 +77,44 @@ class Router
 
                 $singInClient = new ClientController();
                 $singInClient->connexionClient();
-          
+
                 break;
 
                 //page client ou il peut visualiser le panier et ces commandes 
-
             case 'addpanier':
-   
-                $passerCommande = new CommandeController();
-              //  $passerCommande->passerCommande($_GET['id_plat']);
-                $passerCommande->commandeInfos($_GET['id_plat']);
-       
-                break;
-                
-                case 'validerCommande':
-                   
-                    $validerCommande = new CommandeController();
-                    $validerCommande->validerCommande($_GET['id_plat']);
-               
-                    break;
-    
-                //gérer le panier d'une commande par le client.
 
+                $passerCommande = new CommandeController();
+                //  $passerCommande->passerCommande($_GET['id_plat']);
+                $passerCommande->commandeInfos($_GET['id_plat']);
+
+                break;
+
+            case 'validerCommande':
+
+                $validerCommande = new CommandeController();
+                $validerCommande->validerCommande($_GET['id_plat']);
+
+                break;
+
+                //gérer le panier d'une commande par le client.
             case  $_SESSION['nom_client']:
 
                 //$commanderPlat = new CommandeController();
                 //$commanderPlat->passerCommande($_GET['id_plat']);
                 $passerCommande = new CommandeController();
                 //  $passerCommande->passerCommande($_GET['id_plat']);
-                  $passerCommande->commandeInfos($_GET['id_plat']);
-               
+                $passerCommande->commandeInfos($_GET['id_plat']);
+
                 break;
+
                 //suprimer un plat du panier avant de valider la commande.
-                case  'suprimer':
+            case  'supprimer':
 
-                    $suprimer = new CommandeController ();
-                    $suprimer->del($_GET['id_plat']);
-                   
-                    break;
+                $supprimer = new CommandeController();
+                $supprimer->del($_GET['id_plat']);
 
+
+                break;
 
                 // recherche un restaurant pricis par les client.
             case 'recherche':
@@ -136,7 +134,7 @@ class Router
 
                 break;
 
-              // la page d'accueil.
+                // la page d'accueil.
             case 'accueil':
 
                 $dernierInscription = new RestaurantController();
@@ -144,14 +142,14 @@ class Router
 
                 break;
 
-              //sign out.
+                //sign out.
             case 'signOut':
 
-               $signOut = new Controller(); 
-               $signOut->signOut();
+                $signOut = new Controller();
+                $signOut->signOut();
 
                 break;
-                default:
+            default:
                 $dernierInscription = new RestaurantController();
                 $dernierInscription->afficheRestaurants($_GET["pL"]);
 

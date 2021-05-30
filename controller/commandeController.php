@@ -1,12 +1,11 @@
 <?php
-
 use Entity\Commande;
 use Entity\Restaurant;
 use Entity\Client;
 use Entity\Plat;
 use Ripository\CommandeRepository;
 
-include("model/CommandeRepository.php");
+
 
 class CommandeController
 {
@@ -31,12 +30,6 @@ class CommandeController
             //déclare et on déclare aussi les session[panier][donnees] de chaque données comme type array[]
             //récuperer  par la @var $_GET .
             $_SESSION['panier'] = array();
-
-            $_SESSION['panier']['id_plat'] = array();
-            $_SESSION['panier']['plat'] = array();
-            $_SESSION['panier']['prix'] = array();
-            $_SESSION['panier']['qte'] = array();
-            $_SESSION['panier']['id_restaurant'] = array();
         }
     }
 
@@ -50,10 +43,14 @@ class CommandeController
     public function getTotal()
     {
         $total = 0;
+        foreach($_SESSION['panier'] as $k){
+            $total += $k['prix'] * $k['qte'];
+        }
+        /*
         for ($i = 0; $i < count($_SESSION['panier']['id_plat']); $i++) {
             $total += $_SESSION['panier']['prix'][$i] * $_SESSION['panier']['qte'][$i];
         }
-
+*/
         return $total;
     }
     /**
@@ -67,7 +64,6 @@ class CommandeController
         $infosRestau   = new Restaurant();
         $infosPlat     = new Plat();
 
-
         $id_plat = $_GET['id_plat'];
         $id_client = $_GET['id_client'];
         $date_de_livraison = $_GET['dateDeLivrason'];
@@ -76,11 +72,8 @@ class CommandeController
         $id_restaurant = $_GET['id_restaurant'];
 
         include("view/clientView/clientCompte.php");
+
     }
-
-
-
-
 
 
     public function commandeInfos($id_plat)
@@ -99,6 +92,18 @@ class CommandeController
                 //si le client a bien choisi un plat on remplit les array[]
                 //déclarer au paravant grace a la methode php array_push 
             } else {
+                if(!empty( $_SESSION['panier'][$id_plat]['id_plat'])){
+                    $_SESSION['panier'][$id_plat]['qte']= $_SESSION['panier'][$id_plat]['qte']+$qte;  
+                }
+                else
+                {
+                $_SESSION['panier'][$id_plat]['id_plat']= $id_plat;
+                $_SESSION['panier'][$id_plat]['plat']= $plat;
+                $_SESSION['panier'][$id_plat]['prix']= $prix;
+                $_SESSION['panier'][$id_plat]['qte']= $qte;
+                $_SESSION['panier'][$id_plat]['id_restaurant']= $id_restaurant;
+                }
+/*
                 array_push($_SESSION['panier']['id_plat'], $id_plat);
                 array_push($_SESSION['panier']['plat'], $plat);
                 array_push($_SESSION['panier']['prix'], $prix);
@@ -106,24 +111,18 @@ class CommandeController
                 array_push($_SESSION['panier']['id_restaurant'], $id_restaurant);
                 //on donne la possibiliter au client de pouvoir retourner a la page precedente grace a fonction 
                 //history.back();
-
+*/
                 die('le plat a bien été ajouté à votre panier <a href="javascript:history.back()">retourner sur le menu</a>');
             }
         }
         $panier = $_SESSION['panier'];
-        $panierId = $_SESSION['panier']['id_plat'];
-        $panierPlat = $_SESSION['panier']['plat'];
-        $panierPrix = $_SESSION['panier']['prix'];
-        $panierQte = $_SESSION['panier']['qte'];
-        $panierIdRes = $_SESSION['panier']['id_restaurant'];
-
+        
         include("view/clientView/addPanier.php");
     }
 
 
     public function validerCommande($id_plat)
     {
-
 
         // déclarer une $arrayCommande[] array pour stocker les données 
         // que je récuper grace à la superglobal $_GET.
@@ -143,30 +142,17 @@ class CommandeController
         $arrayCommande["id_client"] = $id_client;
 
 
-      
-
-
         if (isset($_GET['commandePla'])) {
             $inject = new CommandeRepository;
             $inject->panier($arrayCommande,  $id_plat, $quantite);
         }
 
 
-
-
-        //  $arrayCommande["id_restaurant"] = $id_restaurant;
-
-        //j'utilise la fonction implode pour transformer le contenue de la @var $arrayCommande
-        // de type array pour que j'obtien a la sortie un string on lui passon le premier argument de séparation
-        //"la vergule" et sa permis de guarder le meme order.  
-
         if (!empty($arrayCommande)) {
             echo "pas de données!";
         } else {
         }
     }
-
-
 
     /**
      * @param id_plat INT 
@@ -175,14 +161,23 @@ class CommandeController
 
     public function del($id_plat)
     {
+           // echo $id_plat;
+       //     var_dump($_SESSION);
+ /*       
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+*/
+//$_SESSION['panier']=array();
 
-        $id_plat = $_SESSION['panier']['id_plat'][$id_plat];
+        unset($_SESSION['panier'][$id_plat]);
 
-        unset($_SESSION['panier']['id_plat'][$id_plat]);
-        echo
-        "
-                        <script>
-                        location.href = 'index.php?page=addpanier';
-                        </script>";
+        
+       
+
+        /*echo "<script>
+                 location.href ='index.php?page=addpanier';
+             </script>";
+         */
     }
 }

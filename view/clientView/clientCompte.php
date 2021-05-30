@@ -1,8 +1,8 @@
 <?php
 session_start();
-var_dump($_SESSION['client']);
+
 $voirCommnade = new CommandeController();
-$voirCommnade->passerCommande();
+$voirCommnade->commandeInfos($id_plat);
 
 ?>
 

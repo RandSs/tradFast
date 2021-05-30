@@ -30,13 +30,7 @@ $(document).ready(function(){
         
 $("").on("click", function(){
     alert("es que vous ete sure de vouloir suprimer ce plat?");
-    this.remove();
-    $(".suprimer").remove();
-    //$("#suptot").remove();
-    //$("#supQte").remove();
-    $("#dateDeCommande").click(function(){
-        $("#dateForm").submit();
-    }); 
+    $("").hide();
 
     
 })
