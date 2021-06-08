@@ -8,9 +8,6 @@ require_once("entity/Commande.php");
 $totalAmount = new CommandeController();
 
 
-
-
-
 echo '<center>
 <h1 class="text-success">Bienvenue : ' . strtoupper($_SESSION['nom_client']) . '</h1>
 </center>';
@@ -42,22 +39,25 @@ echo '<center>
             <thead class="thead-light">
               <tr>
                 <th scope="col"></th>
-              <?php foreach ($panier as  $keys => $valeurs) {
-                echo  '<th scope="col" >' . $keys . '</th>';
-              }
 
-              echo '<th>Sup</th>';
+          
+                <th scope="col" >Id plat</th>
+                <th scope="col" >Plat</th>
+                <th scope="col" >Prix</th>
+                <th scope="col" >Quantité</th>
+                <th scope="col" >Id restaurant</th>
+                <th>Sup</th>
 
-              '</tr>
+              </tr>
          </thead>
 
-         <tbody>';
-              //var_dump($panier);
-
+         <tbody>
+            <?php 
+                      $num = 1;
               foreach ($panier as $k) {
-
+          
                 echo  ' <tr id="supPlat">
-<th class="sup" scope="row"> plat </th>
+<th class="sup" scope="row"> '.$num++ . ' </th>
 <td>' . $k['id_plat'] . '</td>
 <input type="hidden" id="id_plat_" name="commandePla[]" value="' . $k['id_plat'] . '">
 <td >' . $k['plat'] . '</td>
@@ -68,34 +68,11 @@ echo '<center>
 <input type="hidden" id="qte_" name="commandeQte[]" value="' . $k['qte'] . '">
 
 <td id="sup" class="supprimer"  >
-      <a href="index.php?page=supprimer&id_plat=' . $k['id_plat'] . '"; onclick="alert(\"hello\")">
-    <i  class="fas fa-trash-alt text-danger"></i></a>
+      <a href="index.php?page=supprimer&id_plat=' . $k['id_plat'] . '"; >
+    <i  class="fas fa-trash-alt text-danger"  ></i></a>
 </td></tr>';
               }
 
-
-              /*
-
-           for ($num = 0; $num < count($panierId); $num++) {
-   
-              echo  ' <tr id="supPlat">
-          <th class="sup" scope="row"> plat </th>
-          <td>' . $panier['id_plat'][$num] . '</td>
-          <input type="hidden" id="id_plat_" name="commandePla[]" value="'.$panier['id_plat'][$num].'">
-          <td >' . $panier['plat'][$num] . '</td>
-          <td >' . $panier['prix'][$num] . '</td>
-          <td >' . $panier['qte'][$num] . '</td>
-          <td >' . $panier['id_restaurant'][$num] . '</td>
-          <input type="hidden" id="id_restaurant_" name="commandeRest" value="'.$panier['id_restaurant'][$num].'">
-          <input type="hidden" id="qte_" name="commandeQte[]" value="'.$panier['qte'][$num].'">
-          
-          <td id="sup" class="supprimer"  >
-                <a href="index.php?page=supprimer&id_plat='. $num.'";>
-              <i  class="fas fa-trash-alt text-danger"></i></a>
-          </td></tr>';
-        
-            }
-    */
               echo
               '<th scope="row" class="text-success">Total</th>
         <td></td>
@@ -118,7 +95,7 @@ echo '<center>
           </label>
           <input type="hidden" id="id_client_" name="id_client_commande" value="<?= $_SESSION['id_client'] ?>">
 
-          <button type="submit" id="dateDeCommande" role="button" name="date" class="btn btn-outline-success">Commander</a>
+          <button type="submit" id="dateDeCommande" role="button" name="submit" class="btn btn-outline-success">Commander</button>
         </form>
 
         <div id="return"></div>

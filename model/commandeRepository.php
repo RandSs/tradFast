@@ -94,6 +94,8 @@ class CommandeRepository
             return $inserQuantite;
       }
 
+
+
       public function panier($commande, $id_plat, $quantite)
       {
             $bdd = Bdd::getConnection();
@@ -173,7 +175,10 @@ class CommandeRepository
 
                         $prepareRequete = $bdd->prepare($queryCommander);
                         $resultatRequete =  $prepareRequete->execute();
+                       
                   }
             }
+            
+            return $resultatRequete; 
       }
 }

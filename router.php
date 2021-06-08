@@ -84,7 +84,6 @@ class Router
             case 'addpanier':
 
                 $passerCommande = new CommandeController();
-                //  $passerCommande->passerCommande($_GET['id_plat']);
                 $passerCommande->commandeInfos($_GET['id_plat']);
 
                 break;
@@ -93,16 +92,14 @@ class Router
 
                 $validerCommande = new CommandeController();
                 $validerCommande->validerCommande($_GET['id_plat']);
+                $validerCommande->viderPanier();
 
                 break;
 
                 //gérer le panier d'une commande par le client.
             case  $_SESSION['nom_client']:
 
-                //$commanderPlat = new CommandeController();
-                //$commanderPlat->passerCommande($_GET['id_plat']);
                 $passerCommande = new CommandeController();
-                //  $passerCommande->passerCommande($_GET['id_plat']);
                 $passerCommande->commandeInfos($_GET['id_plat']);
 
                 break;
@@ -112,8 +109,6 @@ class Router
 
                 $supprimer = new CommandeController();
                 $supprimer->del($_GET['id_plat']);
-
-
                 break;
 
                 // recherche un restaurant pricis par les client.

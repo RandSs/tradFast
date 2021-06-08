@@ -46,35 +46,9 @@ class CommandeController
         foreach($_SESSION['panier'] as $k){
             $total += $k['prix'] * $k['qte'];
         }
-        /*
-        for ($i = 0; $i < count($_SESSION['panier']['id_plat']); $i++) {
-            $total += $_SESSION['panier']['prix'][$i] * $_SESSION['panier']['qte'][$i];
-        }
-*/
+  
         return $total;
     }
-    /**
-     * on recuper la commande passer le client.
-     */
-    public function getCommande()
-    {
-
-        $infosCommande = new Commande();
-        $infosClient   = new Client();
-        $infosRestau   = new Restaurant();
-        $infosPlat     = new Plat();
-
-        $id_plat = $_GET['id_plat'];
-        $id_client = $_GET['id_client'];
-        $date_de_livraison = $_GET['dateDeLivrason'];
-        $date_de_commande = $_GET['dateDeCommande'];
-        $qte = $_GET['qte'];
-        $id_restaurant = $_GET['id_restaurant'];
-
-        include("view/clientView/clientCompte.php");
-
-    }
-
 
     public function commandeInfos($id_plat)
     {
@@ -83,6 +57,7 @@ class CommandeController
         $prix = $_GET['prix'];
         $qte = $_GET['qte'];
         $id_restaurant = $_GET['id_restaurant'];
+
         if (isset($_GET['id_plat'])) {
             $commande = new CommandeRepository;
             $resultats = $commande->recupererPlat($id_plat);
@@ -103,23 +78,29 @@ class CommandeController
                 $_SESSION['panier'][$id_plat]['qte']= $qte;
                 $_SESSION['panier'][$id_plat]['id_restaurant']= $id_restaurant;
                 }
-/*
-                array_push($_SESSION['panier']['id_plat'], $id_plat);
-                array_push($_SESSION['panier']['plat'], $plat);
-                array_push($_SESSION['panier']['prix'], $prix);
-                array_push($_SESSION['panier']['qte'], $qte);
-                array_push($_SESSION['panier']['id_restaurant'], $id_restaurant);
+
                 //on donne la possibiliter au client de pouvoir retourner a la page precedente grace a fonction 
                 //history.back();
-*/
-                die('le plat a bien été ajouté à votre panier <a href="javascript:history.back()">retourner sur le menu</a>');
+echo'
+                <div class="card-body">
+                <h5 class="card-title text-success">le plat à bien été ajouté à votre panier</h5>';
+          
+          
+          
+
+                die('<center><h3 class="text-success"><a href="javascript:history.back()">retourner sur le menu</h5></a></div>');
+            
             }
+
         }
         $panier = $_SESSION['panier'];
+     
         
         include("view/clientView/addPanier.php");
     }
 
+
+    
 
     public function validerCommande($id_plat)
     {
@@ -144,14 +125,31 @@ class CommandeController
 
         if (isset($_GET['commandePla'])) {
             $inject = new CommandeRepository;
-            $inject->panier($arrayCommande,  $id_plat, $quantite);
+           $resultats =  $inject->panier($arrayCommande,  $id_plat, $quantite);
+            
+                 
         }
-
-
-        if (!empty($arrayCommande)) {
+        if (empty($arrayCommande)) {
             echo "pas de données!";
         } else {
         }
+    }
+
+
+    public function viderPanier(){
+        $submit = $_GET['submit'];
+        if(isset($submit)){
+            unset($_SESSION['panier']);
+
+            echo'
+                <div class="card-body">
+                <h2 class="card-title text-success">Votre commande est prise en compte</h2>';
+          
+
+                die('<center><h3 class="text-success"><a href="javascript:history.back()">retourner sur le panier</h5></a></div>');
+
+        }
+        
     }
 
     /**
@@ -161,23 +159,12 @@ class CommandeController
 
     public function del($id_plat)
     {
-           // echo $id_plat;
-       //     var_dump($_SESSION);
- /*       
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
-*/
-//$_SESSION['panier']=array();
-
+    
         unset($_SESSION['panier'][$id_plat]);
 
-        
-       
-
-        /*echo "<script>
+        echo "<script>
                  location.href ='index.php?page=addpanier';
              </script>";
-         */
+        
     }
 }

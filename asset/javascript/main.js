@@ -28,21 +28,9 @@ function addPlat(id_plat)
 
 $(document).ready(function(){
         
-$("").on("click", function(){
+$("#sup").on("click", function(){
     alert("es que vous ete sure de vouloir suprimer ce plat?");
-    $("").hide();
-
-    
+ 
 })
 
 })
-
-  function suprimerPlat(id){
-      var url  = "http://localhost/trad/view/addPanier.php";
- $(function(){
-     $.post( {action:suprimerPlat, id:id}, function(data){
-        
-           
-     })
- })
-    }
